@@ -1,0 +1,1722 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Trabajar con una base de datos relacional utilizando el ecosistema Spring">
+      
+      
+        <meta name="author" content="Serge Tahé">
+      
+      
+        <link rel="canonical" href="https://stahe.github.io/es-spring-database-juin-2015/introduccion-a-spring-mvc.html">
+      
+      
+        <link rel="prev" href="rendimiento.html">
+      
+      
+        <link rel="next" href="exposicion-de-una-base-de-datos-en-la-web.html">
+      
+      
+        
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    
+      
+        <title>16. Introducción a Spring MVC - Trabajar con una base de datos relacional utilizando el ecosistema Spring</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.618322db.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="stylesheets/focus.css">
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-EBZC3JVJNR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    var siteName = "Trabajar con una base de datos relacional utilizando el ecosistema Spring";
+    gtag('config', 'G-EBZC3JVJNR', {
+        'page_title': siteName
+    });
+  </script>
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="purple">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#16-introduccion-a-spring-mvc" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="index.html" title="Trabajar con una base de datos relacional utilizando el ecosistema Spring" class="md-header__button md-logo" aria-label="Trabajar con una base de datos relacional utilizando el ecosistema Spring" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Trabajar con una base de datos relacional utilizando el ecosistema Spring
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              16. Introducción a Spring MVC
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="purple"  aria-label="Cambiar al modo oscuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Cambiar al modo oscuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="purple"  aria-label="Cambiar a modo claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://stahe.github.io/es-spring-database-juin-2015" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="Trabajar con una base de datos relacional utilizando el ecosistema Spring" class="md-nav__button md-logo" aria-label="Trabajar con una base de datos relacional utilizando el ecosistema Spring" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Trabajar con una base de datos relacional utilizando el ecosistema Spring
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://stahe.github.io/es-spring-database-juin-2015" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bienvenidos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="introduccion.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Introducción
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="introduccion-al-marco-spring.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Introducción al marco Spring
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="introduccion-a-la-api-jdbc.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Introducción a la API JDBC
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="introduccion-a-spring-jdbc.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. Introducción a Spring JDBC
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="introduccion-a-spring-data-jpa.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5. Introducción a Spring Data JPA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="spring-data-jpa-hibernate.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6. Spring Data JPA Hibernate
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="spring-data-jpa-eclipselink.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7. Spring Data JPA EclipseLink
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="spring-data-jpa-openjpa.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    8. Spring Data JPA OpenJpa
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="generacion-de-bases-de-datos-a-partir-de-entidades-jpa.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    9. Generación de bases de datos a partir de entidades JPA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="oracle-express-11g-release-2.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10. Oracle Express 11g Release 2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="postgresql-94.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11. PostgreSQL 9.4
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ibm-db2-express-c-105.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    12. IBM DB2 Express-C 10.5
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="sql-server-2014.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    13. SQL Server 2014
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="firebird-254.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    14. Firebird 2.5.4
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="rendimiento.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    15. Rendimiento
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    16. Introducción a Spring MVC
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="introduccion-a-spring-mvc.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    16. Introducción a Spring MVC
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#161-el-papel-de-spring-mvc-en-una-aplicacion-web" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        16.1. El papel de Spring MVC en una aplicación web
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#162-el-modelo-de-desarrollo-de-spring-mvc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        16.2. El modelo de desarrollo de Spring MVC
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#163-un-proyecto-webjson-con-spring-mvc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        16.3. Un proyecto Web/JSON con Spring MVC
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="16.3. Un proyecto Web/JSON con Spring MVC">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1631-el-proyecto-de-demostracion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        16.3.1. El proyecto de demostración
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1632-configuracion-de-maven" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        16.3.2. Configuración de Maven
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1633-la-arquitectura-de-un-servicio-spring-web-json" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        16.3.3. La arquitectura de un servicio Spring [web / JSON]
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1634-el-controlador-c" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        16.3.4. El controlador C
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1635-el-modelo-m" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        16.3.5. El modelo M
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1636-ejecucion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        16.3.6. Ejecución
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1637-creacion-de-un-archivo-ejecutable" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        16.3.7. Creación de un archivo ejecutable
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1638-implementacion-de-la-aplicacion-en-un-servidor-tomcat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        16.3.8. Implementación de la aplicación en un servidor Tomcat
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#164-conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        16.4. Conclusión
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="exposicion-de-una-base-de-datos-en-la-web.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    17. Exposición de una base de datos en la web
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="un-cliente-programado-para-el-servicio-web-json.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    18. Un cliente programado para el servicio web /JSON
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="proteccion-del-acceso-a-un-servicio-web-con-spring-security.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    19. Protección del acceso a un servicio web con Spring Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="proteccion-del-servicio-web-para-acceder-a-la-base-de-datos-dbproduitscategories.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    20. Protección del servicio web para acceder a la base de datos [dbproduitscategories]
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="gestion-del-acceso-entre-dominios.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    21. Gestión del acceso entre dominios
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="conclusion.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    22. Conclusión
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="anexos.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    23. Anexos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<p><a id="refheading21922820146305371"></a></p>
+<h1 id="16-introduccion-a-spring-mvc">16. <span style="color: #365f91">Introducción a Spring MVC</span></h1>
+<p><a id="refheading99511454977699"></a></p>
+<h2 id="161-el-papel-de-spring-mvc-en-una-aplicacion-web">16.1. <span style="color: #4f81bd">El papel de Spring MVC en una aplicación web</span></h2>
+<p>Situemos Spring MVC en el contexto del desarrollo de una aplicación web. En la mayoría de los casos, se basará en una arquitectura de varios niveles como la siguiente:</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000004F70000010BB6D9B6DB.png" width="636" height="133" style="display:inline-block; margin:4px;width:16.815cm;height:3.531cm;" class="odt-zoomable" data-zoom-src="images/10000000000004F70000010BB6D9B6DB.png" /></td></tr></table>
+
+<ul>
+  <li>la capa [<b>Web</b>] es la que interactúa con el usuario de la aplicación web. El usuario interactúa con la aplicación web a través de páginas web que se muestran en un navegador. <b>Spring MVC reside en esta capa y solo en ella;</b>
+  </li>
+  <li>la capa [<b>de negocio</b>] implementa la lógica de negocio de la aplicación, como el cálculo de un salario o una factura. Esta capa utiliza datos del usuario a través de la capa [Web] y del SGBD a través de la capa [DAO];
+  </li>
+  <li>la capa [<b>DAO</b>] (objetos de acceso a datos), la capa [<b>ORM</b>] (mapeador relacional de objetos) y el controlador JDBC gestionan el acceso a los datos en el SGBD. La capa [<b>ORM</b>] actúa como puente entre los objetos gestionados por la capa [DAO] y las filas y columnas de las tablas de una base de datos relacional. Una especificación denominada JPA (Java Persistence API) permite abstraerse del ORM utilizado si este implementa dichas especificaciones. Este será el caso en este tutorial, por lo que a partir de ahora nos referiremos a la capa ORM como la capa JPA;
+  </li>
+  <li>La integración de estas capas la gestiona el marco Spring;
+  </li>
+</ul>
+<p><a id="refheading99531454977699"></a></p>
+<h2 id="162-el-modelo-de-desarrollo-de-spring-mvc">16.2. <span style="color: #4f81bd">El modelo de desarrollo de Spring MVC</span></h2>
+<p>Spring MVC implementa el patrón arquitectónico MVC (Modelo-Vista-Controlador) de la siguiente manera:</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000003E80000016495D2960D.png" width="500" height="178" style="display:inline-block; margin:4px;width:13.229cm;height:4.71cm;" class="odt-zoomable" data-zoom-src="images/10000000000003E80000016495D2960D.png" /></td></tr></table>
+
+<p>El procesamiento de una solicitud de un cliente se lleva a cabo de la siguiente manera:</p>
+<ol>
+  <li><b>solicitud</b>: las URL solicitadas tienen el formato<i> http://machine:port/contexte/Action/param1/param2/....?p1=v1&amp;p2=v2&amp;... </i>El [controlador frontal] utiliza un archivo de configuración o anotaciones Java para «enrutar» la solicitud al controlador correcto y a la acción correcta dentro de ese controlador. Para ello, utiliza el campo [Action] de la URL. El resto de la URL [<i>/param1/param2/...</i>] consta de parámetros opcionales que se pasarán a la acción. La <b>«C» </b>de MVC se refiere aquí a la cadena [Front Controller, Controller, Action]. Si ningún controlador puede gestionar la acción solicitada, el servidor web responderá que no se ha encontrado la URL solicitada.
+  </li>
+</ol>
+
+<ol>
+  <li>Procesamiento
+  </li>
+</ol>
+
+<ol>
+    <ol>
+        <ul>
+          <li>(continuación)
+          </li>
+        </ul>
+    </ol>
+    <ul>
+      <li>La acción seleccionada puede utilizar los parámetros que le ha pasado el [controlador frontal]. Estos pueden provenir de varias fuentes:
+        <ul>
+          <li>la ruta [<i>/param1/param2/...</i>] de la URL,
+          </li>
+          <li>los parámetros [<i>p1=v1&amp;p2=v2</i>] de la URL<i>,</i>
+          </li>
+          <li>de los parámetros enviados por el navegador con su solicitud;
+          </li>
+        </ul>
+      </li>
+      <li>Al procesar la solicitud del usuario, la acción puede necesitar la capa [business] [2b]. Una vez procesada la solicitud del cliente, puede desencadenar diversas respuestas. Un ejemplo clásico es:
+        <ul>
+          <li>una página de error si la solicitud no se ha podido procesar correctamente
+          </li>
+          <li>una página de confirmación en caso contrario
+          </li>
+        </ul>
+      </li>
+      <li>La acción indica a una vista específica que se renderice [3]. Esta vista mostrará los datos conocidos como el <b>modelo de vista</b>. Esta es la <b>«M» </b>de MVC. La acción creará este modelo <b>de vista </b>[2c] e indicará a una <b>vista </b>que se renderice [3];
+      </li>
+    </ul>
+</ol>
+
+<ol>
+  <li><b>Respuesta</b>: la vista seleccionada <b>V </b>utiliza el modelo <b>M </b>creado por la acción para inicializar las partes dinámicas de la respuesta HTML que debe enviar al cliente y, a continuación, envía esta respuesta.
+  </li>
+</ol>
+
+<p>En el caso de un servicio web / JSON, la arquitectura anterior se modifica ligeramente:</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/100000000000047C0000016858242B0D.png" width="574" height="180" style="display:inline-block; margin:4px;width:15.187cm;height:4.763cm;" class="odt-zoomable" data-zoom-src="images/100000000000047C0000016858242B0D.png" /></td></tr></table>
+
+<ul>
+  <li>en [4a], el modelo, que es una clase Java, se convierte en una cadena JSON mediante una biblioteca JSON;
+  </li>
+  <li>en [4b], esta cadena JSON se envía al navegador;
+  </li>
+</ul>
+
+<p>Ahora, aclaremos la relación entre la arquitectura web MVC y la arquitectura por capas. Dependiendo de cómo se defina el <strong>modelo</strong>, estos dos conceptos pueden estar relacionados o no. Consideremos una aplicación web Spring MVC de una sola capa:</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/1000000000000424000001699E8484C8.png" width="530" height="181" style="display:inline-block; margin:4px;width:14.023cm;height:4.777cm;" class="odt-zoomable" data-zoom-src="images/1000000000000424000001699E8484C8.png" /></td></tr></table>
+
+<p>Si implementamos la capa [Web] con Spring MVC, tendremos efectivamente una arquitectura web MVC, pero no una arquitectura en capas. En este caso, la capa [Web] se encargará de todo: la presentación, la lógica de negocio y el acceso a los datos. Son las acciones las que realizarán este trabajo.</p>
+<p>Ahora, consideremos una arquitectura web multicapa:</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000004B800000104935CADC3.png" width="604" height="130" style="display:inline-block; margin:4px;width:15.981cm;height:3.44cm;" class="odt-zoomable" data-zoom-src="images/10000000000004B800000104935CADC3.png" /></td></tr></table>
+
+<p>La capa [Web] se puede implementar sin un marco de trabajo y sin seguir el modelo MVC. En ese caso, tenemos una arquitectura de varias capas, pero la capa Web no implementa el modelo MVC.</p>
+<p>Por ejemplo, en el entorno .NET, la capa [Web] anterior se puede implementar con ASP.NET MVC, lo que da como resultado una arquitectura en capas con una capa [Web] de estilo MVC. Una vez hecho esto, podemos sustituir esta capa ASP.NET MVC por una capa ASP.NET clásica (WebForms) <strong>sin modificar</strong> el resto (lógica de negocio, DAO, ORM).  De este modo, obtenemos una arquitectura en capas con una capa [Web] que ya no se basa en MVC.</p>
+<p>En MVC, dijimos que el modelo M era el de la vista V, es decir, el conjunto de datos mostrados por la vista V. Se ofrece otra definición del modelo M en MVC:</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/1000000000000485000000F9FC399C51.png" width="579" height="124" style="display:inline-block; margin:4px;width:15.307cm;height:3.293cm;" class="odt-zoomable" data-zoom-src="images/1000000000000485000000F9FC399C51.png" /></td></tr></table>
+
+<p>Muchos autores consideran que lo que se encuentra a la derecha de la capa [Web] constituye el modelo M de MVC. Para evitar ambigüedades, podemos referirnos a:</p>
+<ul>
+  <li><b>el modelo de dominio </b>cuando nos refiramos a todo lo que se encuentra a la derecha de la capa [Web]
+  </li>
+  <li>el <b>modelo de vista </b>cuando nos refiramos a los datos mostrados por una vista V
+  </li>
+</ul>
+
+<p>En lo sucesivo, el término «modelo M» se referirá exclusivamente al <strong>modelo de una vista</strong> V.</p>
+<p><a id="refheading570191429907001"></a></p>
+<h2 id="163-un-proyecto-webjson-con-spring-mvc">16.3. <span style="color: #4f81bd">Un proyecto Web/JSON con Spring MVC</span></h2>
+<p>El sitio web [<a href="http://spring.io/guides"><u><span style="color: #0563c1">http://spring.io/guides</span></u></a>] ofrece tutoriales de introducción para explorar el ecosistema Spring. Seguiremos uno de ellos para descubrir la configuración de Maven necesaria para un proyecto Spring MVC.</p>
+<p><a id="refheading15914779844303"></a></p>
+<h3 id="1631-el-proyecto-de-demostracion">16.3.1. <span style="color: #4f81bd">El proyecto de demostración</span></h3>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/100000000000037800000145193799FB.png" width="444" height="163" style="display:inline-block; margin:4px;width:11.748cm;height:4.3cm;" class="odt-zoomable" data-zoom-src="images/100000000000037800000145193799FB.png" /></td></tr></table>
+
+<p><a id="refheading5702114299070011"></a></p>
+<ul>
+  <li>En [1], importamos una de las guías de Spring;
+  </li>
+</ul>
+
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000004EF000003053577401D.png" width="632" height="386" style="display:inline-block; margin:4px;width:16.709cm;height:10.225cm;" class="odt-zoomable" data-zoom-src="images/10000000000004EF000003053577401D.png" /></td></tr></table>
+
+<ul>
+  <li>en [2], seleccionamos el ejemplo [Rest Service];
+  </li>
+  <li>en [3], seleccionamos el proyecto Maven;
+  </li>
+  <li>en [4], seleccionamos la versión final de la guía;
+  </li>
+  <li>en [5], confirmamos;
+  </li>
+  <li>en [6], el proyecto importado;
+  </li>
+</ul>
+
+<p>Los servicios web accesibles a través de URL estándar que devuelven datos JSON suelen denominarse servicios REST (REpresentational State Transfer). Se dice que un servicio es RESTful si sigue ciertas reglas.</p>
+<p>Examinemos ahora el proyecto importado, comenzando por su configuración de Maven.</p>
+<p><a id="refheading15916779844303"></a></p>
+<h3 id="1632-configuracion-de-maven">16.3.2. <span style="color: #4f81bd">Configuración de Maven</span></h3>
+<p><a id="refheading5702314299070011"></a>El archivo [pom.xml] es el siguiente:</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-xml">
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#008080">&lt;?</span><span style="color:#3f7f7f">xml</span><span style="color:#000000"> </span><span style="color:#7f007f">version</span><span style="color:#000000">=</span><span style="font-style:italic;color:#2a00ff">&quot;1.0&quot;</span><span style="color:#000000"> </span><span style="color:#7f007f">encoding</span><span style="color:#000000">=</span><span style="font-style:italic;color:#2a00ff">&quot;UTF-8&quot;</span><span style="color:#008080">?&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#008080">&lt;</span><span style="color:#3f7f7f">project</span><span style="color:#000000"> </span><span style="color:#7f007f">xmlns</span><span style="color:#000000">=</span><span style="font-style:italic;color:#2a00ff">&quot;http://maven.apache.org/POM/4.0.0&quot;</span><span style="color:#000000"> </span><span style="color:#7f007f">xmlns:xsi</span><span style="color:#000000">=</span><span style="font-style:italic;color:#2a00ff">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#7f007f">xsi:schemaLocation</span><span style="color:#000000">=</span><span style="font-style:italic;color:#2a00ff">&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&quot;</span><span style="color:#008080">&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#008080">&lt;</span><span style="color:#3f7f7f">modelVersion</span><span style="color:#008080">&gt;</span><span style="color:#000000">4.0.0</span><span style="color:#008080">&lt;/</span><span style="color:#3f7f7f">modelVersion</span><span style="color:#008080">&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#008080">&lt;</span><span style="color:#3f7f7f">groupId</span><span style="color:#008080">&gt;</span><span style="color:#000000">org.springframework</span><span style="color:#008080">&lt;/</span><span style="color:#3f7f7f">groupId</span><span style="color:#008080">&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#008080">&lt;</span><span style="color:#3f7f7f">artifactId</span><span style="color:#008080">&gt;</span><span style="color:#000000">gs-rest-service</span><span style="color:#008080">&lt;/</span><span style="color:#3f7f7f">artifactId</span><span style="color:#008080">&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#008080">&lt;</span><span style="color:#3f7f7f">version</span><span style="color:#008080">&gt;</span><span style="color:#000000">0.1.0</span><span style="color:#008080">&lt;/</span><span style="color:#3f7f7f">version</span><span style="color:#008080">&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#008080">&lt;</span><span style="color:#3f7f7f">parent</span><span style="color:#008080">&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#008080">&lt;</span><span style="color:#3f7f7f">groupId</span><span style="color:#008080">&gt;</span><span style="color:#000000">org.springframework.boot</span><span style="color:#008080">&lt;/</span><span style="color:#3f7f7f">groupId</span><span style="color:#008080">&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#008080">&lt;</span><span style="color:#3f7f7f">artifactId</span><span style="color:#008080">&gt;</span><span style="color:#000000">spring-boot-starter-parent</span><span style="color:#008080">&lt;/</span><span style="color:#3f7f7f">artifactId</span><span style="color:#008080">&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#008080">&lt;</span><span style="color:#3f7f7f">version</span><span style="color:#008080">&gt;</span><span style="color:#000000">1.2.2.RELEASE</span><span style="color:#008080">&lt;/</span><span style="color:#3f7f7f">version</span><span style="color:#008080">&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#008080">&lt;/</span><span style="color:#3f7f7f">parent</span><span style="color:#008080">&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#008080">&lt;</span><span style="color:#3f7f7f">dependencies</span><span style="color:#008080">&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#008080">&lt;</span><span style="color:#3f7f7f">dependency</span><span style="color:#008080">&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">            </span><span style="color:#008080">&lt;</span><span style="color:#3f7f7f">groupId</span><span style="color:#008080">&gt;</span><span style="color:#000000">org.springframework.boot</span><span style="color:#008080">&lt;/</span><span style="color:#3f7f7f">groupId</span><span style="color:#008080">&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">            </span><span style="color:#008080">&lt;</span><span style="color:#3f7f7f">artifactId</span><span style="color:#008080">&gt;</span><span style="color:#000000">spring-boot-starter-web</span><span style="color:#008080">&lt;/</span><span style="color:#3f7f7f">artifactId</span><span style="color:#008080">&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#008080">&lt;/</span><span style="color:#3f7f7f">dependency</span><span style="color:#008080">&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#008080">&lt;/</span><span style="color:#3f7f7f">dependencies</span><span style="color:#008080">&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#008080">&lt;</span><span style="color:#3f7f7f">properties</span><span style="color:#008080">&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#008080">&lt;</span><span style="color:#3f7f7f">start-class</span><span style="color:#008080">&gt;</span><span style="color:#000000">hello.Application</span><span style="color:#008080">&lt;/</span><span style="color:#3f7f7f">start-class</span><span style="color:#008080">&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#008080">&lt;/</span><span style="color:#3f7f7f">properties</span><span style="color:#008080">&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#008080">&lt;</span><span style="color:#3f7f7f">build</span><span style="color:#008080">&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#008080">&lt;</span><span style="color:#3f7f7f">plugins</span><span style="color:#008080">&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">            </span><span style="color:#008080">&lt;</span><span style="color:#3f7f7f">plugin</span><span style="color:#008080">&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">                </span><span style="color:#008080">&lt;</span><span style="color:#3f7f7f">groupId</span><span style="color:#008080">&gt;</span><span style="color:#000000">org.springframework.boot</span><span style="color:#008080">&lt;/</span><span style="color:#3f7f7f">groupId</span><span style="color:#008080">&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">                </span><span style="color:#008080">&lt;</span><span style="color:#3f7f7f">artifactId</span><span style="color:#008080">&gt;</span><span style="color:#000000">spring-boot-maven-plugin</span><span style="color:#008080">&lt;/</span><span style="color:#3f7f7f">artifactId</span><span style="color:#008080">&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">            </span><span style="color:#008080">&lt;/</span><span style="color:#3f7f7f">plugin</span><span style="color:#008080">&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#008080">&lt;/</span><span style="color:#3f7f7f">plugins</span><span style="color:#008080">&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#008080">&lt;/</span><span style="color:#3f7f7f">build</span><span style="color:#008080">&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#008080">&lt;</span><span style="color:#3f7f7f">repositories</span><span style="color:#008080">&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#008080">&lt;</span><span style="color:#3f7f7f">repository</span><span style="color:#008080">&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">            </span><span style="color:#008080">&lt;</span><span style="color:#3f7f7f">id</span><span style="color:#008080">&gt;</span><span style="color:#000000">spring-releases</span><span style="color:#008080">&lt;/</span><span style="color:#3f7f7f">id</span><span style="color:#008080">&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">            </span><span style="color:#008080">&lt;</span><span style="color:#3f7f7f">url</span><span style="color:#008080">&gt;</span><span style="color:#000000">https://repo.spring.io/libs-release</span><span style="color:#008080">&lt;/</span><span style="color:#3f7f7f">url</span><span style="color:#008080">&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#008080">&lt;/</span><span style="color:#3f7f7f">repository</span><span style="color:#008080">&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#008080">&lt;/</span><span style="color:#3f7f7f">repositories</span><span style="color:#008080">&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#008080">&lt;</span><span style="color:#3f7f7f">pluginRepositories</span><span style="color:#008080">&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#008080">&lt;</span><span style="color:#3f7f7f">pluginRepository</span><span style="color:#008080">&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">            </span><span style="color:#008080">&lt;</span><span style="color:#3f7f7f">id</span><span style="color:#008080">&gt;</span><span style="color:#000000">spring-releases</span><span style="color:#008080">&lt;/</span><span style="color:#3f7f7f">id</span><span style="color:#008080">&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">            </span><span style="color:#008080">&lt;</span><span style="color:#3f7f7f">url</span><span style="color:#008080">&gt;</span><span style="color:#000000">https://repo.spring.io/libs-release</span><span style="color:#008080">&lt;/</span><span style="color:#3f7f7f">url</span><span style="color:#008080">&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#008080">&lt;/</span><span style="color:#3f7f7f">pluginRepository</span><span style="color:#008080">&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#008080">&lt;/</span><span style="color:#3f7f7f">pluginRepositories</span><span style="color:#008080">&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#008080">&lt;/</span><span style="color:#3f7f7f">project</span><span style="color:#008080">&gt;</span></span></span>
+</code></pre></div>
+
+<ul>
+  <li>líneas 6–8: las propiedades del proyecto Maven. Falta una etiqueta [&lt;packaging&gt;] que especifique el tipo de archivo generado por la compilación de Maven. En su ausencia, se utiliza el tipo [jar]. Por lo tanto, la aplicación es una aplicación ejecutable basada en consola, no una aplicación web, en cuyo caso el empaquetado sería [war];
+  </li>
+  <li>líneas 10–14: El proyecto Maven tiene un proyecto padre [<span style="color: #000000">spring-boot-starter-parent</span>]. Este define la mayoría de las dependencias del proyecto. Pueden ser suficientes, en cuyo caso no se añaden dependencias adicionales, o pueden no serlo, en cuyo caso se añaden las dependencias que faltan;
+  </li>
+  <li>Líneas 17-20: El artefacto [spring-boot-starter-web] incluye las bibliotecas necesarias para un proyecto de servicio web Spring MVC en el que no se generan vistas. Este artefacto incluye un gran número de bibliotecas, incluidas las de un servidor Tomcat integrado. La aplicación se ejecutará en este servidor;
+  </li>
+</ul>
+
+<p>Las bibliotecas incluidas en esta configuración son numerosas:</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/100000000000013900000130C601B465.png" width="219" height="213" style="display:inline-block; margin:4px;width:5.791cm;height:5.623cm;" class="odt-zoomable" data-zoom-src="images/100000000000013900000130C601B465.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000000F700000110A13A7F1F.png" width="173" height="190" style="display:inline-block; margin:4px;width:4.57cm;height:5.032cm;" class="odt-zoomable" data-zoom-src="images/10000000000000F700000110A13A7F1F.png" /></td></tr></table>
+
+<p>Arriba vemos los tres archivos del servidor Tomcat.</p>
+<p><a id="refheading15918779844303"></a></p>
+<h3 id="1633-la-arquitectura-de-un-servicio-spring-web-json">16.3.3. <span style="color: #4f81bd">La arquitectura de un servicio Spring [web / JSON]</span></h3>
+<p><a id="refheading5702514299070011"></a>Para un servicio web/JSON, Spring MVC implementa el modelo MVC de la siguiente manera:</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/100000000000046800000171425C92B5.png" width="564" height="185" style="display:inline-block; margin:4px;width:14.923cm;height:4.882cm;" class="odt-zoomable" data-zoom-src="images/100000000000046800000171425C92B5.png" /></td></tr></table>
+
+<ul>
+  <li>En [4a], el modelo —que es una clase Java— se convierte en una cadena JSON mediante una biblioteca JSON;
+  </li>
+  <li>en [4b], esta cadena JSON se envía al navegador;
+  </li>
+</ul>
+<p><a id="refheading15920779844303"></a></p>
+<h3 id="1634-el-controlador-c">16.3.4. <span style="color: #4f81bd">El controlador C</span></h3>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000000ED000000AB6C6D3DB3.png" width="166" height="120" style="display:inline-block; margin:4px;width:4.39cm;height:3.166cm;" class="odt-zoomable" data-zoom-src="images/10000000000000ED000000AB6C6D3DB3.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;">&nbsp;</td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;">&nbsp;</td></tr></table>
+
+<p><a id="refheading5702714299070011"></a></p>
+<p>La aplicación importada tiene el siguiente controlador:</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-python">
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#7f0055">package</span><span style="color:#000000"> hello;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#7f0055">import</span><span style="color:#000000"> java.util.concurrent.atomic.AtomicLong;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#7f0055">import</span><span style="color:#000000"> org.springframework.web.bind.annotation.RequestMapping;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#7f0055">import</span><span style="color:#000000"> org.springframework.web.bind.annotation.RequestParam;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#7f0055">import</span><span style="color:#000000"> org.springframework.web.bind.annotation.RestController;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">@RestController</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#7f0055">public</span><span style="color:#000000"> </span><span style="font-weight:bold;color:#7f0055">class</span><span style="color:#000000"> GreetingController {</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="font-weight:bold;color:#7f0055">private</span><span style="color:#000000"> </span><span style="font-weight:bold;color:#7f0055">static</span><span style="color:#000000"> </span><span style="font-weight:bold;color:#7f0055">final</span><span style="color:#000000"> String </span><span style="font-weight:bold;font-style:italic;color:#0000c0">template</span><span style="color:#000000"> = </span><span style="color:#2a00ff">&quot;Hello, %s!&quot;</span><span style="color:#000000">;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="font-weight:bold;color:#7f0055">private</span><span style="color:#000000"> </span><span style="font-weight:bold;color:#7f0055">final</span><span style="color:#000000"> AtomicLong </span><span style="color:#0000c0">counter</span><span style="color:#000000"> = </span><span style="font-weight:bold;color:#7f0055">new</span><span style="color:#000000"> AtomicLong();</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#646464">@RequestMapping</span><span style="color:#000000">(</span><span style="color:#2a00ff">&quot;/greeting&quot;</span><span style="color:#000000">)</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="font-weight:bold;color:#7f0055">public</span><span style="color:#000000"> Greeting greeting(</span><span style="color:#646464">@RequestParam</span><span style="color:#000000">(value = </span><span style="color:#2a00ff">&quot;name&quot;</span><span style="color:#000000">, defaultValue = </span><span style="color:#2a00ff">&quot;World&quot;</span><span style="color:#000000">) String </span><span style="color:#6a3e3e">name</span><span style="color:#000000">) {</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="font-weight:bold;color:#7f0055">return</span><span style="color:#000000"> </span><span style="font-weight:bold;color:#7f0055">new</span><span style="color:#000000"> Greeting(</span><span style="color:#0000c0">counter</span><span style="color:#000000">.incrementAndGet(), String.</span><span style="font-style:italic;color:#000000">format</span><span style="color:#000000">(</span><span style="font-weight:bold;font-style:italic;color:#0000c0">template</span><span style="color:#000000">, </span><span style="color:#6a3e3e">name</span><span style="color:#000000">));</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">}</span></span>
+</code></pre></div>
+
+<ul>
+  <li>Línea 9: La anotación [<b>@RestController</b>] convierte a la clase [<span style="color: #000000">GreetingController</span>] en un controlador Spring, lo que significa que sus métodos se registran para gestionar URL. Ya hemos visto la anotación similar [<b>@Controller</b>]. El tipo de retorno de los métodos de ese controlador era [String], que era el nombre de la vista que se iba a mostrar. Aquí es diferente. Los métodos de un [<b>@RestController</b>] devuelven objetos que se serializan para enviarse al navegador. El tipo de serialización que se realiza depende de la configuración de Spring MVC. Aquí, se serializarán a JSON. Es la presencia de una biblioteca JSON en las dependencias del proyecto lo que hace que Spring Boot configure automáticamente el proyecto de esta manera;
+  </li>
+  <li>línea 14: la anotación [<b>@RequestMapping</b>] especifica la URL gestionada por el método, en este caso la URL [/greeting];
+  </li>
+  <li>línea 15: ya hemos explicado la anotación [<span style="color: #646464">@RequestParam</span>]. El resultado devuelto por el método es un objeto de tipo [Greeting].
+  </li>
+  <li>línea 12: un entero largo de tipo atómico. Esto significa que admite el acceso concurrente. Es posible que varios subprocesos quieran incrementar la variable [counter] al mismo tiempo. Esto se gestionará correctamente. Un subproceso solo puede leer el valor del contador una vez que el subproceso que lo está modificando haya finalizado su modificación.
+  </li>
+</ul>
+<p><a id="refheading15922779844303"></a></p>
+<h3 id="1635-el-modelo-m">16.3.5. <span style="color: #4f81bd">El modelo M</span></h3>
+<p><a id="refheading570291429907001"></a>El modelo M generado por el método anterior es el siguiente objeto [Greeting]:</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000000ED000000ABFE40A4F7.png" width="166" height="120" style="display:inline-block; margin:4px;width:4.39cm;height:3.166cm;" class="odt-zoomable" data-zoom-src="images/10000000000000ED000000ABFE40A4F7.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;">&nbsp;</td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;">&nbsp;</td></tr></table>
+
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-csharp">
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#7f0055">package</span><span style="color:#000000"> hello;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#7f0055">public</span><span style="color:#000000"> </span><span style="font-weight:bold;color:#7f0055">class</span><span style="color:#000000"> Greeting {</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="font-weight:bold;color:#7f0055">private</span><span style="color:#000000"> </span><span style="font-weight:bold;color:#7f0055">final</span><span style="color:#000000"> </span><span style="font-weight:bold;color:#7f0055">long</span><span style="color:#000000"> </span><span style="color:#0000c0">id</span><span style="color:#000000">;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="font-weight:bold;color:#7f0055">private</span><span style="color:#000000"> </span><span style="font-weight:bold;color:#7f0055">final</span><span style="color:#000000"> String </span><span style="color:#0000c0">content</span><span style="color:#000000">;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="font-weight:bold;color:#7f0055">public</span><span style="color:#000000"> Greeting(</span><span style="font-weight:bold;color:#7f0055">long</span><span style="color:#000000"> id, String content) {</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="font-weight:bold;color:#7f0055">this</span><span style="color:#000000">.</span><span style="color:#0000c0">id</span><span style="color:#000000"> = id;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="font-weight:bold;color:#7f0055">this</span><span style="color:#000000">.</span><span style="color:#0000c0">content</span><span style="color:#000000"> = content;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="font-weight:bold;color:#7f0055">public</span><span style="color:#000000"> </span><span style="font-weight:bold;color:#7f0055">long</span><span style="color:#000000"> getId() {</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="font-weight:bold;color:#7f0055">return</span><span style="color:#000000"> </span><span style="color:#0000c0">id</span><span style="color:#000000">;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="font-weight:bold;color:#7f0055">public</span><span style="color:#000000"> String getContent() {</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="font-weight:bold;color:#7f0055">return</span><span style="color:#000000"> </span><span style="color:#0000c0">content</span><span style="color:#000000">;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">}</span></span>
+</code></pre></div>
+
+<p>La transformación JSON de este objeto creará la cadena <strong>{&quot;id&quot;:n,&quot;content&quot;:&quot;text&quot;}</strong>. En definitiva, la cadena JSON generada por el método del controlador tendrá el siguiente formato:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>{&quot;id&quot;:2,&quot;content&quot;:&quot;Hello, World!&quot;}
+</code></pre></div>
+<p>o </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>{&quot;id&quot;:2,&quot;content&quot;:&quot;Hello, John!&quot;}
+</code></pre></div>
+<p><a id="refheading15924779844303"></a></p>
+<h3 id="1636-ejecucion">16.3.6. <span style="color: #4f81bd">Ejecución</span></h3>
+<p><a id="refheading570311429907001"></a></p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000000ED000000AB6B43BC81.png" width="166" height="120" style="display:inline-block; margin:4px;width:4.39cm;height:3.166cm;" class="odt-zoomable" data-zoom-src="images/10000000000000ED000000AB6B43BC81.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;">&nbsp;</td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;">&nbsp;</td></tr></table>
+
+<p>La clase [Application.java] es la clase ejecutable del proyecto. Su código es el siguiente:</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-python">
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#7f0055">package</span><span style="color:#000000"> hello;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#7f0055">import</span><span style="color:#000000"> org.springframework.boot.autoconfigure.EnableAutoConfiguration;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#7f0055">import</span><span style="color:#000000"> org.springframework.boot.SpringApplication;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#7f0055">import</span><span style="color:#000000"> org.springframework.context.annotation.ComponentScan;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">@ComponentScan</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">@EnableAutoConfiguration</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#7f0055">public</span><span style="color:#000000"> </span><span style="font-weight:bold;color:#7f0055">class</span><span style="color:#000000"> Application {</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="font-weight:bold;color:#7f0055">public</span><span style="color:#000000"> </span><span style="font-weight:bold;color:#7f0055">static</span><span style="color:#000000"> </span><span style="font-weight:bold;color:#7f0055">void</span><span style="color:#000000"> main(String[] </span><span style="color:#6a3e3e">args</span><span style="color:#000000">) {</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        SpringApplication.</span><span style="font-style:italic;color:#000000">run</span><span style="color:#000000">(Application.</span><span style="font-weight:bold;color:#7f0055">class</span><span style="color:#000000">, </span><span style="color:#6a3e3e">args</span><span style="color:#000000">);</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">}</span></span>
+</code></pre></div>
+
+<p>Ya hemos visto y explicado este código en el ejemplo anterior. Ejecutemos el proyecto:</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000002100000014566557274.png" width="370" height="228" style="display:inline-block; margin:4px;width:9.781cm;height:6.02cm;" class="odt-zoomable" data-zoom-src="images/10000000000002100000014566557274.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;">&nbsp;</td></tr></table>
+
+<p>Obtenemos los siguientes registros de consola:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-2-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-2-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-2-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-2-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-2-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-2-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-2-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-2-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-2-10">10</a></span>
+<span class="normal"><a href="#__codelineno-2-11">11</a></span>
+<span class="normal"><a href="#__codelineno-2-12">12</a></span>
+<span class="normal"><a href="#__codelineno-2-13">13</a></span>
+<span class="normal"><a href="#__codelineno-2-14">14</a></span>
+<span class="normal"><a href="#__codelineno-2-15">15</a></span>
+<span class="normal"><a href="#__codelineno-2-16">16</a></span>
+<span class="normal"><a href="#__codelineno-2-17">17</a></span>
+<span class="normal"><a href="#__codelineno-2-18">18</a></span>
+<span class="normal"><a href="#__codelineno-2-19">19</a></span>
+<span class="normal"><a href="#__codelineno-2-20">20</a></span>
+<span class="normal"><a href="#__codelineno-2-21">21</a></span>
+<span class="normal"><a href="#__codelineno-2-22">22</a></span>
+<span class="normal"><a href="#__codelineno-2-23">23</a></span>
+<span class="normal"><a href="#__codelineno-2-24">24</a></span>
+<span class="normal"><a href="#__codelineno-2-25">25</a></span>
+<span class="normal"><a href="#__codelineno-2-26">26</a></span>
+<span class="normal"><a href="#__codelineno-2-27">27</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a>  .   ____          _            __ _ _
+<a id="__codelineno-2-2" name="__codelineno-2-2"></a> /\\ / ___&#39;_ __ _ <span class="ge">_(_</span>)_ __  __ _ \ \ \ \
+<a id="__codelineno-2-3" name="__codelineno-2-3"></a>( ( )\___ | &#39;_ | &#39;<span class="ge">_| | &#39;_</span> \/ _` | \ \ \ \
+<a id="__codelineno-2-4" name="__codelineno-2-4"></a> \\/  ___)| |<span class="ge">_)| | | | | || (_</span>| |  ) ) ) )
+<a id="__codelineno-2-5" name="__codelineno-2-5"></a>  &#39;  |____| .__|_| |<span class="ge">_|_</span>| |<span class="ge">_\_</span>_, | / / / /
+<a id="__codelineno-2-6" name="__codelineno-2-6"></a> =========|_|==============|___/=/_/_/_/
+<a id="__codelineno-2-7" name="__codelineno-2-7"></a> :: Spring Boot ::        (v1.1.9.RELEASE)
+<a id="__codelineno-2-8" name="__codelineno-2-8"></a>
+<a id="__codelineno-2-9" name="__codelineno-2-9"></a>2014-11-28 15:22:55.005  INFO 3152 --- [           main] hello.Application                        : Starting Application on Gportpers3 with PID 3152 (started by ST in D:\data\istia-1415\spring mvc\dvp-final\gs-rest-service)
+<a id="__codelineno-2-10" name="__codelineno-2-10"></a>2014-11-28 15:22:55.046  INFO 3152 --- [           main] ationConfigEmbeddedWebApplicationContext : Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@62e136d3: startup date [Fri Nov 28 15:22:55 CET 2014]; root of context hierarchy
+<a id="__codelineno-2-11" name="__codelineno-2-11"></a>2014-11-28 15:22:55.762  INFO 3152 --- [           main] o.s.b.f.s.DefaultListableBeanFactory     : Overriding bean definition for bean &#39;beanNameViewResolver&#39;: replacing [Root bean: class [null]; scope=; abstract=false; lazyInit=false; autowireMode=3; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=org.springframework.boot.autoconfigure.web.ErrorMvcAutoConfiguration$WhitelabelErrorViewConfiguration; factoryMethodName=beanNameViewResolver; initMethodName=null; destroyMethodName=(inferred); defined in class path resource [org/springframework/boot/autoconfigure/web/ErrorMvcAutoConfiguration$WhitelabelErrorViewConfiguration.class]] with [Root bean: class [null]; scope=; abstract=false; lazyInit=false; autowireMode=3; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=org.springframework.boot.autoconfigure.web.WebMvcAutoConfiguration$WebMvcAutoConfigurationAdapter; factoryMethodName=beanNameViewResolver; initMethodName=null; destroyMethodName=(inferred); defined in class path resource [org/springframework/boot/autoconfigure/web/WebMvcAutoConfiguration$WebMvcAutoConfigurationAdapter.class]]
+<a id="__codelineno-2-12" name="__codelineno-2-12"></a>2014-11-28 15:22:56.567  INFO 3152 --- [           main] .t.TomcatEmbeddedServletContainerFactory : Server initialized with port: 8080
+<a id="__codelineno-2-13" name="__codelineno-2-13"></a>2014-11-28 15:22:56.738  INFO 3152 --- [           main] o.apache.catalina.core.StandardService   : Starting service Tomcat
+<a id="__codelineno-2-14" name="__codelineno-2-14"></a>2014-11-28 15:22:56.740  INFO 3152 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/7.0.56
+<a id="__codelineno-2-15" name="__codelineno-2-15"></a>2014-11-28 15:22:56.869  INFO 3152 --- [ost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+<a id="__codelineno-2-16" name="__codelineno-2-16"></a>2014-11-28 15:22:56.870  INFO 3152 --- [ost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1827 ms
+<a id="__codelineno-2-17" name="__codelineno-2-17"></a>2014-11-28 15:22:57.478  INFO 3152 --- [ost-startStop-1] o.s.b.c.e.ServletRegistrationBean        : Mapping servlet: &#39;dispatcherServlet&#39; to [/]
+<a id="__codelineno-2-18" name="__codelineno-2-18"></a>2014-11-28 15:22:57.481  INFO 3152 --- [ost-startStop-1] o.s.b.c.embedded.FilterRegistrationBean  : Mapping filter: &#39;hiddenHttpMethodFilter&#39; to: [/*]
+<a id="__codelineno-2-19" name="__codelineno-2-19"></a>2014-11-28 15:22:57.685  INFO 3152 --- [           main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+<a id="__codelineno-2-20" name="__codelineno-2-20"></a>2014-11-28 15:22:57.879  INFO 3152 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped &quot;{[/greeting],methods=[],params=[],headers=[],consumes=[],produces=[],custom=[]}&quot; onto public hello.Greeting hello.GreetingController.greeting(java.lang.String)
+<a id="__codelineno-2-21" name="__codelineno-2-21"></a>2014-11-28 15:22:57.884  INFO 3152 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped &quot;{[/error],methods=[],params=[],headers=[],consumes=[],produces=[],custom=[]}&quot; onto public org.springframework.http.ResponseEntity&lt;java.util.Map&lt;java.lang.String, java.lang.Object&gt;&gt; org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+<a id="__codelineno-2-22" name="__codelineno-2-22"></a>2014-11-28 15:22:57.885  INFO 3152 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped &quot;{[/error],methods=[],params=[],headers=[],consumes=[],produces=[text/html],custom=[]}&quot; onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest)
+<a id="__codelineno-2-23" name="__codelineno-2-23"></a>2014-11-28 15:22:57.906  INFO 3152 --- [           main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+<a id="__codelineno-2-24" name="__codelineno-2-24"></a>2014-11-28 15:22:57.907  INFO 3152 --- [           main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+<a id="__codelineno-2-25" name="__codelineno-2-25"></a>2014-11-28 15:22:58.231  INFO 3152 --- [           main] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+<a id="__codelineno-2-26" name="__codelineno-2-26"></a>2014-11-28 15:22:58.318  INFO 3152 --- [           main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat started on port(s): 8080/http
+<a id="__codelineno-2-27" name="__codelineno-2-27"></a>2014-11-28 15:22:58.319  INFO 3152 --- [           main] hello.Application                        : Started Application in 3.788 seconds (JVM running for 4.424)
+</code></pre></div></td></tr></table></div>
+<ul>
+  <li>línea 13: el servidor Tomcat se inicia en el puerto 8080 (línea 12);
+  </li>
+  <li>línea 17: el servlet [DispatcherServlet] está presente;
+  </li>
+  <li>línea 20: se ha detectado el método [GreetingController.greeting];
+  </li>
+</ul>
+
+<p>Para probar la aplicación web, solicitamos la URL [http://localhost:8080/greeting]:</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/1000000000000145000000802108509F.png" width="212" height="83" style="display:inline-block; margin:4px;width:5.609cm;height:2.208cm;" class="odt-zoomable" data-zoom-src="images/1000000000000145000000802108509F.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/100000000000019F00000085614557B2.png" width="290" height="93" style="display:inline-block; margin:4px;width:7.68cm;height:2.461cm;" class="odt-zoomable" data-zoom-src="images/100000000000019F00000085614557B2.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;">&nbsp;</td></tr></table>
+
+<p>Recibimos la cadena JSON esperada. Puede resultar interesante ver los encabezados HTTP enviados por el servidor. Para ello, utilizaremos la extensión de Chrome llamada [Advanced Rest Client] (Chrome / Ctrl-T / menú [Aplicaciones] / [Advanced Rest Client] —véase <a href="#refheading261317838046689"><u><span style="color: #0563c1">el apartado 23.11</span></u></a> de los apéndices):</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/1000000000000545000004C890F028FE.png" width="675" height="612" style="display:inline-block; margin:4px;width:17.847cm;height:16.193cm;" class="odt-zoomable" data-zoom-src="images/1000000000000545000004C890F028FE.png" /></td></tr></table>
+
+<ul>
+  <li>en [1], la URL solicitada;
+  </li>
+  <li>en [2], se utiliza el método GET;
+  </li>
+  <li>en [3], la respuesta JSON;
+  </li>
+  <li>en [4], el servidor indicó que enviaba una respuesta en formato JSON;
+  </li>
+  <li>en [5], se solicita la misma URL, pero esta vez utilizando una solicitud POST;
+  </li>
+  <li>en [7], la información se envía al servidor en formato [urlencoded];
+  </li>
+  <li>en [6], el parámetro <b>name </b>con su valor;
+  </li>
+  <li>en [8], el navegador indica al servidor que está enviando datos [urlencoded];
+  </li>
+  <li>en [9], la respuesta JSON del servidor;
+  </li>
+</ul>
+<p><a id="refheading15928779844303"></a></p>
+<h3 id="1637-creacion-de-un-archivo-ejecutable">16.3.7. <span style="color: #4f81bd">Creación de un archivo ejecutable</span></h3>
+<p><a id="refheading5703514299070011"></a>Ahora crearemos un archivo ejecutable:</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000002D80000015A2C4E28E1.png" width="364" height="173" style="display:inline-block; margin:4px;width:9.631cm;height:4.577cm;" class="odt-zoomable" data-zoom-src="images/10000000000002D80000015A2C4E28E1.png" /></td></tr></table>
+
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000003FC0000035393E9D523.png" width="510" height="425" style="display:inline-block; margin:4px;width:13.494cm;height:11.257cm;" class="odt-zoomable" data-zoom-src="images/10000000000003FC0000035393E9D523.png" /></td></tr></table>
+
+<ul>
+  <li>en [1]: ejecutamos un objetivo de Maven;
+  </li>
+  <li>en [2]: hay dos objetivos: [clean] para eliminar la carpeta [target] del proyecto Maven, [package] para volver a generarla;
+  </li>
+  <li>en [3]: la carpeta [target] generada se ubicará en esta carpeta;
+  </li>
+  <li>en [4]: se genera el objetivo;
+  </li>
+</ul>
+
+<p>En los registros que aparecen en la consola, es importante que aparezca [<span style="color: #000000">spring-boot-maven-plugin</span>]. Este es el complemento que genera el archivo ejecutable (véase [pom.xml] más abajo):</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-xml">
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#008080">&lt;</span><span style="color:#3f7f7f">build</span><span style="color:#008080">&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#008080">&lt;</span><span style="color:#3f7f7f">plugins</span><span style="color:#008080">&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">            </span><span style="color:#008080">&lt;</span><span style="color:#3f7f7f">plugin</span><span style="color:#008080">&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">                </span><span style="color:#008080">&lt;</span><span style="color:#3f7f7f">groupId</span><span style="color:#008080">&gt;</span><span style="color:#000000">org.springframework.boot</span><span style="color:#008080">&lt;/</span><span style="color:#3f7f7f">groupId</span><span style="color:#008080">&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">                </span><span style="color:#008080">&lt;</span><span style="color:#3f7f7f">artifactId</span><span style="color:#008080">&gt;</span><span style="color:#000000">spring-boot-maven-plugin</span><span style="color:#008080">&lt;/</span><span style="color:#3f7f7f">artifactId</span><span style="color:#008080">&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">            </span><span style="color:#008080">&lt;/</span><span style="color:#3f7f7f">plugin</span><span style="color:#008080">&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#008080">&lt;/</span><span style="color:#3f7f7f">plugins</span><span style="color:#008080">&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#008080">&lt;/</span><span style="color:#3f7f7f">build</span><span style="color:#008080">&gt;</span></span></span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="p">[</span><span class="n">INFO</span><span class="p">]</span> <span class="o">---</span> <span class="n">spring</span><span class="o">-</span><span class="n">boot</span><span class="o">-</span><span class="n">maven</span><span class="o">-</span><span class="n">plugin</span><span class="p">:</span><span class="mf">1.1.0</span><span class="o">.</span><span class="n">RELEASE</span><span class="p">:</span><span class="n">repackage</span> <span class="p">(</span><span class="n">default</span><span class="p">)</span> <span class="o">@</span> <span class="n">gs</span><span class="o">-</span><span class="n">rest</span><span class="o">-</span><span class="n">service</span> <span class="o">---</span>
+</code></pre></div>
+<p>En una ventana de comandos, ve a la carpeta generada:</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-text">
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">D:\Temp\wksSTS\gs-rest-service\target&gt;</span><span style="background-color:#ff950e">dir</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> ...</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">11/06/2014  15:30    &lt;DIR&gt;          classes</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">11/06/2014  15:30    &lt;DIR&gt;          generated-sources</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">11/06/2014  15:30        11 073 572 gs-rest-service-0.1.0.jar</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">11/06/2014  15:30             3 690 gs-rest-service-0.1.0.jar.original</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">11/06/2014  15:30    &lt;DIR&gt;          maven-archiver</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">11/06/2014  15:30    &lt;DIR&gt;          maven-status</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">...</span></span>
+</code></pre></div>
+
+<ul>
+  <li>línea 5: el archivo generado;
+  </li>
+</ul>
+
+<p>Este archivo se ejecuta de la siguiente manera:</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-javascript">
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">D:\Temp\wksSTS\gs-rest-service-complete\target&gt;</span><span style="background-color:#ff950e">java -jar gs-rest-service-0.1.0.jar</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  .   ____          _            __ _ _</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> /\\ / ___&#x27;_ __ _ _(_)_ __  __ _ \ \ \ \</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">( ( )\___ | &#x27;_ | &#x27;_| | &#x27;_ \/ _` | \ \ \ \</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> \\/  ___)| |_)| | | | | || (_| |  ) ) ) )</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  &#x27;  |____| .__|_| |_|_| |_\__, | / / / /</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> =========|_|==============|___/=/_/_/_/</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> :: Spring Boot ::        (v1.1.0.RELEASE)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2014-06-11 15:32:47.088  INFO 4972 --- [           main] hello.Application</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">                  : Starting Application on Gportpers3 with PID 4972 (D:\Temp\wk</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">sSTS\gs-rest-service-complete\target\gs-rest-service-0.1.0.jar started by ST in</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">D:\Temp\wksSTS\gs-rest-service-complete\target)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">...</span></span>
+</code></pre></div>
+
+<p>Ahora que la aplicación web está en ejecución, puede acceder a ella mediante un navegador:</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000001470000007FCF70CA67.png" width="229" height="89" style="display:inline-block; margin:4px;width:6.05cm;height:2.35cm;" class="odt-zoomable" data-zoom-src="images/10000000000001470000007FCF70CA67.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;">&nbsp;</td></tr></table>
+
+<p><a id="refheading15930779844303"></a></p>
+<h3 id="1638-implementacion-de-la-aplicacion-en-un-servidor-tomcat">16.3.8. <span style="color: #4f81bd">Implementación de la aplicación en un servidor Tomcat</span></h3>
+<p>Al igual que hicimos en el proyecto anterior, modificamos el archivo [pom.xml] de la siguiente manera:</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-xml">
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#008080">&lt;?</span><span style="color:#3f7f7f">xml</span><span style="color:#000000"> </span><span style="color:#7f007f">version</span><span style="color:#000000">=</span><span style="font-style:italic;color:#2a00ff">&quot;1.0&quot;</span><span style="color:#000000"> </span><span style="color:#7f007f">encoding</span><span style="color:#000000">=</span><span style="font-style:italic;color:#2a00ff">&quot;UTF-8&quot;</span><span style="color:#008080">?&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#008080">&lt;</span><span style="color:#3f7f7f">project</span><span style="color:#000000"> </span><span style="color:#7f007f">xmlns</span><span style="color:#000000">=</span><span style="font-style:italic;color:#2a00ff">&quot;http://maven.apache.org/POM/4.0.0&quot;</span><span style="color:#000000"> </span><span style="color:#7f007f">xmlns:xsi</span><span style="color:#000000">=</span><span style="font-style:italic;color:#2a00ff">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#7f007f">xsi:schemaLocation</span><span style="color:#000000">=</span><span style="font-style:italic;color:#2a00ff">&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&quot;</span><span style="color:#008080">&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#008080">&lt;</span><span style="color:#3f7f7f">modelVersion</span><span style="color:#008080">&gt;</span><span style="color:#000000">4.0.0</span><span style="color:#008080">&lt;/</span><span style="color:#3f7f7f">modelVersion</span><span style="color:#008080">&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#008080">&lt;</span><span style="color:#3f7f7f">groupId</span><span style="color:#008080">&gt;</span><span style="color:#000000">org.springframework</span><span style="color:#008080">&lt;/</span><span style="color:#3f7f7f">groupId</span><span style="color:#008080">&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#008080">&lt;</span><span style="color:#3f7f7f">artifactId</span><span style="color:#008080">&gt;</span><span style="color:#000000">gs-rest-service</span><span style="color:#008080">&lt;/</span><span style="color:#3f7f7f">artifactId</span><span style="color:#008080">&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#008080">&lt;</span><span style="color:#3f7f7f">version</span><span style="color:#008080">&gt;</span><span style="color:#000000">0.1.0</span><span style="color:#008080">&lt;/</span><span style="color:#3f7f7f">version</span><span style="color:#008080">&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#008080">&lt;</span><span style="color:#3f7f7f">packaging</span><span style="color:#008080">&gt;</span><span style="color:#ff0000">war</span><span style="color:#008080">&lt;/</span><span style="color:#3f7f7f">packaging</span><span style="color:#008080">&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#008080">...</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#008080">&lt;/</span><span style="color:#3f7f7f">project</span><span style="color:#008080">&gt;</span></span></span>
+</code></pre></div>
+
+<ul>
+  <li>Línea 9: Debes especificar que estás generando un archivo WAR (Web Archive);
+  </li>
+</ul>
+
+<p>También debe configurar la aplicación web. Si no hay ningún archivo [web.xml], esto se hace utilizando una clase que extienda [<span style="color: #000000">SpringBootServletInitializer</span>]:</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/1000000000000102000000D1A9F9B1A9.png" width="181" height="146" style="display:inline-block; margin:4px;width:4.78cm;height:3.872cm;" class="odt-zoomable" data-zoom-src="images/1000000000000102000000D1A9F9B1A9.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;">&nbsp;</td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;">&nbsp;</td></tr></table>
+
+<p>La clase [ApplicationInitializer] es la siguiente:</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-python">
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#7f0055">package</span><span style="color:#000000"> hello;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#7f0055">import</span><span style="color:#000000"> org.springframework.boot.builder.SpringApplicationBuilder;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#7f0055">import</span><span style="color:#000000"> org.springframework.boot.context.web.SpringBootServletInitializer;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#7f0055">public</span><span style="color:#000000"> </span><span style="font-weight:bold;color:#7f0055">class</span><span style="color:#000000"> ApplicationInitializer </span><span style="font-weight:bold;color:#7f0055">extends</span><span style="color:#000000"> SpringBootServletInitializer {</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#646464">@Override</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="font-weight:bold;color:#7f0055">protected</span><span style="color:#000000"> SpringApplicationBuilder configure(SpringApplicationBuilder application) {</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="font-weight:bold;color:#7f0055">return</span><span style="color:#000000"> application.sources(Application.</span><span style="font-weight:bold;color:#7f0055">class</span><span style="color:#000000">);</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">}</span></span>
+</code></pre></div>
+
+<ul>
+  <li>línea 6: la clase [<span style="color: #000000">ApplicationInitializer</span>] extiende la clase [<span style="color: #000000">SpringBootServletInitializer</span>];
+  </li>
+  <li>línea 9: se sobrescribe el método [configure] (línea 8);
+  </li>
+  <li>línea 10: se proporciona la clase que configura el proyecto;
+  </li>
+</ul>
+
+<p>Para ejecutar el proyecto, proceda de la siguiente manera:</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000004E700000160FF38A0CA.png" width="628" height="176" style="display:inline-block; margin:4px;width:16.603cm;height:4.657cm;" class="odt-zoomable" data-zoom-src="images/10000000000004E700000160FF38A0CA.png" /></td></tr></table>
+
+<ul>
+  <li>En [1-2], ejecute el proyecto en uno de los servidores registrados en el IDE de Eclipse;
+  </li>
+</ul>
+
+<p>Una vez hecho esto, puede solicitar la URL [http://localhost:8080/gs-rest-service/greeting/?name=Mitchell] en un navegador:</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/100000000000022B0000008EA361FFF2.png" width="389" height="99" style="display:inline-block; margin:4px;width:10.28cm;height:2.63cm;" class="odt-zoomable" data-zoom-src="images/100000000000022B0000008EA361FFF2.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;">&nbsp;</td></tr></table>
+
+<p><a id="refheading15932779844303"></a></p>
+<h2 id="164-conclusion">16.4. <span style="color: #4f81bd">Conclusión</span></h2>
+<p>Hemos presentado un tipo de proyecto Spring MVC en el que la aplicación web envía un flujo JSON al navegador. Ahora desarrollaremos una aplicación web/JSON para exponer en la web la base de datos [dbproduitscategories] estudiada en los capítulos anteriores.</p>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner">
+
+      <div>
+        <a href="https://stahe.github.io" target="_blank">
+          https://stahe.github.io
+        </a>
+        <br>
+        Este tutorial, escrito por <strong>Serge Tahé</strong>, se pone a disposición del público bajo los términos de la
+<em>Licencia Creative Commons Reconocimiento – No comercial –
+ShareAlike 3.0 Unported</em>.
+      </div>
+
+    </div>
+  </div>
+
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.sections", "navigation.indexes", "navigation.expand", "toc.integrate", "navigation.top"], "search": "assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+        <script src="javascripts/focus.js"></script>
+      
+    
+  </body>
+</html>
