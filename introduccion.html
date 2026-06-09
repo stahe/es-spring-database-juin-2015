@@ -6,13 +6,13 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Trabajar con una base de datos relacional utilizando el ecosistema Spring">
+        <meta name="description" content="Metodología de desarrollo MVC para una aplicación web en PHP4">
       
       
         <meta name="author" content="Serge Tahé">
       
       
-        <link rel="canonical" href="https://stahe.github.io/es-spring-database-juin-2015/introduccion.html">
+        <link rel="canonical" href="https://stahe.github.io/es-php4mvc-janvier-2004/introduccion.html">
       
       
         <link rel="prev" href="index.html">
@@ -29,7 +29,7 @@
     
     
       
-        <title>1. Introducción - Trabajar con una base de datos relacional utilizando el ecosistema Spring</title>
+        <title>1. Introducción - Metodología de desarrollo MVC para una aplicación web en PHP4</title>
       
     
     
@@ -57,6 +57,8 @@
     
       <link rel="stylesheet" href="stylesheets/focus.css">
     
+      <link rel="stylesheet" href="stylesheets/bidi.css">
+    
     <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -65,7 +67,7 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-    var siteName = "Trabajar con una base de datos relacional utilizando el ecosistema Spring";
+    var siteName = "Metodología de desarrollo MVC para una aplicación web en PHP4";
     gtag('config', 'G-EBZC3JVJNR', {
         'page_title': siteName
     });
@@ -108,7 +110,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="index.html" title="Trabajar con una base de datos relacional utilizando el ecosistema Spring" class="md-header__button md-logo" aria-label="Trabajar con una base de datos relacional utilizando el ecosistema Spring" data-md-component="logo">
+    <a href="index.html" title="Metodología de desarrollo MVC para una aplicación web en PHP4" class="md-header__button md-logo" aria-label="Metodología de desarrollo MVC para una aplicación web en PHP4" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -122,7 +124,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            Trabajar con una base de datos relacional utilizando el ecosistema Spring
+            Metodología de desarrollo MVC para una aplicación web en PHP4
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -141,9 +143,9 @@
     
     
     
-    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="purple"  aria-label="Cambiar al modo oscuro"  type="radio" name="__palette" id="__palette_0">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="purple"  aria-label="Cambiar a modo oscuro"  type="radio" name="__palette" id="__palette_0">
     
-      <label class="md-header__button md-icon" title="Cambiar al modo oscuro" for="__palette_1" hidden>
+      <label class="md-header__button md-icon" title="Cambiar a modo oscuro" for="__palette_1" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
       </label>
     
@@ -208,7 +210,7 @@
     
     
       <div class="md-header__source">
-        <a href="https://stahe.github.io/es-spring-database-juin-2015" title="Go to repository" class="md-source" data-md-component="source">
+        <a href="https://stahe.github.io/es-php4mvc-janvier-2004" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
@@ -246,17 +248,17 @@
 
 <nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="index.html" title="Trabajar con una base de datos relacional utilizando el ecosistema Spring" class="md-nav__button md-logo" aria-label="Trabajar con una base de datos relacional utilizando el ecosistema Spring" data-md-component="logo">
+    <a href="index.html" title="Metodología de desarrollo MVC para una aplicación web en PHP4" class="md-nav__button md-logo" aria-label="Metodología de desarrollo MVC para una aplicación web en PHP4" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
 
     </a>
-    Trabajar con una base de datos relacional utilizando el ecosistema Spring
+    Metodología de desarrollo MVC para una aplicación web en PHP4
   </label>
   
     <div class="md-nav__source">
-      <a href="https://stahe.github.io/es-spring-database-juin-2015" title="Go to repository" class="md-source" data-md-component="source">
+      <a href="https://stahe.github.io/es-php4mvc-janvier-2004" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
@@ -448,14 +450,14 @@
   
   
     <li class="md-nav__item">
-      <a href="introduccion-a-la-api-jdbc.html" class="md-nav__link">
+      <a href="introduccion-a-api-jdbc.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    3. Introducción a la API JDBC
+    3. Introducción a API JDBC
   
 
     
@@ -610,14 +612,14 @@
   
   
     <li class="md-nav__item">
-      <a href="generacion-de-bases-de-datos-a-partir-de-entidades-jpa.html" class="md-nav__link">
+      <a href="generacion-de-bases-de-datos-a-partir-de-las-entidades-jpa.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    9. Generación de bases de datos a partir de entidades JPA
+    9. Generación de bases de datos a partir de las entidades JPA
   
 
     
@@ -644,7 +646,7 @@
   <span class="md-ellipsis">
     
   
-    10. Oracle Express 11g Release 2
+    10. Oracle Express 11g release 2
   
 
     
@@ -826,14 +828,14 @@
   
   
     <li class="md-nav__item">
-      <a href="exposicion-de-una-base-de-datos-en-la-web.html" class="md-nav__link">
+      <a href="publicar-una-base-de-datos-en-la-web.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    17. Exposición de una base de datos en la web
+    17. Publicar una base de datos en la web
   
 
     
@@ -853,14 +855,14 @@
   
   
     <li class="md-nav__item">
-      <a href="un-cliente-programado-para-el-servicio-web-json.html" class="md-nav__link">
+      <a href="un-cliente-programado-para-el-servicio-web--json.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    18. Un cliente programado para el servicio web /JSON
+    18. Un cliente programado para el servicio web / jSON
   
 
     
@@ -880,14 +882,14 @@
   
   
     <li class="md-nav__item">
-      <a href="proteccion-del-acceso-a-un-servicio-web-con-spring-security.html" class="md-nav__link">
+      <a href="proteger-el-acceso-a-un-servicio-web-con-spring-security.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    19. Protección del acceso a un servicio web con Spring Security
+    19. Proteger el acceso a un servicio web con Spring Security
   
 
     
@@ -907,14 +909,14 @@
   
   
     <li class="md-nav__item">
-      <a href="proteccion-del-servicio-web-para-acceder-a-la-base-de-datos-dbproduitscategories.html" class="md-nav__link">
+      <a href="securizacion-del-servicio-web-de-acceso-a-la-base-de-datos-dbproduitscategories.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    20. Protección del servicio web para acceder a la base de datos [dbproduitscategories]
+    20. Securización del servicio web de acceso a la base de datos [dbproduitscategories]
   
 
     
@@ -934,14 +936,14 @@
   
   
     <li class="md-nav__item">
-      <a href="gestion-del-acceso-entre-dominios.html" class="md-nav__link">
+      <a href="gestion-de-accesos-entre-dominios.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    21. Gestión del acceso entre dominios
+    21. Gestión de accesos entre dominios
   
 
     
@@ -1025,63 +1027,63 @@
 
 
 
-<p><a id="refheading261305838046689"></a></p>
+<p><span id="refheading261305838046689" name="refheading261305838046689" class="odt-bookmark-anchor"></span></p>
 <h1 id="1-introduccion">1. <span style="color: #365f91">Introducción</span></h1>
-<p>El PDF de este documento está disponible |<a href="https://1drv.ms/b/c/f53a919f43d27eb5/IQAt5De3dZYESqfDlS4LYn7WAaf-zjqvizA-1R5_8bGVvgI?e=kLWyr7">AQUÍ</a>||.</p>
-<p>Los ejemplos de este documento están disponibles |<a href="https://1drv.ms/u/c/f53a919f43d27eb5/IQCxCAeGD84ISJaB8ECEumfbAb9qX4YxbgWBn3tI95pWU7Q?e=hk8T0T">AQUÍ</a>|.</p>
-<p><a id="refheading1051242082896917"></a></p>
+<p>El PDF de este documento está disponible |<a href="https://1drv.ms/b/c/f53a919f43d27eb5/IQAt5De3dZYESqfDlS4LYn7WAaf-zjqvizA-1R5_8bGVvgI?e=qhNchL">AQUÍ</a>||.</p>
+<p>Los ejemplos de este documento están disponibles |<a href="https://1drv.ms/u/c/f53a919f43d27eb5/IQCxCAeGD84ISJaB8ECEumfbAb9qX4YxbgWBn3tI95pWU7Q?e=PZz3qK">AQUÍ</a>|.</p>
+<p><span id="refheading1051242082896917" name="refheading1051242082896917" class="odt-bookmark-anchor"></span></p>
 <h2 id="11-contenido">1.1. <span style="color: #4f81bd">Contenido</span></h2>
-<p>En este documento, proponemos estudiar diferentes configuraciones de implementación de bases de datos. Consideremos la siguiente arquitectura por capas:</p>
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000007080000017A09403716.png" width="680" height="143" style="display:inline-block; margin:4px;width:17.999cm;height:3.78cm;" class="odt-zoomable" data-zoom-src="images/10000000000007080000017A09403716.png" /></td></tr></table>
+<p>En este documento nos proponemos estudiar diferentes configuraciones de explotación de una base de datos. Consideremos la siguiente arquitectura por capas:</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/10000000000007080000017A09403716.png" width="680" height="143" style="display:inline-block; margin:4px;width:17.999cm;height:3.78cm;" class="odt-zoomable" data-zoom-src="images/10000000000007080000017A09403716.png" /></td></tr></table>
 
 <p>El flujo de ejecución va de izquierda a derecha:</p>
 <ul>
-  <li>primero se ejecuta una de las clases de la capa [ui] (interfaz de usuario). Esta instancia las capas [business] y [DAO]. Si la capa [ui] es una interfaz gráfica de usuario, espera entonces a que el usuario realice alguna acción. Una acción del usuario puede desencadenar la ejecución de métodos en todas las capas de la arquitectura, hasta llegar a la base de datos. El resultado de estas ejecuciones se devuelve al usuario de una forma u otra;
+  <li>es una de las clases de la capa [ui] (Use Interface) la que se ejecuta en primer lugar. Esta instanciará las capas [metier] y [dao]. Si la capa [ui] es una interfaz gráfica, a continuación espera las acciones del usuario. Una acción de este puede provocar la ejecución de métodos en todas las capas de la arquitectura hasta la base de datos. El resultado de estas ejecuciones se muestra al usuario de una forma u otra;
   </li>
 </ul>
 
-<p>Las funciones de las diferentes capas podrían ser las siguientes:</p>
+<p>La función de las diferentes capas podría ser la siguiente:</p>
 <ul>
-  <li>La capa [JDBC] (Java Database Connectivity) es una interfaz universal de acceso a bases de datos. Siempre presenta la misma interfaz a la capa [DAO]. Si se cambia de SGBD, solo hay que cambiar el controlador JDBC. La capa [DAO] permanece inalterada si se ha tenido cuidado de seguir un determinado conjunto de reglas. Sin embargo, es difícil garantizar una portabilidad del 100 % entre SGBD, ya que a menudo contienen una cantidad significativa de SQL propietario que es difícil de ignorar, ya que suele proporcionar mejoras de rendimiento. En cuanto se utiliza SQL propietario, la portabilidad entre SGBD ya no es posible. Además, los SGBD suelen tener políticas diferentes para la generación automática de claves primarias, así como palabras clave reservadas que varían de un sistema a otro. En este documento, sin embargo, hemos logrado portar la arquitectura JDBC estudiada a seis SGBD diferentes aceptando que se requiere un proyecto de configuración para cada uno de ellos;
+  <li>la capa [JDBC] (Java DataBase Connectivity) es una interfaz de acceso universal a las bases de datos. Siempre presenta la misma interfaz a la capa [DAO]. Si se cambia de SGBD, basta con cambiar el controlador JDBC. La capa [DAO] no cambia si se han respetado una serie de reglas. Sin embargo, es difícil garantizar una portabilidad del 100 % entre SGBD, ya que estos suelen contener una parte importante de SQL propietario que es difícil ignorar, ya que a menudo aporta mejoras de rendimiento. En cuanto se utiliza SQL propietario, la portabilidad entre SGBD ya no es posible. Por otra parte, los SGBD suelen tener políticas diferentes de generación automática de claves primarias, así como palabras reservadas que no son las mismas en todos los casos. En este documento, se ha logrado, no obstante, portar la arquitectura JDBC estudiada a seis SGBD diferentes, aceptando que haya un proyecto de configuración para cada uno de ellos;
   </li>
-  <li>la capa [DAO] expone una interfaz para acceder a los datos de la base de datos específica que se está utilizando (que debe distinguirse de la interfaz JDBC, que expone métodos válidos para cualquier SGBD);
+  <li>la capa [DAO] expone una interfaz de acceso a los datos de la base de datos concreta utilizada (que debe diferenciarse de la interfaz JDBC, que expone métodos válidos para cualquier SGBD);
   </li>
-  <li>la capa [business] implementa las reglas de gestión de la aplicación o reglas de negocio.
+  <li>la capa [métier] implementa las reglas de gestión o las reglas de negocio de la aplicación.
     <ul>
-      <li>Sus datos de entrada consisten en datos de la base de datos a través de la capa [DAO] y/o entradas del usuario transmitidas por la capa [UI];
+      <li>tiene como datos de entrada los procedentes de la base de datos a través de la capa [dao] y/o los del usuario que le transmite la capa [ui];
       </li>
-      <li>Genera datos que puede guardar en la base de datos a través de la capa [DAO] y/o devolver a la capa [UI] que los solicitó, para su visualización por parte del usuario;
+      <li>genera datos que puede guardar en la base de datos a través de la capa [dao] y/o devolver a la capa [ui] que la ha consultado, para su visualización por parte del usuario;
       </li>
     </ul>
   </li>
-  <li>La capa [UI] es la capa que ejecuta las acciones del usuario y devuelve los resultados de dichas acciones al usuario;
+  <li>la capa [ui] es la capa que ejecuta las acciones del usuario y le devuelve los resultados de las mismas;
   </li>
 </ul>
 
-<p>Por encima, la capa [DAO] envía consultas SQL a la capa [JDBC] para su ejecución en el SGBD. En los últimos años (desde 2006), esta arquitectura ha evolucionado de la siguiente manera:</p>
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000006FE000001774C207100.png" width="680" height="143" style="display:inline-block; margin:4px;width:17.999cm;height:3.771cm;" class="odt-zoomable" data-zoom-src="images/10000000000006FE000001774C207100.png" /></td></tr></table>
+<p>En el ejemplo anterior, la capa [DAO] envía solicitudes SQL a la capa [JDBC] para su ejecución en la capa SGBD. Desde hace algunos años (2006), esta arquitectura puede evolucionar de la siguiente manera:</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/10000000000006FE000001774C207100.png" width="680" height="143" style="display:inline-block; margin:4px;width:17.999cm;height:3.771cm;" class="odt-zoomable" data-zoom-src="images/10000000000006FE000001774C207100.png" /></td></tr></table>
 
-<p>Ahora es la capa JPA (Java Persistence API) la que envía consultas SQL a la capa JDBC y recibe los resultados. La capa [JPA] presenta operaciones a la capa [DAO] para persistir, modificar, eliminar y recuperar objetos. La capa [DAO] ya no emite comandos SQL. Este enfoque es más portátil porque las implementaciones de JPA gestionan las diferencias entre los SGBD, pero es más lento que la tecnología JDBC. Realizaremos pruebas de rendimiento para demostrarlo. La tecnología JPA formaliza el trabajo realizado por el marco Hibernate [<a href="http://hibernate.org/"><u><span style="color: #0563c1">http://hibernate.org/</span></u></a>] hace años.</p>
-<p>Examinaremos dos capas [DAO] utilizando una de las dos arquitecturas siguientes:</p>
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000006E4000001759C9090B7.png" width="680" height="144" style="display:inline-block; margin:4px;width:17.999cm;height:3.806cm;" class="odt-zoomable" data-zoom-src="images/10000000000006E4000001759C9090B7.png" /></td></tr></table>
+<p>Ahora es la capa JPA (Java Persistence API) la que envía solicitudes SQL a la capa JDBC y recibe los resultados. La capa [JPA] presenta a la capa [DAO] operaciones para persistir, modificar, eliminar y obtener objetos. La capa [DAO] ya no envía órdenes SQL. Este enfoque es más portátil, ya que las implementaciones JPA gestionan las diferencias con respecto a SGBD, pero es más lento que la tecnología JDBC. Realizaremos pruebas de rendimiento para demostrarlo. La tecnología JPA formaliza el trabajo realizado por el marco Hibernate [http://hibernate.org/] hace años.</p>
+<p>Estudiaremos dos capas [DAO] con una de las dos arquitecturas siguientes:</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/10000000000006E4000001759C9090B7.png" width="680" height="144" style="display:inline-block; margin:4px;width:17.999cm;height:3.806cm;" class="odt-zoomable" data-zoom-src="images/10000000000006E4000001759C9090B7.png" /></td></tr></table>
 
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000006E10000016947159BE8.png" width="680" height="139" style="display:inline-block; margin:4px;width:17.999cm;height:3.69cm;" class="odt-zoomable" data-zoom-src="images/10000000000006E10000016947159BE8.png" /></td></tr></table>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/10000000000006E10000016947159BE8.png" width="680" height="139" style="display:inline-block; margin:4px;width:17.999cm;height:3.69cm;" class="odt-zoomable" data-zoom-src="images/10000000000006E10000016947159BE8.png" /></td></tr></table>
 
-<p>Exigiremos que las capas [DAO1] y [DAO2] implementen la misma interfaz [IDAO]. De este modo, la prueba [JUnitTestsDao] será la misma para ambas configuraciones y nos permitirá comparar el rendimiento. La capa [DAO1] se implementará con <strong>Spring JDBC</strong> y la capa [DAO2] con <strong>Spring JPA</strong>;</p>
+<p>Se exigirá a las capas [DAO1] y [DAO2] que implementen la misma interfaz [IDAO]. Además, la prueba [JUnitTestsDao] será la misma para ambas configuraciones y nos permitirá comparar el rendimiento. La capa [DAO1] se implementará con <strong>Spring JDBC</strong> y la capa [DAO2] con <strong>Spring JPA</strong>;</p>
 <p>Una vez hecho esto, expondremos la interfaz [IDAO] en la web de la siguiente manera:</p>
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000006B7000003C06070A4E3.png" width="680" height="380" style="display:inline-block; margin:4px;width:17.999cm;height:10.052cm;" class="odt-zoomable" data-zoom-src="images/10000000000006B7000003C06070A4E3.png" /></td></tr></table>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/10000000000006B7000003C06070A4E3.png" width="680" height="380" style="display:inline-block; margin:4px;width:17.999cm;height:10.052cm;" class="odt-zoomable" data-zoom-src="images/10000000000006B7000003C06070A4E3.png" /></td></tr></table>
 
 <ul>
-  <li>En [1], la capa [IDAO] se expone en la web a través de una capa web [2] implementada por <b>Spring MVC</b>. De hecho, es la interfaz [IDAO] la que se expone, y construiremos dos versiones del servicio web dependiendo de si esta interfaz se implementa utilizando una arquitectura [DAO-JDBC] o [DAO-JPA-JDBC];
+  <li>en [1], la capa [IDAO] se expone en la web a través de una capa web [2] implementada por <b>Spring MVC</b>. Es precisamente la interfaz [IDAO] la que se expone y construiremos dos versiones del servicio web dependiendo de si esta interfaz se implementa con una arquitectura [DAO-JDBC] o [DAO-JPA-JDBC];
   </li>
-  <li>En [B], un cliente remoto utiliza las URL expuestas por el servicio web, que proporcionan acceso a los métodos de la capa [IDAO-server]. Nos aseguraremos de que la capa [DAO-Client] [3] implemente la interfaz [IDAO-server] [1]. Esto nos permitirá utilizar la misma prueba [JUnitTestsDao] que ya se ha utilizado dos veces [4];
+  <li>en [B], un cliente remoto utiliza los URL expuestos por el servicio web y que dan acceso a los métodos de la capa [IDAO-serveur]. Nos aseguraremos de que la capa [DAO-Client] [3] implemente la interfaz [IDAO-serveur] [1]. Esto nos permitirá utilizar la misma prueba [JUnitTestsDao] ya utilizada dos veces [4];
   </li>
-  <li>En [3], la capa [DAO-Client] se implementará utilizando <b>Spring RestTemplate</b>;
+  <li>en [3], la capa [DAO-client] se implementará con <b>Spring RestTemplate</b>;
   </li>
 </ul>
 
 <p>Una vez hecho esto, protegeremos el acceso al servicio web:</p>
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/100000000000071B000003E52277B936.png" width="680" height="373" style="display:inline-block; margin:4px;width:17.999cm;height:9.865cm;" class="odt-zoomable" data-zoom-src="images/100000000000071B000003E52277B936.png" /></td></tr></table>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/100000000000071B000003E52277B936.png" width="680" height="373" style="display:inline-block; margin:4px;width:17.999cm;height:9.865cm;" class="odt-zoomable" data-zoom-src="images/100000000000071B000003E52277B936.png" /></td></tr></table>
 
 <ul>
   <li>en [5], la solicitud HTTP del cliente pasa por una capa de autenticación implementada con <b>Spring Security</b>;
@@ -1089,20 +1091,20 @@
 </ul>
 
 <p>Una vez hecho esto, evolucionaremos la arquitectura anterior hacia la siguiente:</p>
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000006EE000003F3B5665B26.png" width="680" height="388" style="display:inline-block; margin:4px;width:17.999cm;height:10.259cm;" class="odt-zoomable" data-zoom-src="images/10000000000006EE000003F3B5665B26.png" /></td></tr></table>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/10000000000006EE000003F3B5665B26.png" width="680" height="388" style="display:inline-block; margin:4px;width:17.999cm;height:10.259cm;" class="odt-zoomable" data-zoom-src="images/10000000000006EE000003F3B5665B26.png" /></td></tr></table>
 
 <ul>
-  <li>En [3], la aplicación cliente es en sí misma una aplicación web. Contará con un formulario [5] que permitirá a los usuarios consultar las URL del servicio web seguro. El acceso HTTP al servicio web seguro se gestionará a través de una capa [DAO-client-js] implementada en JavaScript. Esta arquitectura utiliza lo que se conoce como solicitudes entre dominios:
+  <li>en [3], la aplicación cliente es en sí misma una aplicación web. Esta presentará un formulario [5] que permitirá consultar los URL del servicio web seguro. Los accesos HTTP al servicio web seguro se realizarán a través de una capa [DAO-client-js] implementada en Javascript. Esta arquitectura implementa lo que se denomina solicitudes entre dominios:
     <ul>
-      <li>el servicio web [2] proporciona URL del tipo [http://machine1:port1/];
+      <li>el servicio web [2] presenta URL de la forma [http://machine1:port1/];
       </li>
-      <li>la aplicación web cliente [3] se descarga desde una URL [http://machine2:port2/]. Si [http://machine2:port2/] no es idéntica a [http://machine1:port1/] (misma máquina, mismo puerto), el navegador del cliente bloqueará las llamadas HTTP procedentes de la capa [DAO-client-js]. Para resolver este problema, el servicio web debe permitir las solicitudes entre dominios. Veremos cómo;
+      <li>La aplicación web cliente [3] se descarga desde una URL [http://machine2:port2/]. Si [http://machine2:port2/] no es idéntico a [http://machine1:port1/] (misma máquina, mismo puerto), el navegador cliente bloqueará las llamadas HTTP de la capa [DAO-client-js]. Para solucionar este problema, el servicio web debe permitir las solicitudes entre dominios. Veremos cómo;
       </li>
     </ul>
   </li>
 </ul>
 
-<p>Los proyectos presentados se han probado con los siguientes seis SGBD:</p>
+<p>Los proyectos presentados se han probado con los seis SGBD siguientes:</p>
 <ul>
   <li>MySQL 5 Community Edition;
   </li>
@@ -1110,7 +1112,7 @@
   </li>
   <li>PostgreSQL 9.4;
   </li>
-  <li>Oracle Express 11g Release 2;
+  <li>Oracle Express 11g versión 2;
   </li>
   <li>IBM DB2 Express-C 10.5;
   </li>
@@ -1118,21 +1120,21 @@
   </li>
 </ul>
 
-<p>Para cada uno de estos SGBD, desarrollamos cuatro capas [DAO] diferentes:</p>
+<p>Para cada uno de estos SGBD, se han desarrollado cuatro capas [DAO] diferentes:</p>
 <ul>
   <li>una capa implementada con Spring JDBC;
   </li>
-  <li>una capa implementada con Spring JPA y el proveedor Hibernate JPA;
+  <li>una capa implementada con Spring JPA y el proveedor JPA Hibernate;
   </li>
-  <li>una capa implementada con Spring JPA y el proveedor EclipseLink JPA;
+  <li>una capa implementada con Spring JPA y el proveedor JPA EclipseLink;
   </li>
-  <li>una capa implementada con Spring JPA y el proveedor JPA de OpenJPA;
+  <li>una capa implementada con Spring JPA y el proveedor JPA OpenJPA;
   </li>
 </ul>
 
-<p>Por lo tanto, aquí se presenta un conjunto de veinticuatro configuraciones diferentes. Hemos realizado un esfuerzo significativo para factorizar el código:</p>
+<p>Por lo tanto, lo que se presenta aquí es un conjunto de veinticuatro configuraciones diferentes. Se ha realizado un gran esfuerzo de factorización:</p>
 <ul>
-  <li>la mayor parte del código se escribe una sola vez. Se basa en dos proyectos de configuración de Maven:
+  <li>la mayor parte del código solo se escribe una vez. Se basa en dos proyectos de configuración de Maven:
     <ul>
       <li>uno configura la capa JDBC;
       </li>
@@ -1142,167 +1144,167 @@
   </li>
 </ul>
 
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000006F900000158D2400553.png" width="680" height="131" style="display:inline-block; margin:4px;width:17.999cm;height:3.47cm;" class="odt-zoomable" data-zoom-src="images/10000000000006F900000158D2400553.png" /></td></tr></table>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/10000000000006F900000158D2400553.png" width="680" height="131" style="display:inline-block; margin:4px;width:17.999cm;height:3.47cm;" class="odt-zoomable" data-zoom-src="images/10000000000006F900000158D2400553.png" /></td></tr></table>
 
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000006F00000016107BC0901.png" width="680" height="135" style="display:inline-block; margin:4px;width:17.999cm;height:3.577cm;" class="odt-zoomable" data-zoom-src="images/10000000000006F00000016107BC0901.png" /></td></tr></table>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/10000000000006F00000016107BC0901.png" width="680" height="135" style="display:inline-block; margin:4px;width:17.999cm;height:3.577cm;" class="odt-zoomable" data-zoom-src="images/10000000000006F00000016107BC0901.png" /></td></tr></table>
 
-<p>El proyecto de configuración de Maven para la capa JDBC [1] de un SGBD específico consta de dos pasos:</p>
+<p>El proyecto de configuración Maven de la capa JDBC [1] de un SGBD concreto consta de dos pasos:</p>
 <ul>
   <li>importar el archivo del controlador JDBC;
   </li>
-  <li>definir las credenciales de acceso a la base de datos en uso y las diversas sentencias SQL que la capa [DAO1] enviará al controlador JDBC. Aunque el lenguaje SQL está estandarizado, nos encontramos con problemas de portabilidad debidos principalmente a la presencia en las consultas de nombres de tablas o columnas que resultaban ser palabras clave prohibidas en ciertos SGBD (la tabla ROLES en DB2, la columna PASSWORD en Firebird). Además, aunque normalmente los nombres de columna no distinguen entre mayúsculas y minúsculas, nos encontramos con un problema en PostgreSQL relacionado con la columna ID de la clave primaria en las tablas. Se requería que se llamara <i>«id» </i>en minúsculas. Estos son ejemplos típicos de problemas de portabilidad inesperados;
+  <li>definir las credenciales de acceso a la base de datos utilizada y las diferentes órdenes SQL que la capa [DAO1] enviará al controlador JDBC. Aunque SQL está estandarizado, se han encontrado problemas de portabilidad debido principalmente a la presencia en las consultas de nombres de tablas/columnas que resultaron ser palabras clave prohibidas en algunos SGBD (tabla ROLES para DB2, columna PASSWORD para Firebird). Por otra parte, aunque un nombre de columna normalmente no distingue entre mayúsculas y minúsculas, se ha encontrado un problema con PostgreSQL con la columna ID de la clave primaria de las tablas. Quería que se llamara <i>id </i>en minúsculas. Estos son problemas típicos de portabilidad inesperados;
   </li>
 </ul>
 
-<p>Los tres proyectos Maven para configurar la capa JPA [2] de un SGBD específico también constan de dos pasos:</p>
+<p>Los tres proyectos Maven de configuración de la capa JPA [2] de un SGBD concreto consisten también en dos puntos:</p>
 <ul>
-  <li>importar el archivo de implementación de JPA;
+  <li>importar el archivo de la implementación JPA;
   </li>
-  <li>configurar la implementación de JPA utilizada para el SGBD conectado específico. De hecho, es la capa JPA la que emite comandos SQL a la capa JDBC. Para ser eficaz, debe conocer el SGBD con el fin de enviarle comandos SQL que este reconozca. Estos comandos pueden utilizar el SQL propio de ese SGBD, así como sus características específicas (tipos de datos, secuencias, disparadores, procedimientos, generación automática de claves primarias, etc.);
+  <li>configurar la implementación JPA utilizada para el SGBD concreto conectado. De hecho, es la capa JPA la que envía las órdenes SQL a la capa JDBC. Para ser eficaz, debe conocer el SGBD con el fin de enviarle las órdenes SQL que este reconocerá. Estas órdenes podrán utilizar el SQL propietario de este SGBD, así como las características particulares de este último (tipos de datos, secuencias, triggers, procedimientos, generación automática de claves primarias, etc.);
   </li>
 </ul>
 
-<p>Esto da como resultado veinticuatro proyectos de configuración de Maven (4 configuraciones × 6 SGBD) en los que se basarán todos los demás proyectos de operaciones con bases de datos. En los diagramas anteriores, dado que las capas [DAO1] y [DAO2] proporcionan la misma interfaz, las 24 configuraciones de las dos arquitecturas anteriores se probarán utilizando una única clase de prueba [JUnitTestsDao]. Una vez verificadas estas arquitecturas, no hay más dificultades:</p>
+<p>De este modo, contamos con veinticuatro proyectos (4 configuraciones x 6 SGBD) de configuración de Maven en los que se basarán todos los demás proyectos de explotación de la base de datos. En los esquemas anteriores, dado que las capas [DAO1] y [DAO2] ofrecen la misma interfaz, las 24 configuraciones de las dos arquitecturas anteriores se probarán con una única clase de prueba [JUnitTestsDao]. Una vez verificadas estas arquitecturas, ya no hay dificultades:</p>
 <ul>
-  <li>el proyecto Maven para publicar la base de datos en la web se basa en estas dos arquitecturas. Por lo tanto, aquí también hay 24 configuraciones posibles;
+  <li>el proyecto Maven de publicación de la base de datos en la web se basa en estas dos arquitecturas. Por lo tanto, también hay 24 configuraciones posibles;
   </li>
-  <li>el proyecto Maven para proteger el acceso al servicio web se basa en el proyecto anterior y también tiene 24 configuraciones posibles;
+  <li>el proyecto Maven de securización del acceso al servicio web se basa en el proyecto anterior y cuenta también con 24 configuraciones posibles;
   </li>
-  <li>Por último, el proyecto Maven que permite realizar solicitudes entre dominios al servicio web seguro se basa en el proyecto anterior y también ofrece 24 configuraciones posibles;
+  <li>por último, el proyecto Maven que permite las solicitudes entre dominios al servicio web seguro se basa en el proyecto anterior y también tiene 24 configuraciones posibles;
   </li>
 </ul>
 
-<p>El estudio se lleva a cabo utilizando el SGBD MySQL5 y la implementación JPA de Hibernate. A continuación, portamos el código a las implementaciones JPA de Eclipselink y OpenJPA. Por último, lo portamos a otras bases de datos (PostgreSQL, Oracle, SQL Server, DB2, Firebird).</p>
-<p>Este curso está dirigido a principiantes. Se explican la mayoría de los conceptos utilizados. No se requieren conocimientos previos de programación de bases de datos ni de programación web. Sin embargo, es necesario tener un conocimiento sólido del lenguaje SQL, ya que no se explican las consultas SQL utilizadas.</p>
-<p>Para comprender los ejemplos, se necesitan conocimientos básicos del lenguaje Java, que se pueden adquirir en cualquier curso introductorio sobre el lenguaje. Bastará con los dos primeros capítulos del documento [<a href="https://stahe.github.io/es-java-sept-1998/"><u><span style="color: #0563c1">Introducción al lenguaje Java</span></u></a>]. Se trata de un documento antiguo (1998, revisado en 2002), pero contiene los fundamentos. Para un curso completo, se puede leer el extenso libro de Jean-Marie Doudoux [<a href="http://www.jmdoudoux.fr/java"><u><span style="color: #0563c1">http://www.jmdoudoux.fr/java</span></u></a>].</p>
-<p><strong>Este documento no es en absoluto exhaustivo</strong>. Su único objetivo es proporcionar una metodología y un código que puedan reutilizarse en contextos similares. El documento se ha redactado de manera que pueda leerse sin necesidad de tener un ordenador a mano. Por ello, se incluyen numerosas capturas de pantalla.</p>
-<p>Aunque no abarca todas las capacidades del lenguaje Java ni todas sus áreas de aplicación, este documento puede utilizarse como recurso de aprendizaje del lenguaje. Siguiendo este documento —aunque no sea en su totalidad—, un lector principiante alcanzará un nivel «avanzado de Java» tanto en el uso del lenguaje como del marco Spring. A continuación, podrá continuar su formación en Java con los siguientes libros:</p>
+<p>El estudio se realiza con SGBD, MySQL5 y la implementación JPA de Hibernate. A continuación, se realiza la adaptación a las implementaciones JPA Eclipselink y OpenJPA. A continuación, se realiza la migración a las demás bases de datos (PostgresQL, Oracle; SQL, Server; DB2, Firebird).</p>
+<p>Este curso está dirigido a principiantes. Se explica la mayor parte de los conceptos utilizados. No es necesario tener conocimientos de programación de bases de datos ni de programación web. Sin embargo, se requieren conocimientos sólidos del lenguaje SQL, ya que no se explican las consultas SQL utilizadas.</p>
+<p>Para comprender los ejemplos, se requieren conocimientos básicos del lenguaje Java, que se pueden encontrar en cualquier curso de introducción a este lenguaje. Los dos primeros capítulos del documento [Introduction au langage Java] son suficientes. Se trata de un documento antiguo (de 1998, revisado en 2002), pero contiene los fundamentos. Para un curso completo, se puede consultar el extenso libro de Jean-Marie Doudoux [http://www.jmdoudoux.fr/java].</p>
+<p><strong>Este documento no es en absoluto exhaustivo</strong>. Solo pretende ofrecer una metodología y códigos que se puedan reutilizar en contextos similares. El documento se ha redactado de tal manera que se pueda leer sin necesidad de tener un ordenador a mano. Por ello, se incluyen muchas capturas de pantalla.</p>
+<p>Aunque no abarca todas las capacidades del lenguaje Java ni todos sus ámbitos de aplicación, este documento puede utilizarse como material de aprendizaje del lenguaje. Si sigue este documento sin saltarse nada, el lector principiante alcanzará un nivel de «Java avanzado» tanto en el uso del lenguaje como en el del framework Spring. A continuación, podrá continuar su formación en Java con las siguientes obras:</p>
 <ul>
-  <li>[Spring MVC y Thymeleaf con ejemplos] [<a href="https://stahe.github.io/es-springmvc-thymeleaf-janv-2015/"><u><span style="color: #0563c1">https://stahe.github.io/es-springmvc-thymeleaf-janv-2015/</span></u></a>], que continúa la exploración del ecosistema Spring al presentar su rama de «programación web MVC»;
+  <li>[<a href="https://stahe.github.io/es-springmvc-thymeleaf-janv-2015/"><u><span style="color: #000080">Introducción a Spring MVC y Thymeleaf a través de ejemplos (2015)</span></u></a>], que continúa el aprendizaje del ecosistema Spring presentando su rama de «programación web MVC»;
   </li>
-  <li>[Tutorial de AngularJS / Spring MVC] [<a href="https://stahe.github.io/en-spring-angular1.x-juillet-2014/"><u><span style="color: #0563c1">https://stahe.github.io/en-spring-angular1.x-juillet-2014/</span></u></a>], que presenta una arquitectura web cliente/servidor, en la que el cliente se implementa utilizando el marco [AngularJS] y el servidor utilizando [Spring MVC];
+  <li>[<a href="https://stahe.github.io/es-spring-angular1.x-juillet-2014/"><u><span style="color: #000080">Un ejemplo de cliente/servidor: AngularJS 1.x / Spring 4 (2014)</span></u></a>], que presenta una arquitectura web cliente/servidor, en la que el cliente se implementa con el marco [AngularJS] y el servidor con [Spring MVC];
   </li>
-  <li>[Introducción a Java EE], que se aleja del ecosistema Spring para pasar a una arquitectura web basada en JSF (Java Server Faces) y EJB (Enterprise JavaBeans);
+  <li>[<a href="https://stahe.github.io/es-javaee-juin-2012/"><u><span style="color: #000080">Introducción a Java EE con el IDE NetBeans y el servidor de aplicaciones GlassFish (2012)</span></u></a>], que abandona el entorno Spring para adoptar una arquitectura web basada en JSF (Java Server Faces) y EJB (Enterprise Java Bean);
   </li>
-  <li>[Introducción a la programación para tabletas Android] [<a href="https://stahe.github.io/es-android-aout-2016/"><u><span style="color: #0563c1">https://stahe.github.io/es-android-aout-2016/</span></u></a>], que describe una arquitectura cliente/servidor, en la que el cliente es una tableta Android y el servidor es un servicio web implementado mediante Spring MVC;
+  <li>[<a href="https://stahe.github.io/es-android-aout-2016/"><u><span style="color: #000080">Introducción a la programación para tabletas Android con Android Studio (2016)</span></u></a>], que describe una arquitectura cliente/servidor, donde el cliente es una tableta Android y el servidor un servicio web implementado por Spring MVC;
   </li>
 </ul>
 
-<p><a id="refheading1224721676199047"></a></p>
+<p><span id="refheading1224721676199047" name="refheading1224721676199047" class="odt-bookmark-anchor"></span></p>
 <h2 id="12-fuentes">1.2. <span style="color: #4f81bd">Fuentes</span></h2>
 <p>Este documento tiene dos fuentes principales:</p>
 <ul>
-  <li>[<a id="ref1"></a><b> ref1</b>]: [Spring MVC y Thymeleaf con ejemplos] en la URL [<a href="https://stahe.github.io/es-springmvc-thymeleaf-janv-2015/"><u><span style="color: #0563c1">https://stahe.github.io/es-springmvc-thymeleaf-janv-2015/</span></u></a>]. Este documento retoma el trabajo realizado y presentado en [<b>ref1</b>] utilizando una base de datos diferente. En pocas palabras, lo saca del contexto de la programación web con Spring MVC. Decidí crear un documento independiente porque consideré que el código y la metodología utilizados en [<b>ref1</b>] para exponer una base de datos en la web eran reutilizables;
+  <li>[ref1] : [<a href="https://stahe.github.io/es-springmvc-thymeleaf-janv-2015/"><u><span style="color: #000080">Introducción a Spring MVC y Thymeleaf a través de ejemplos (2015)</span></u></a>]. El presente documento retoma, con otra base de datos, el trabajo realizado y presentado en [ref1]. Simplemente, lo saca del contexto de la programación web con Spring MVC. Como consideré que los códigos y la metodología utilizados en [ref1] para exponer una base de datos en la web eran reutilizables, decidí crear un documento aparte;
   </li>
-  <li>[<a id="ref2"></a><b> ref2</b>]: [Java Persistence in Practice] en la URL [<a href="https://stahe.github.io/es-jpa-juin-2007/"><u><span style="color: #0563c1">https://stahe.github.io/es-jpa-juin-2007/</span></u></a>];
+  <li>[ref2] : [<a href="https://stahe.github.io/es-jpa-juin-2007/"><u><span style="color: #000080">Persistencia en Java 5 a través de la práctica (2007)</span></u></a>];
   </li>
 </ul>
 
-<p>Para obtener más información sobre Spring, puede consultar las siguientes referencias:</p>
+<p>Para profundizar en Spring, se pueden utilizar las siguientes referencias:</p>
 <ul>
-  <li>el documento de referencia del marco Spring [<a href="http://docs.spring.io/spring/docs/current/spring-framework-reference/pdf/spring-framework-reference.pdf"><u><span style="color: #0563c1">http://docs.spring.io/spring/docs/current/spring-framework-reference/pdf/spring-framework-reference.pdf</span></u></a>];
+  <li>el documento de referencia del marco Spring [http://docs.spring.io/spring/docs/current/spring-framework-reference/pdf/spring-framework-reference.pdf];
   </li>
-  <li>Se pueden encontrar numerosos tutoriales de Spring en la URL [<a href="http://spring.io/guides"><u><span style="color: #0563c1">http://spring.io/guides</span></u></a>];
+  <li>Encontrará numerosos tutoriales de Spring en URL y [http://spring.io/guides];
   </li>
-  <li>el sitio [developpez.com] dedicado a Spring [<a href="http://spring.developpez.com/"><u><span style="color: #0563c1">http://spring.developpez.com/</span></u></a>];
+  <li>el sitio web de [developpez.com] dedicado a Spring [http://spring.developpez.com/];
   </li>
-  <li>el tutorial [<a href="http://www.tutorialspoint.com/spring/spring_tutorial.pdf"><u><span style="color: #0563c1">http://www.tutorialspoint.com/spring/spring_tutorial.pdf</span></u></a>];
+  <li>el tutorial [http://www.tutorialspoint.com/spring/spring_tutorial.pdf];
   </li>
 </ul>
 
-<p>Los lectores con conocimientos insuficientes de SQL pueden aprender los conceptos básicos en el libro [Introducción a SQL con el SGBD Firebird] en la URL [<a href="https://stahe.github.io/es-sql-firebird-janv-2006/"><u><span style="color: #0563c1">https://stahe.github.io/es-sql-firebird-janv-2006/</span></u></a>].</p>
-<p><a id="refheading4233146869296"></a></p>
+<p>El lector que no tenga suficientes conocimientos SQL podrá adquirir los fundamentos con la obra [<a href="https://stahe.github.io/es-sql-firebird-janv-2006/"><u><span style="color: #000080">Introducción al lenguaje SQL con el SGBD Firebird (2006)</span></u></a>].</p>
+<p><span id="refheading4233146869296" name="refheading4233146869296" class="odt-bookmark-anchor"></span></p>
 <h2 id="13-herramientas-utilizadas">1.3. <span style="color: #4f81bd">Herramientas utilizadas</span></h2>
 <p>Los siguientes ejemplos se han probado en el siguiente entorno:</p>
 <ul>
-  <li>Equipo con Windows 8.1 Pro de 64 bits;
+  <li>ordenador con Windows 8.1 Pro de 64 bits;
   </li>
-  <li>JDK 1.8 (<a href="#refheading1633352067866943"><u><span style="color: #0563c1">sección 23.1</span></u></a>);
+  <li>JDK 1.8 (apartado<a href="anexos.html#refheading1633352067866943"><u><span style="color: #0563c1"> 23.1</span></u></a>);
   </li>
-  <li>IDE Spring Tool Suite 3.6.3 (<a href="#refheading261305838046689"><u><span style="color: #0563c1">sección 1</span></u></a>);
+  <li>IDE Spring Tool Suite 3.6.3 (apartado<a href="#refheading261305838046689"><u><span style="color: #0563c1"> 1</span></u></a>);
   </li>
-  <li>Navegador Chrome (no se utilizaron otros navegadores);
+  <li>navegador Chrome (no se han utilizado otros navegadores);
   </li>
-  <li>Extensión de Chrome [Advanced Rest Client] (<a href="#refheading261305838046689"><u><span style="color: #0563c1">sección 1</span></u></a>);
+  <li>extensión de Chrome [Advanced Rest Client] (apartado<a href="#refheading261305838046689"><u><span style="color: #0563c1"> 1</span></u></a>);
   </li>
-  <li>SGBD MySQL 5.6 Community Edition (<a href="#refheading261315838046689"><u><span style="color: #0563c1">sección 23.4</span></u></a>);
+  <li>SGBD MySQL 5.6 Community Edition (apartado<a href="anexos.html#refheading261315838046689"><u><span style="color: #0563c1"> 23.4</span></u></a>);
   </li>
-  <li>SQL Server 2014 Express (<a href="#refheading1255281068575470"><u><span style="color: #0563c1">sección 23.9</span></u></a>);
+  <li>SGBD SQL Server 2014 Express (apartado<a href="anexos.html#refheading1255281068575470"><u><span style="color: #0563c1"> 23.9</span></u></a>);
   </li>
-  <li>PostgreSQL 9.4 (<a href="#refheading39815804107930"><u><span style="color: #0563c1">sección 23.7</span></u></a>);
+  <li>SGBD PostgreSQL 9.4 (apartado<a href="anexos.html#refheading39815804107930"><u><span style="color: #0563c1"> 23.7</span></u></a>);
   </li>
-  <li>SGBD Oracle Express 11g Release 2 (<a href="#refheading39807804107930"><u><span style="color: #0563c1">apartado 23.6</span></u></a>);
+  <li>SGBD Oracle Express 11g versión 2 (apartado<a href="anexos.html#refheading39807804107930"><u><span style="color: #0563c1"> 23.6</span></u></a>);
   </li>
-  <li>SGBD IBM DB2 Express-C 10.5 (<a href="#refheading1244581068575470"><u><span style="color: #0563c1">sección 23.8</span></u></a>);
+  <li>SGBD IBM DB2 Express-C 10.5 (apartado<a href="anexos.html#refheading1244581068575470"><u><span style="color: #0563c1"> 23.8</span></u></a>);
   </li>
-  <li>SGBD Firebird 2.5.4 (<a href="#refheading1255301068575470"><u><span style="color: #0563c1">sección 23.10</span></u></a>);
+  <li>SGBD Firebird 2.5.4 (apartado<a href="anexos.html#refheading1255301068575470"><u><span style="color: #0563c1"> 23.10</span></u></a>);
   </li>
-  <li>los clientes de EMS Manager para estos seis SGBD (<a href="#refheading80991783410321"><u><span style="color: #0563c1">sección 23.5</span></u></a>);
+  <li>los clients EMS Gestor de sus seis SGBD (apartado<a href="anexos.html#refheading80991783410321"><u><span style="color: #0563c1"> 23.5</span></u></a>);
   </li>
 </ul>
 
-<p><strong>Nota sobre JDK 1.8</strong>: Un método del caso práctico utiliza un método del paquete [java.lang] de Java 8.</p>
-<p>La mayoría de los ejemplos son proyectos Maven que se pueden abrir en Eclipse, IntelliJ IDEA o NetBeans. A continuación, las capturas de pantalla proceden del IDE Spring Tool Suite, una variante de Eclipse.</p>
-<p><a id="refheading2534711226231699"></a></p>
-<h2 id="14-los-ejemplos">1.4. <span style="color: #4f81bd"><span style="color: #4f81bd">Los ejemplos</span></span></h2>
-<p>Los ejemplos están disponibles |AQUÍ| como archivo <em>ZIP</em> descargable.</p>
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000006D1000001E5B81C446D.png" width="680" height="189" style="display:inline-block; margin:4px;width:17.999cm;height:5.002cm;" class="odt-zoomable" data-zoom-src="images/10000000000006D1000001E5B81C446D.png" /></td></tr></table>
+<p><strong>Atención al JDK 1.8</strong>. Un método del caso práctico utiliza un método del paquete [java.lang] de Java 8.</p>
+<p>La mayoría de los ejemplos son proyectos Maven que se pueden abrir indistintamente con IDE Eclipse, IntellijIDEA y Netbeans. A continuación, las capturas de pantalla proceden de IDE Spring Tool Suite, una variante de Eclipse.</p>
+<p><span id="refheading2534711226231699" name="refheading2534711226231699" class="odt-bookmark-anchor"></span></p>
+<h2 id="14-los-ejemplos">1.4. <span style="color: #4f81bd">Los ejemplos</span></h2>
+<p>Los ejemplos están disponibles en URL [http://tahe.developpez.com/java/spring-database] en forma de archivo <em>zip</em> para descargar.</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/10000000000006D1000001E5B81C446D.png" width="680" height="189" style="display:inline-block; margin:4px;width:17.999cm;height:5.002cm;" class="odt-zoomable" data-zoom-src="images/10000000000006D1000001E5B81C446D.png" /></td></tr></table>
 
 <ul>
-  <li>En [1], las carpetas de ejemplos;
+  <li>en [1], las carpetas de los ejemplos;
   </li>
   <li>en [2], la carpeta [spring-core] contiene los proyectos de aprendizaje de Spring;
   </li>
-  <li>en [3], la carpeta [spring-database-config] contiene los proyectos de configuración de JDBC y JPA para las seis bases de datos;
+  <li>en [3],  la carpeta [spring-database-config] contiene los proyectos de configuración JDBC y JPA de las seis bases de datos;
   </li>
 </ul>
 
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/1000000000000715000001A4893DD878.png" width="680" height="158" style="display:inline-block; margin:4px;width:17.999cm;height:4.17cm;" class="odt-zoomable" data-zoom-src="images/1000000000000715000001A4893DD878.png" /></td></tr></table>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/1000000000000715000001A4893DD878.png" width="680" height="158" style="display:inline-block; margin:4px;width:17.999cm;height:4.17cm;" class="odt-zoomable" data-zoom-src="images/1000000000000715000001A4893DD878.png" /></td></tr></table>
 
 <ul>
-  <li>en [4], la configuración del SGBD Oracle. Contiene tres carpetas:
+  <li>en [4], la configuración de SGBD Oracle. En ella hay tres carpetas:
     <ul>
-      <li>[databases] contiene los scripts SQL para generar las dos bases de datos utilizadas en el documento;
+      <li>[databases] contiene los scripts SQL para la generación de las dos bases de datos utilizadas por el documento;
       </li>
-      <li>[jdbc-driver] contiene el controlador JDBC de Oracle, así como un script para instalarlo en el repositorio local de Maven;
+      <li>[jdbc-driver] contiene el controlador JDBC de Oracle, así como un script para su instalación en el repositorio local de Maven;
       </li>
-      <li>[eclipse] contiene [5] los cuatro proyectos de configuración de Oracle:
+      <li>[eclipse] contiene los cuatro proyectos de configuración de Oracle:
         <ul>
-          <li>[oracle-config-jdbc] configura la capa JDBC para acceder al SGBD;
+          <li>[oracle-config-jdbc] configura la capa de acceso JDBC a SGBD;
           </li>
-          <li>[oracle-config-jpa-hibernate] configura la capa JPA para acceder al SGBD utilizando el proveedor JPA de Hibernate;
+          <li>[oracle-config-jpa-hibernate] configura la capa JPA de acceso a SGBD con el proveedor JPA Hibernate;
           </li>
-          <li>[oracle-config-jpa-eclipselink] configura la capa JPA para el acceso a la base de datos utilizando el proveedor JPA de Eclipselink;
+          <li>[oracle-config-jpa-eclipselink] configura la capa JPA de acceso a SGBD con el proveedor JPA Eclipselink;
           </li>
-          <li>[oracle-config-jpa-openjpa] configura la capa JPA para el acceso a la base de datos utilizando el proveedor JPA OpenJPA;
+          <li>[oracle-config-jpa-openjpa] configura la capa JPA de acceso a SGBD con el proveedor JPA OpenJPA;
           </li>
         </ul>
       </li>
     </ul>
   </li>
-  <li>en [6], la carpeta [eclipse config / launch configurations] contiene las configuraciones de inicio que el lector puede importar a Eclipse y luego adaptar a su propio entorno;
+  <li>en [6], la carpeta [eclipse config / launch configurations] contiene las configuraciones de ejecución que el lector podrá importar a Eclipse para luego adaptarlas a su propio entorno;
   </li>
 </ul>
 
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/1000000000000746000001BCA78A493C.png" width="680" height="162" style="display:inline-block; margin:4px;width:17.999cm;height:4.292cm;" class="odt-zoomable" data-zoom-src="images/1000000000000746000001BCA78A493C.png" /></td></tr></table>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/1000000000000746000001BCA78A493C.png" width="680" height="162" style="display:inline-block; margin:4px;width:17.999cm;height:4.292cm;" class="odt-zoomable" data-zoom-src="images/1000000000000746000001BCA78A493C.png" /></td></tr></table>
 
 <ul>
-  <li>en [7], la carpeta [spring-database-generic] contiene todo el código de acceso a la base de datos común a los seis SGBD y los tres proveedores JPA;
+  <li>en [7], la carpeta [spring-database-generic] contiene todo el código de acceso a SGBD común a los seis SGBD y a los tres proveedores JPA;
   </li>
-  <li>En [8], [spring-jdbc] contiene cuatro proyectos que muestran la API JDBC, así como Spring JDBC;
+  <li>en [8], [spring-jdbc] contiene cuatro proyectos que presentan API, JDBC y Spring JDBC;
   </li>
-  <li>En [9], [spring-jpa / spring-jpa-generic] es el proyecto que utiliza una capa JPA para acceder a una base de datos. Los proyectos [generic-create-db*] son proyectos JPA utilizados para crear las bases de datos que utiliza la capa JPA;
+  <li>en [9], [spring-jpa / spring-jpa-generic] es el proyecto que utiliza una capa JPA para acceder a una base de datos. Los proyectos [generic-create-db*] son proyectos JPA que permiten crear las bases de datos utilizadas por la capa JPA;
   </li>
 </ul>
 
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/100000000000076A0000016B3E2281C5.png" width="680" height="130" style="display:inline-block; margin:4px;width:17.999cm;height:3.441cm;" class="odt-zoomable" data-zoom-src="images/100000000000076A0000016B3E2281C5.png" /></td></tr></table>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/100000000000076A0000016B3E2281C5.png" width="680" height="130" style="display:inline-block; margin:4px;width:17.999cm;height:3.441cm;" class="odt-zoomable" data-zoom-src="images/100000000000076A0000016B3E2281C5.png" /></td></tr></table>
 
 <ul>
-  <li>En [10], la carpeta [spring-webjson] contiene los proyectos que exponen la base de datos en la web;
+  <li>en [10], la carpeta [spring-webjson] contiene los proyectos que exponen la base de datos en la web;
     <ul>
-      <li>[spring-webjson-server-jdbc-generic] es el servicio web que expone la base de datos a la que se accede a través de Spring JDBC;
+      <li>[spring-webjson-server-jdbc-generic] es el servicio web que expone la base de datos a la que se accede con Spring JDBC;
       </li>
-      <li>[spring-webjson-server-jpa-generic] es el servicio web que expone la base de datos a la que se accede a través de Spring JPA;
+      <li>[spring-webjson-server-jpa-generic] es el servicio web que expone la base de datos a la que se accede mediante Spring JPA;
       </li>
       <li>[spring-webjson-client-generic] es el único cliente que permite acceder a los dos servicios web anteriores;
       </li>
@@ -1313,24 +1315,24 @@
 <ul>
   <li>en [11], la carpeta [spring-security] contiene los proyectos que exponen la base de datos en la web con acceso seguro;
     <ul>
-      <li>[spring-security-server-jdbc-generic] es el servicio web seguro que expone la base de datos a la que se accede a través de Spring JDBC;
+      <li>[spring-security-server-jdbc-generic] es el servicio web seguro que expone la base de datos a la que se accede con Spring JDBC;
       </li>
-      <li>[spring-security-server-jpa-generic] es el servicio web seguro que expone la base de datos a la que se accede a través de Spring JPA;
+      <li>[spring-security-server-jpa-generic] es el servicio web seguro que expone la base de datos a la que se accede mediante Spring JPA;
       </li>
-      <li>[spring-security-client-generic] es el único cliente que permite el acceso a los dos servicios web seguros anteriores;
+      <li>[spring-security-client-generic] es el único cliente que permite acceder a los dos servicios web seguros anteriores;
       </li>
     </ul>
   </li>
 </ul>
 
 <ul>
-  <li>en [12], la carpeta [spring-cors] contiene los proyectos que exponen la base de datos en la web con acceso seguro, permitiendo el acceso entre dominios, como el que se origina desde el código JavaScript de un navegador;
+  <li>en [12], la carpeta [spring-cors] contiene los proyectos que exponen la base de datos en la web con un acceso seguro que permite accesos entre dominios, como los procedentes del código Javascript de un navegador;
     <ul>
-      <li>[spring-cors-server-jdbc-generic] es el servicio web seguro que permite el acceso entre dominios y expone la base de datos a la que se accede a través de Spring JDBC;
+      <li>[spring-cors-server-jdbc-generic] es el servicio web seguro que permite el acceso entre dominios y que expone la base de datos a la que se accede mediante Spring JDBC;
       </li>
-      <li>[spring-cors-server-jpa-generic] es el servicio web seguro que permite el acceso entre dominios y expone la base de datos a la que se accede a través de Spring JPA;
+      <li>[spring-cors-server-jpa-generic] es el servicio web seguro que permite el acceso entre dominios y que expone la base de datos a la que se accede con Spring JPA;
       </li>
-      <li>[spring-cors-client-generic] es una aplicación web que consulta los dos servicios web anteriores;
+      <li>[spring-cors-client-generic] es una aplicación web que permite consultar los dos servicios web anteriores;
       </li>
     </ul>
   </li>
@@ -1374,9 +1376,10 @@
           https://stahe.github.io
         </a>
         <br>
-        Este tutorial, escrito por <strong>Serge Tahé</strong>, se pone a disposición del público bajo los términos de la
-<em>Licencia Creative Commons Reconocimiento – No comercial –
-ShareAlike 3.0 Unported</em>.
+        Este curso-tutorial escrito por <strong>Serge Tahé</strong> se pone a disposición del público según los términos de la
+        <em>Licencia Creative Commons Reconocimiento – Sin uso comercial –
+        Compartir en las mismas condiciones 3.0 no adaptada</em>.
+
       </div>
 
     </div>

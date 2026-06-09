@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Trabajar con una base de datos relacional utilizando el ecosistema Spring">
+        <meta name="description" content="Metodología de desarrollo MVC para una aplicación web en PHP4">
       
       
         <meta name="author" content="Serge Tahé">
@@ -18,19 +18,19 @@
         
       
       
-      <link rel="icon" href="/es-spring-database-juin-2015/assets/images/favicon.png">
+      <link rel="icon" href="/es-php4mvc-janvier-2004/assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
     
     
       
-        <title>Trabajar con una base de datos relacional utilizando el ecosistema Spring</title>
+        <title>Metodología de desarrollo MVC para una aplicación web en PHP4</title>
       
     
     
-      <link rel="stylesheet" href="/es-spring-database-juin-2015/assets/stylesheets/main.618322db.min.css">
+      <link rel="stylesheet" href="/es-php4mvc-janvier-2004/assets/stylesheets/main.618322db.min.css">
       
         
-        <link rel="stylesheet" href="/es-spring-database-juin-2015/assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="/es-php4mvc-janvier-2004/assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -49,9 +49,11 @@
       
     
     
-      <link rel="stylesheet" href="/es-spring-database-juin-2015/stylesheets/focus.css">
+      <link rel="stylesheet" href="/es-php4mvc-janvier-2004/stylesheets/focus.css">
     
-    <script>__md_scope=new URL("/es-spring-database-juin-2015/",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+      <link rel="stylesheet" href="/es-php4mvc-janvier-2004/stylesheets/bidi.css">
+    
+    <script>__md_scope=new URL("/es-php4mvc-janvier-2004/",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-EBZC3JVJNR"></script>
@@ -59,7 +61,7 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-    var siteName = "Trabajar con una base de datos relacional utilizando el ecosistema Spring";
+    var siteName = "Metodología de desarrollo MVC para una aplicación web en PHP4";
     gtag('config', 'G-EBZC3JVJNR', {
         'page_title': siteName
     });
@@ -97,7 +99,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="/es-spring-database-juin-2015/index.html" title="Trabajar con una base de datos relacional utilizando el ecosistema Spring" class="md-header__button md-logo" aria-label="Trabajar con una base de datos relacional utilizando el ecosistema Spring" data-md-component="logo">
+    <a href="/es-php4mvc-janvier-2004/index.html" title="Metodología de desarrollo MVC para una aplicación web en PHP4" class="md-header__button md-logo" aria-label="Metodología de desarrollo MVC para una aplicación web en PHP4" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -111,7 +113,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            Trabajar con una base de datos relacional utilizando el ecosistema Spring
+            Metodología de desarrollo MVC para una aplicación web en PHP4
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -130,9 +132,9 @@
     
     
     
-    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="purple"  aria-label="Cambiar al modo oscuro"  type="radio" name="__palette" id="__palette_0">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="purple"  aria-label="Cambiar a modo oscuro"  type="radio" name="__palette" id="__palette_0">
     
-      <label class="md-header__button md-icon" title="Cambiar al modo oscuro" for="__palette_1" hidden>
+      <label class="md-header__button md-icon" title="Cambiar a modo oscuro" for="__palette_1" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
       </label>
     
@@ -197,7 +199,7 @@
     
     
       <div class="md-header__source">
-        <a href="https://stahe.github.io/es-spring-database-juin-2015" title="Go to repository" class="md-source" data-md-component="source">
+        <a href="https://stahe.github.io/es-php4mvc-janvier-2004" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
@@ -235,17 +237,17 @@
 
 <nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="/es-spring-database-juin-2015/index.html" title="Trabajar con una base de datos relacional utilizando el ecosistema Spring" class="md-nav__button md-logo" aria-label="Trabajar con una base de datos relacional utilizando el ecosistema Spring" data-md-component="logo">
+    <a href="/es-php4mvc-janvier-2004/index.html" title="Metodología de desarrollo MVC para una aplicación web en PHP4" class="md-nav__button md-logo" aria-label="Metodología de desarrollo MVC para una aplicación web en PHP4" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
 
     </a>
-    Trabajar con una base de datos relacional utilizando el ecosistema Spring
+    Metodología de desarrollo MVC para una aplicación web en PHP4
   </label>
   
     <div class="md-nav__source">
-      <a href="https://stahe.github.io/es-spring-database-juin-2015" title="Go to repository" class="md-source" data-md-component="source">
+      <a href="https://stahe.github.io/es-php4mvc-janvier-2004" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
@@ -265,7 +267,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/es-spring-database-juin-2015/index.html" class="md-nav__link">
+      <a href="/es-php4mvc-janvier-2004/index.html" class="md-nav__link">
         
   
   
@@ -292,7 +294,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/es-spring-database-juin-2015/introduccion.html" class="md-nav__link">
+      <a href="/es-php4mvc-janvier-2004/introduccion.html" class="md-nav__link">
         
   
   
@@ -319,7 +321,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/es-spring-database-juin-2015/introduccion-al-marco-spring.html" class="md-nav__link">
+      <a href="/es-php4mvc-janvier-2004/introduccion-al-marco-spring.html" class="md-nav__link">
         
   
   
@@ -346,14 +348,14 @@
   
   
     <li class="md-nav__item">
-      <a href="/es-spring-database-juin-2015/introduccion-a-la-api-jdbc.html" class="md-nav__link">
+      <a href="/es-php4mvc-janvier-2004/introduccion-a-api-jdbc.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    3. Introducción a la API JDBC
+    3. Introducción a API JDBC
   
 
     
@@ -373,7 +375,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/es-spring-database-juin-2015/introduccion-a-spring-jdbc.html" class="md-nav__link">
+      <a href="/es-php4mvc-janvier-2004/introduccion-a-spring-jdbc.html" class="md-nav__link">
         
   
   
@@ -400,7 +402,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/es-spring-database-juin-2015/introduccion-a-spring-data-jpa.html" class="md-nav__link">
+      <a href="/es-php4mvc-janvier-2004/introduccion-a-spring-data-jpa.html" class="md-nav__link">
         
   
   
@@ -427,7 +429,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/es-spring-database-juin-2015/spring-data-jpa-hibernate.html" class="md-nav__link">
+      <a href="/es-php4mvc-janvier-2004/spring-data-jpa-hibernate.html" class="md-nav__link">
         
   
   
@@ -454,7 +456,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/es-spring-database-juin-2015/spring-data-jpa-eclipselink.html" class="md-nav__link">
+      <a href="/es-php4mvc-janvier-2004/spring-data-jpa-eclipselink.html" class="md-nav__link">
         
   
   
@@ -481,7 +483,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/es-spring-database-juin-2015/spring-data-jpa-openjpa.html" class="md-nav__link">
+      <a href="/es-php4mvc-janvier-2004/spring-data-jpa-openjpa.html" class="md-nav__link">
         
   
   
@@ -508,14 +510,14 @@
   
   
     <li class="md-nav__item">
-      <a href="/es-spring-database-juin-2015/generacion-de-bases-de-datos-a-partir-de-entidades-jpa.html" class="md-nav__link">
+      <a href="/es-php4mvc-janvier-2004/generacion-de-bases-de-datos-a-partir-de-las-entidades-jpa.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    9. Generación de bases de datos a partir de entidades JPA
+    9. Generación de bases de datos a partir de las entidades JPA
   
 
     
@@ -535,14 +537,14 @@
   
   
     <li class="md-nav__item">
-      <a href="/es-spring-database-juin-2015/oracle-express-11g-release-2.html" class="md-nav__link">
+      <a href="/es-php4mvc-janvier-2004/oracle-express-11g-release-2.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    10. Oracle Express 11g Release 2
+    10. Oracle Express 11g release 2
   
 
     
@@ -562,7 +564,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/es-spring-database-juin-2015/postgresql-94.html" class="md-nav__link">
+      <a href="/es-php4mvc-janvier-2004/postgresql-94.html" class="md-nav__link">
         
   
   
@@ -589,7 +591,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/es-spring-database-juin-2015/ibm-db2-express-c-105.html" class="md-nav__link">
+      <a href="/es-php4mvc-janvier-2004/ibm-db2-express-c-105.html" class="md-nav__link">
         
   
   
@@ -616,7 +618,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/es-spring-database-juin-2015/sql-server-2014.html" class="md-nav__link">
+      <a href="/es-php4mvc-janvier-2004/sql-server-2014.html" class="md-nav__link">
         
   
   
@@ -643,7 +645,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/es-spring-database-juin-2015/firebird-254.html" class="md-nav__link">
+      <a href="/es-php4mvc-janvier-2004/firebird-254.html" class="md-nav__link">
         
   
   
@@ -670,7 +672,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/es-spring-database-juin-2015/rendimiento.html" class="md-nav__link">
+      <a href="/es-php4mvc-janvier-2004/rendimiento.html" class="md-nav__link">
         
   
   
@@ -697,7 +699,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/es-spring-database-juin-2015/introduccion-a-spring-mvc.html" class="md-nav__link">
+      <a href="/es-php4mvc-janvier-2004/introduccion-a-spring-mvc.html" class="md-nav__link">
         
   
   
@@ -724,14 +726,14 @@
   
   
     <li class="md-nav__item">
-      <a href="/es-spring-database-juin-2015/exposicion-de-una-base-de-datos-en-la-web.html" class="md-nav__link">
+      <a href="/es-php4mvc-janvier-2004/publicar-una-base-de-datos-en-la-web.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    17. Exposición de una base de datos en la web
+    17. Publicar una base de datos en la web
   
 
     
@@ -751,14 +753,14 @@
   
   
     <li class="md-nav__item">
-      <a href="/es-spring-database-juin-2015/un-cliente-programado-para-el-servicio-web-json.html" class="md-nav__link">
+      <a href="/es-php4mvc-janvier-2004/un-cliente-programado-para-el-servicio-web--json.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    18. Un cliente programado para el servicio web /JSON
+    18. Un cliente programado para el servicio web / jSON
   
 
     
@@ -778,14 +780,14 @@
   
   
     <li class="md-nav__item">
-      <a href="/es-spring-database-juin-2015/proteccion-del-acceso-a-un-servicio-web-con-spring-security.html" class="md-nav__link">
+      <a href="/es-php4mvc-janvier-2004/proteger-el-acceso-a-un-servicio-web-con-spring-security.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    19. Protección del acceso a un servicio web con Spring Security
+    19. Proteger el acceso a un servicio web con Spring Security
   
 
     
@@ -805,14 +807,14 @@
   
   
     <li class="md-nav__item">
-      <a href="/es-spring-database-juin-2015/proteccion-del-servicio-web-para-acceder-a-la-base-de-datos-dbproduitscategories.html" class="md-nav__link">
+      <a href="/es-php4mvc-janvier-2004/securizacion-del-servicio-web-de-acceso-a-la-base-de-datos-dbproduitscategories.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    20. Protección del servicio web para acceder a la base de datos [dbproduitscategories]
+    20. Securización del servicio web de acceso a la base de datos [dbproduitscategories]
   
 
     
@@ -832,14 +834,14 @@
   
   
     <li class="md-nav__item">
-      <a href="/es-spring-database-juin-2015/gestion-del-acceso-entre-dominios.html" class="md-nav__link">
+      <a href="/es-php4mvc-janvier-2004/gestion-de-accesos-entre-dominios.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    21. Gestión del acceso entre dominios
+    21. Gestión de accesos entre dominios
   
 
     
@@ -859,7 +861,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/es-spring-database-juin-2015/conclusion.html" class="md-nav__link">
+      <a href="/es-php4mvc-janvier-2004/conclusion.html" class="md-nav__link">
         
   
   
@@ -886,7 +888,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/es-spring-database-juin-2015/anexos.html" class="md-nav__link">
+      <a href="/es-php4mvc-janvier-2004/anexos.html" class="md-nav__link">
         
   
   
@@ -945,9 +947,10 @@
           https://stahe.github.io
         </a>
         <br>
-        Este tutorial, escrito por <strong>Serge Tahé</strong>, se pone a disposición del público bajo los términos de la
-<em>Licencia Creative Commons Reconocimiento – No comercial –
-ShareAlike 3.0 Unported</em>.
+        Este curso-tutorial escrito por <strong>Serge Tahé</strong> se pone a disposición del público según los términos de la
+        <em>Licencia Creative Commons Reconocimiento – Sin uso comercial –
+        Compartir en las mismas condiciones 3.0 no adaptada</em>.
+
       </div>
 
     </div>
@@ -963,12 +966,12 @@ ShareAlike 3.0 Unported</em>.
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "/es-spring-database-juin-2015/", "features": ["navigation.sections", "navigation.indexes", "navigation.expand", "toc.integrate", "navigation.top"], "search": "/es-spring-database-juin-2015/assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "/es-php4mvc-janvier-2004/", "features": ["navigation.sections", "navigation.indexes", "navigation.expand", "toc.integrate", "navigation.top"], "search": "/es-php4mvc-janvier-2004/assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="/es-spring-database-juin-2015/assets/javascripts/bundle.e71a0d61.min.js"></script>
+      <script src="/es-php4mvc-janvier-2004/assets/javascripts/bundle.e71a0d61.min.js"></script>
       
-        <script src="/es-spring-database-juin-2015/javascripts/focus.js"></script>
+        <script src="/es-php4mvc-janvier-2004/javascripts/focus.js"></script>
       
     
   </body>

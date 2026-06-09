@@ -6,19 +6,19 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Trabajar con una base de datos relacional utilizando el ecosistema Spring">
+        <meta name="description" content="Metodología de desarrollo MVC para una aplicación web en PHP4">
       
       
         <meta name="author" content="Serge Tahé">
       
       
-        <link rel="canonical" href="https://stahe.github.io/es-spring-database-juin-2015/proteccion-del-acceso-a-un-servicio-web-con-spring-security.html">
+        <link rel="canonical" href="https://stahe.github.io/es-php4mvc-janvier-2004/proteger-el-acceso-a-un-servicio-web-con-spring-security.html">
       
       
-        <link rel="prev" href="un-cliente-programado-para-el-servicio-web-json.html">
+        <link rel="prev" href="un-cliente-programado-para-el-servicio-web--json.html">
       
       
-        <link rel="next" href="proteccion-del-servicio-web-para-acceder-a-la-base-de-datos-dbproduitscategories.html">
+        <link rel="next" href="securizacion-del-servicio-web-de-acceso-a-la-base-de-datos-dbproduitscategories.html">
       
       
         
@@ -29,7 +29,7 @@
     
     
       
-        <title>19. Protección del acceso a un servicio web con Spring Security - Trabajar con una base de datos relacional utilizando el ecosistema Spring</title>
+        <title>19. Proteger el acceso a un servicio web con Spring Security - Metodología de desarrollo MVC para una aplicación web en PHP4</title>
       
     
     
@@ -57,6 +57,8 @@
     
       <link rel="stylesheet" href="stylesheets/focus.css">
     
+      <link rel="stylesheet" href="stylesheets/bidi.css">
+    
     <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -65,7 +67,7 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-    var siteName = "Trabajar con una base de datos relacional utilizando el ecosistema Spring";
+    var siteName = "Metodología de desarrollo MVC para una aplicación web en PHP4";
     gtag('config', 'G-EBZC3JVJNR', {
         'page_title': siteName
     });
@@ -92,7 +94,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#19-proteccion-del-acceso-a-un-servicio-web-con-spring-security" class="md-skip">
+        <a href="#19-proteger-el-acceso-a-un-servicio-web-con-spring-security" class="md-skip">
           Skip to content
         </a>
       
@@ -108,7 +110,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="index.html" title="Trabajar con una base de datos relacional utilizando el ecosistema Spring" class="md-header__button md-logo" aria-label="Trabajar con una base de datos relacional utilizando el ecosistema Spring" data-md-component="logo">
+    <a href="index.html" title="Metodología de desarrollo MVC para una aplicación web en PHP4" class="md-header__button md-logo" aria-label="Metodología de desarrollo MVC para una aplicación web en PHP4" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -122,13 +124,13 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            Trabajar con una base de datos relacional utilizando el ecosistema Spring
+            Metodología de desarrollo MVC para una aplicación web en PHP4
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              19. Protección del acceso a un servicio web con Spring Security
+              19. Proteger el acceso a un servicio web con Spring Security
             
           </span>
         </div>
@@ -141,9 +143,9 @@
     
     
     
-    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="purple"  aria-label="Cambiar al modo oscuro"  type="radio" name="__palette" id="__palette_0">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="purple"  aria-label="Cambiar a modo oscuro"  type="radio" name="__palette" id="__palette_0">
     
-      <label class="md-header__button md-icon" title="Cambiar al modo oscuro" for="__palette_1" hidden>
+      <label class="md-header__button md-icon" title="Cambiar a modo oscuro" for="__palette_1" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
       </label>
     
@@ -208,7 +210,7 @@
     
     
       <div class="md-header__source">
-        <a href="https://stahe.github.io/es-spring-database-juin-2015" title="Go to repository" class="md-source" data-md-component="source">
+        <a href="https://stahe.github.io/es-php4mvc-janvier-2004" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
@@ -246,17 +248,17 @@
 
 <nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="index.html" title="Trabajar con una base de datos relacional utilizando el ecosistema Spring" class="md-nav__button md-logo" aria-label="Trabajar con una base de datos relacional utilizando el ecosistema Spring" data-md-component="logo">
+    <a href="index.html" title="Metodología de desarrollo MVC para una aplicación web en PHP4" class="md-nav__button md-logo" aria-label="Metodología de desarrollo MVC para una aplicación web en PHP4" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
 
     </a>
-    Trabajar con una base de datos relacional utilizando el ecosistema Spring
+    Metodología de desarrollo MVC para una aplicación web en PHP4
   </label>
   
     <div class="md-nav__source">
-      <a href="https://stahe.github.io/es-spring-database-juin-2015" title="Go to repository" class="md-source" data-md-component="source">
+      <a href="https://stahe.github.io/es-php4mvc-janvier-2004" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
@@ -357,14 +359,14 @@
   
   
     <li class="md-nav__item">
-      <a href="introduccion-a-la-api-jdbc.html" class="md-nav__link">
+      <a href="introduccion-a-api-jdbc.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    3. Introducción a la API JDBC
+    3. Introducción a API JDBC
   
 
     
@@ -519,14 +521,14 @@
   
   
     <li class="md-nav__item">
-      <a href="generacion-de-bases-de-datos-a-partir-de-entidades-jpa.html" class="md-nav__link">
+      <a href="generacion-de-bases-de-datos-a-partir-de-las-entidades-jpa.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    9. Generación de bases de datos a partir de entidades JPA
+    9. Generación de bases de datos a partir de las entidades JPA
   
 
     
@@ -553,7 +555,7 @@
   <span class="md-ellipsis">
     
   
-    10. Oracle Express 11g Release 2
+    10. Oracle Express 11g release 2
   
 
     
@@ -735,14 +737,14 @@
   
   
     <li class="md-nav__item">
-      <a href="exposicion-de-una-base-de-datos-en-la-web.html" class="md-nav__link">
+      <a href="publicar-una-base-de-datos-en-la-web.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    17. Exposición de una base de datos en la web
+    17. Publicar una base de datos en la web
   
 
     
@@ -762,14 +764,14 @@
   
   
     <li class="md-nav__item">
-      <a href="un-cliente-programado-para-el-servicio-web-json.html" class="md-nav__link">
+      <a href="un-cliente-programado-para-el-servicio-web--json.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    18. Un cliente programado para el servicio web /JSON
+    18. Un cliente programado para el servicio web / jSON
   
 
     
@@ -805,7 +807,7 @@
   <span class="md-ellipsis">
     
   
-    19. Protección del acceso a un servicio web con Spring Security
+    19. Proteger el acceso a un servicio web con Spring Security
   
 
     
@@ -816,14 +818,14 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <a href="proteccion-del-acceso-a-un-servicio-web-con-spring-security.html" class="md-nav__link md-nav__link--active">
+      <a href="proteger-el-acceso-a-un-servicio-web-con-spring-security.html" class="md-nav__link md-nav__link--active">
         
   
   
   <span class="md-ellipsis">
     
   
-    19. Protección del acceso a un servicio web con Spring Security
+    19. Proteger el acceso a un servicio web con Spring Security
   
 
     
@@ -883,10 +885,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#1922-vistas-de-thymeleaf" class="md-nav__link">
+  <a href="#1922-las-vistas-thymeleaf" class="md-nav__link">
     <span class="md-ellipsis">
       
-        19.2.2. Vistas de Thymeleaf
+        19.2.2. Las vistas Thymeleaf
       
     </span>
   </a>
@@ -927,10 +929,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#1926-prueba-de-la-aplicacion" class="md-nav__link">
+  <a href="#1926-pruebas-de-la-aplicacion" class="md-nav__link">
     <span class="md-ellipsis">
       
-        19.2.6. Prueba de la aplicación
+        19.2.6. Pruebas de la aplicación
       
     </span>
   </a>
@@ -968,14 +970,14 @@
   
   
     <li class="md-nav__item">
-      <a href="proteccion-del-servicio-web-para-acceder-a-la-base-de-datos-dbproduitscategories.html" class="md-nav__link">
+      <a href="securizacion-del-servicio-web-de-acceso-a-la-base-de-datos-dbproduitscategories.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    20. Protección del servicio web para acceder a la base de datos [dbproduitscategories]
+    20. Securización del servicio web de acceso a la base de datos [dbproduitscategories]
   
 
     
@@ -995,14 +997,14 @@
   
   
     <li class="md-nav__item">
-      <a href="gestion-del-acceso-entre-dominios.html" class="md-nav__link">
+      <a href="gestion-de-accesos-entre-dominios.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    21. Gestión del acceso entre dominios
+    21. Gestión de accesos entre dominios
   
 
     
@@ -1086,29 +1088,29 @@
 
 
 
-<p><a id="refheading21922820146305372"></a></p>
-<h1 id="19-proteccion-del-acceso-a-un-servicio-web-con-spring-security">19. <span style="color: #365f91">Protección del acceso a un servicio web con Spring Security</span></h1>
-<p><a id="refheading995114549776991"></a></p>
+<p><span id="refheading21922820146305372" name="refheading21922820146305372" class="odt-bookmark-anchor"></span></p>
+<h1 id="19-proteger-el-acceso-a-un-servicio-web-con-spring-security">19. <span style="color: #365f91">Proteger el acceso a un servicio web con Spring Security</span></h1>
+<p><span id="refheading995114549776991" name="refheading995114549776991" class="odt-bookmark-anchor"></span></p>
 <h2 id="191-el-papel-de-spring-security-en-una-aplicacion-web">19.1. <span style="color: #4f81bd">El papel de Spring Security en una aplicación web</span></h2>
-<p>Situemos Spring Security en el contexto del desarrollo de una aplicación web. En la mayoría de los casos, se basará en una arquitectura de varios niveles como la siguiente:</p>
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/100000000000055900000128AFCAE1AF.png" width="680" height="147" style="display:inline-block; margin:4px;width:17.999cm;height:3.891cm;" class="odt-zoomable" data-zoom-src="images/100000000000055900000128AFCAE1AF.png" /></td></tr></table>
+<p>Situemos Spring Security en el desarrollo de una aplicación web. En la mayoría de los casos, esta se construirá sobre una arquitectura multicapa como la siguiente:</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/100000000000055900000128AFCAE1AF.png" width="680" height="147" style="display:inline-block; margin:4px;width:17.999cm;height:3.891cm;" class="odt-zoomable" data-zoom-src="images/100000000000055900000128AFCAE1AF.png" /></td></tr></table>
 
 <ul>
-  <li>la capa [<b>Spring Security</b>] concede acceso a la capa [web] únicamente a los usuarios autorizados.
+  <li>la capa [Spring Security] solo concede acceso a la capa [web] a los usuarios autorizados.
   </li>
 </ul>
 
-<p><a id="refheading9319894989336"></a></p>
+<p><span id="refheading9319894989336" name="refheading9319894989336" class="odt-bookmark-anchor"></span></p>
 <h2 id="192-un-tutorial-sobre-spring-security">19.2. <span style="color: #4f81bd">Un tutorial sobre Spring Security</span></h2>
-<p><a id="refheading1623631200878134"></a>Volveremos a importar una guía de Spring siguiendo los pasos 1 a 3 que se indican a continuación:</p>
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/1000000000000486000002DFFC8520E9.png" width="579" height="367" style="display:inline-block; margin:4px;width:15.319cm;height:9.723cm;" class="odt-zoomable" data-zoom-src="images/1000000000000486000002DFFC8520E9.png" /></td></tr></table>
+<p><span id="refheading1623631200878134" name="refheading1623631200878134" class="odt-bookmark-anchor"></span>Vamos a importar de nuevo una guía de Spring siguiendo los pasos 1 a 3 que se indican a continuación:</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/1000000000000486000002DFFC8520E9.png" width="579" height="367" style="display:inline-block; margin:4px;width:15.319cm;height:9.723cm;" class="odt-zoomable" data-zoom-src="images/1000000000000486000002DFFC8520E9.png" /></td></tr></table>
 
-<p><a id="refheading570811429907001"></a></p>
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000000F5000000FD9BD31E82.png" width="172" height="177" style="display:inline-block; margin:4px;width:4.54cm;height:4.688cm;" class="odt-zoomable" data-zoom-src="images/10000000000000F5000000FD9BD31E82.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;">&nbsp;</td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;">&nbsp;</td></tr></table>
+<p><span id="refheading570811429907001" name="refheading570811429907001" class="odt-bookmark-anchor"></span></p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/10000000000000F5000000FD9BD31E82.png" width="172" height="177" style="display:inline-block; margin:4px;width:4.54cm;height:4.688cm;" class="odt-zoomable" data-zoom-src="images/10000000000000F5000000FD9BD31E82.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;">&nbsp;</td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;">&nbsp;</td></tr></table>
 
-<p>El proyecto consta de los siguientes elementos:</p>
+<p>El proyecto se compone de los siguientes elementos:</p>
 <ul>
-  <li>en la carpeta [templates], encontrarás las páginas HTML del proyecto;
+  <li>en la carpeta [templates], se encuentran las páginas HTML del proyecto;
   </li>
   <li>[Application]: es la clase ejecutable del proyecto;
   </li>
@@ -1117,26 +1119,27 @@
   <li>[WebSecurityConfig]: es la clase de configuración de Spring Security;
   </li>
 </ul>
-<p><a id="refheading9321894989336"></a></p>
-<h3 id="1921-configuracion-de-maven">19.2.1. <span style="color: #4f81bd"><span style="color: #4f81bd">Configuración de Maven</span></span></h3>
-<p><a id="refheading1623651200878134"></a>El proyecto [3] es un proyecto Maven. Echemos un vistazo a su archivo [pom.xml] para ver sus dependencias:</p>
-<p><a id="refheading570831429907001"></a></p>
+
+<p><span id="refheading9321894989336" name="refheading9321894989336" class="odt-bookmark-anchor"></span></p>
+<h3 id="1921-configuracion-de-maven">19.2.1. <span style="color: #4f81bd"><strong>Configuración de Maven</strong></span></h3>
+<p><span id="refheading1623651200878134" name="refheading1623651200878134" class="odt-bookmark-anchor"></span>El proyecto [3] es un proyecto Maven. Analicemos su archivo [pom.xml] para conocer sus dependencias:</p>
+<p><span id="refheading570831429907001" name="refheading570831429907001" class="odt-bookmark-anchor"></span></p>
 <div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-xml">
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#008080">&lt;?</span><span style="color:#3f7f7f">xml</span><span style="color:#000000"> </span><span style="color:#7f007f">version</span><span style="color:#000000">=</span><span style="font-style:italic;color:#2a00ff">&quot;1.0&quot;</span><span style="color:#000000"> </span><span style="color:#7f007f">encoding</span><span style="color:#000000">=</span><span style="font-style:italic;color:#2a00ff">&quot;UTF-8&quot;</span><span style="color:#008080">?&gt;</span></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#008080">&lt;</span><span style="color:#3f7f7f">project</span><span style="color:#000000"> </span><span style="color:#7f007f">xmlns</span><span style="color:#000000">=</span><span style="font-style:italic;color:#2a00ff">&quot;http://maven.apache.org/POM/4.0.0&quot;</span><span style="color:#000000"> </span><span style="color:#7f007f">xmlns:xsi</span><span style="color:#000000">=</span><span style="font-style:italic;color:#2a00ff">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#7f007f">xsi:schemaLocation</span><span style="color:#000000">=</span><span style="font-style:italic;color:#2a00ff">&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&quot;</span><span style="color:#008080">&gt;</span></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#008080">&lt;</span><span style="color:#3f7f7f">modelVersion</span><span style="color:#008080">&gt;</span><span style="color:#000000">4.0.0</span><span style="color:#008080">&lt;/</span><span style="color:#3f7f7f">modelVersion</span><span style="color:#008080">&gt;</span></span></span>
-<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#008080">&lt;</span><span style="color:#3f7f7f">groupId</span><span style="color:#008080">&gt;</span><span style="color:#000000">org.springframework</span><span style="color:#008080">&lt;/</span><span style="color:#3f7f7f">groupId</span><span style="color:#008080">&gt;</span></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#008080">&lt;</span><span style="color:#3f7f7f">artifactId</span><span style="color:#008080">&gt;</span><span style="color:#000000">gs-securing-web</span><span style="color:#008080">&lt;/</span><span style="color:#3f7f7f">artifactId</span><span style="color:#008080">&gt;</span></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#008080">&lt;</span><span style="color:#3f7f7f">version</span><span style="color:#008080">&gt;</span><span style="color:#000000">0.1.0</span><span style="color:#008080">&lt;/</span><span style="color:#3f7f7f">version</span><span style="color:#008080">&gt;</span></span></span>
-<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#008080">&lt;</span><span style="color:#3f7f7f">parent</span><span style="color:#008080">&gt;</span></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#008080">&lt;</span><span style="color:#3f7f7f">groupId</span><span style="color:#008080">&gt;</span><span style="color:#000000">org.springframework.boot</span><span style="color:#008080">&lt;/</span><span style="color:#3f7f7f">groupId</span><span style="color:#008080">&gt;</span></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#008080">&lt;</span><span style="color:#3f7f7f">artifactId</span><span style="color:#008080">&gt;</span><span style="color:#000000">spring-boot-starter-parent</span><span style="color:#008080">&lt;/</span><span style="color:#3f7f7f">artifactId</span><span style="color:#008080">&gt;</span></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#008080">&lt;</span><span style="color:#3f7f7f">version</span><span style="color:#008080">&gt;</span><span style="color:#000000">1.2.3.RELEASE</span><span style="color:#008080">&lt;/</span><span style="color:#3f7f7f">version</span><span style="color:#008080">&gt;</span></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#008080">&lt;/</span><span style="color:#3f7f7f">parent</span><span style="color:#008080">&gt;</span></span></span>
-<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#008080">&lt;</span><span style="color:#3f7f7f">dependencies</span><span style="color:#008080">&gt;</span></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#008080">&lt;</span><span style="color:#3f7f7f">dependency</span><span style="color:#008080">&gt;</span></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">            </span><span style="color:#008080">&lt;</span><span style="color:#3f7f7f">groupId</span><span style="color:#008080">&gt;</span><span style="color:#000000">org.springframework.boot</span><span style="color:#008080">&lt;/</span><span style="color:#3f7f7f">groupId</span><span style="color:#008080">&gt;</span></span></span>
@@ -1149,11 +1152,11 @@
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#008080">&lt;/</span><span style="color:#3f7f7f">dependency</span><span style="color:#008080">&gt;</span></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#000000">&lt;!-- end::security[] --&gt;</span></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#008080">&lt;/</span><span style="color:#3f7f7f">dependencies</span><span style="color:#008080">&gt;</span></span></span>
-<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#008080">&lt;</span><span style="color:#3f7f7f">properties</span><span style="color:#008080">&gt;</span></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#008080">&lt;</span><span style="color:#3f7f7f">start-class</span><span style="color:#008080">&gt;</span><span style="color:#000000">hello.Application</span><span style="color:#008080">&lt;/</span><span style="color:#3f7f7f">start-class</span><span style="color:#008080">&gt;</span></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#008080">&lt;/</span><span style="color:#3f7f7f">properties</span><span style="color:#008080">&gt;</span></span></span>
-<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#008080">&lt;</span><span style="color:#3f7f7f">build</span><span style="color:#008080">&gt;</span></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#008080">&lt;</span><span style="color:#3f7f7f">plugins</span><span style="color:#008080">&gt;</span></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">            </span><span style="color:#008080">&lt;</span><span style="color:#3f7f7f">plugin</span><span style="color:#008080">&gt;</span></span></span>
@@ -1162,25 +1165,26 @@
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">            </span><span style="color:#008080">&lt;/</span><span style="color:#3f7f7f">plugin</span><span style="color:#008080">&gt;</span></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#008080">&lt;/</span><span style="color:#3f7f7f">plugins</span><span style="color:#008080">&gt;</span></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#008080">&lt;/</span><span style="color:#3f7f7f">build</span><span style="color:#008080">&gt;</span></span></span>
-<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#008080">&lt;/</span><span style="color:#3f7f7f">project</span><span style="color:#008080">&gt;</span></span></span>
 </code></pre></div>
 
 <ul>
-  <li>líneas 10–14: el proyecto es un proyecto Spring Boot;
+  <li>líneas 10-14: el proyecto es un proyecto Spring Boot;
   </li>
   <li>líneas 17-20: dependencia del marco [Thymeleaf];
   </li>
-  <li>líneas 22–25: dependencia del marco Spring Security;
+  <li>líneas 22-25: dependencia del framework Spring Security;
   </li>
 </ul>
-<p><a id="refheading9323894989336"></a></p>
-<h3 id="1922-vistas-de-thymeleaf">19.2.2. <span style="color: #4f81bd">Vistas de Thymeleaf</span></h3>
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000000B7000000654C02E8DD.png" width="128" height="71" style="display:inline-block; margin:4px;width:3.39cm;height:1.871cm;" class="odt-zoomable" data-zoom-src="images/10000000000000B7000000654C02E8DD.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;">&nbsp;</td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;">&nbsp;</td></tr></table>
 
-<p><a id="refheading1623671200878134"></a></p>
-<p><a id="refheading570851429907001"></a>La vista [home.html] es la siguiente:</p>
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/1000000000000146000000CD6E9E44F9.png" width="212" height="133" style="display:inline-block; margin:4px;width:5.609cm;height:3.528cm;" class="odt-zoomable" data-zoom-src="images/1000000000000146000000CD6E9E44F9.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;">&nbsp;</td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;">&nbsp;</td></tr></table>
+<p><span id="refheading9323894989336" name="refheading9323894989336" class="odt-bookmark-anchor"></span></p>
+<h3 id="1922-las-vistas-thymeleaf">19.2.2. <span style="color: #4f81bd">Las vistas Thymeleaf</span></h3>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/10000000000000B7000000654C02E8DD.png" width="128" height="71" style="display:inline-block; margin:4px;width:3.39cm;height:1.871cm;" class="odt-zoomable" data-zoom-src="images/10000000000000B7000000654C02E8DD.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;">&nbsp;</td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;">&nbsp;</td></tr></table>
+
+<p><span id="refheading1623671200878134" name="refheading1623671200878134" class="odt-bookmark-anchor"></span></p>
+<p><span id="refheading570851429907001" name="refheading570851429907001" class="odt-bookmark-anchor"></span>La vista [home.html] es la siguiente:</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/1000000000000146000000CD6E9E44F9.png" width="212" height="133" style="display:inline-block; margin:4px;width:5.609cm;height:3.528cm;" class="odt-zoomable" data-zoom-src="images/1000000000000146000000CD6E9E44F9.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;">&nbsp;</td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;">&nbsp;</td></tr></table>
 
 <div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-html">
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#008080">&lt;!</span><span style="color:#3f7f7f">DOCTYPE</span><span style="color:#000000"> </span><span style="color:#008080">html&gt;</span></span></span>
@@ -1192,7 +1196,7 @@
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#008080">&lt;/</span><span style="color:#3f7f7f">head</span><span style="color:#008080">&gt;</span></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#008080">&lt;</span><span style="color:#3f7f7f">body</span><span style="color:#008080">&gt;</span></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#008080">&lt;</span><span style="color:#3f7f7f">h1</span><span style="color:#008080">&gt;</span><span style="color:#000000">Welcome!</span><span style="color:#008080">&lt;/</span><span style="color:#3f7f7f">h1</span><span style="color:#008080">&gt;</span></span></span>
-<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#008080">&lt;</span><span style="color:#3f7f7f">p</span><span style="color:#008080">&gt;</span></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        Click </span><span style="color:#008080">&lt;</span><span style="color:#3f7f7f">a</span><span style="color:#000000"> </span><span style="color:#7f007f">th:href</span><span style="color:#000000">=</span><span style="font-style:italic;color:#2a00ff">&quot;@{/hello}&quot;</span><span style="color:#008080">&gt;</span><span style="color:#000000">here</span><span style="color:#008080">&lt;/</span><span style="color:#3f7f7f">a</span><span style="color:#008080">&gt;</span><span style="color:#000000"> to see a greeting.</span></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#008080">&lt;/</span><span style="color:#3f7f7f">p</span><span style="color:#008080">&gt;</span></span></span>
@@ -1201,21 +1205,21 @@
 </code></pre></div>
 
 <ul>
-  <li>línea 12: el atributo [<span style="color: #7f007f">th:</span><span style="color: #000000">href=</span><i><span style="color: #2a00ff">&quot;@{/hello}&quot;</span></i>] generará el atributo [href] de la etiqueta &lt;a&gt;. <span style="color: #000000">El valor [</span><i><span style="color: #2a00ff">@{/hello}</span></i><span style="color: #000000">] generará la ruta [&lt;context&gt;/hello], donde [context] es el contexto de la aplicación web;</span>
+  <li>línea 12: el atributo [th:href=&quot;@{/hello}&quot;] generará el atributo [href] de la etiqueta &lt;a&gt;. <span style="color: #000000">El valor [@{/hello}] generará la ruta [&lt;context&gt;/hello], donde [context] es el contexto de la aplicación web;</span>
   </li>
 </ul>
 
 <p>El código HTML generado es el siguiente:</p>
 <div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-html">
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#008080">&lt;!</span><span style="color:#3f7f7f">DOCTYPE</span><span style="color:#000000"> </span><span style="color:#008080">html&gt;</span></span></span>
-<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#008080">&lt;</span><span style="color:#3f7f7f">html</span><span style="color:#000000"> </span><span style="color:#7f007f">xmlns</span><span style="color:#000000">=</span><span style="font-style:italic;color:#2a00ff">&quot;http://www.w3.org/1999/xhtml&quot;</span><span style="color:#000000"> </span><span style="color:#7f007f">xmlns:sec</span><span style="color:#000000">=</span><span style="font-style:italic;color:#2a00ff">&quot;http://www.thymeleaf.org/thymeleaf-extras-springsecurity3&quot;</span><span style="color:#008080">&gt;</span></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#008080">&lt;</span><span style="color:#3f7f7f">head</span><span style="color:#008080">&gt;</span></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#008080">&lt;</span><span style="color:#3f7f7f">title</span><span style="color:#008080">&gt;</span><span style="color:#000000">Spring Security Example</span><span style="color:#008080">&lt;/</span><span style="color:#3f7f7f">title</span><span style="color:#008080">&gt;</span></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#008080">&lt;/</span><span style="color:#3f7f7f">head</span><span style="color:#008080">&gt;</span></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#008080">&lt;</span><span style="color:#3f7f7f">body</span><span style="color:#008080">&gt;</span></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#008080">&lt;</span><span style="color:#3f7f7f">h1</span><span style="color:#008080">&gt;</span><span style="color:#000000">Welcome!</span><span style="color:#008080">&lt;/</span><span style="color:#3f7f7f">h1</span><span style="color:#008080">&gt;</span></span></span>
-<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#008080">&lt;</span><span style="color:#3f7f7f">p</span><span style="color:#008080">&gt;</span></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content">            Click</span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">            </span><span style="color:#008080">&lt;</span><span style="color:#3f7f7f">a</span><span style="color:#000000"> </span><span style="color:#7f007f">href</span><span style="color:#000000">=</span><span style="font-style:italic;color:#2a00ff">&quot;/hello&quot;</span><span style="color:#008080">&gt;</span><span style="color:#000000">here</span><span style="color:#008080">&lt;/</span><span style="color:#3f7f7f">a</span><span style="color:#008080">&gt;</span></span></span>
@@ -1226,7 +1230,7 @@
 </code></pre></div>
 
 <p>La vista [hello.html] es la siguiente:</p>
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/1000000000000144000000D545362419.png" width="212" height="139" style="display:inline-block; margin:4px;width:5.609cm;height:3.687cm;" class="odt-zoomable" data-zoom-src="images/1000000000000144000000D545362419.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;">&nbsp;</td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;">&nbsp;</td></tr></table>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/1000000000000144000000D545362419.png" width="212" height="139" style="display:inline-block; margin:4px;width:5.609cm;height:3.687cm;" class="odt-zoomable" data-zoom-src="images/1000000000000144000000D545362419.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;">&nbsp;</td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;">&nbsp;</td></tr></table>
 
 <div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-html">
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#008080">&lt;!</span><span style="color:#3f7f7f">DOCTYPE</span><span style="color:#000000"> </span><span style="color:#008080">html&gt;</span></span></span>
@@ -1246,16 +1250,16 @@
 </code></pre></div>
 
 <ul>
-  <li>línea 9: <span style="color: #000000">El atributo [</span><span style="color: #7f007f">th:</span><span style="color: #000000">inline=</span><i><span style="color: #2a00ff">&quot;text&quot;</span></i><span style="color: #000000">] generará el texto de la etiqueta &lt;h1&gt;. Este texto contiene una expresión $ que debe evaluarse. </span>El elemento <span style="color: #000000">[[${#httpServletRequest.remoteUser}]] es el valor del atributo [RemoteUser] de la solicitud HTTP actual. Este es el nombre del usuario que ha iniciado sesión;</span>
+  <li>línea 9: <span style="color: #000000">El atributo [th:inline=&quot;text&quot;] generará el texto de la etiqueta &lt;h1&gt;. Este texto contiene una expresión $ que debe evaluarse. </span>El elemento <span style="color: #000000">[[${#httpServletRequest.remoteUser}]] es el valor del atributo [RemoteUser] de la consulta HTTP actual. Es el nombre del usuario conectado;</span>
   </li>
-  <li><span style="color: #000000">línea 10: un formulario HTML. El atributo [</span><span style="color: #7f007f">th:</span><span style="color: #000000">action=</span><i><span style="color: #2a00ff">&quot;@{/logout}&quot;</span></i><span style="color: #000000">] generará el atributo [action] de la etiqueta [form]. El valor [</span><i><span style="color: #2a00ff">@{/logout}</span></i><span style="color: #000000">] generará la ruta [&lt;context&gt;/logout], donde [context] es el contexto de la aplicación web;</span>
+  <li><span style="color: #000000">línea 10: un formulario HTML. El atributo [th:action=&quot;@{/logout}&quot;] generará el atributo [action] de la etiqueta [form]. El valor [@{/logout}] generará la ruta [&lt;context&gt;/logout], donde [context] es el contexto de la aplicación web;</span>
   </li>
 </ul>
 
 <p><span style="color: #000000">El código HTML generado es el siguiente:</span></p>
 <div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-html">
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#008080">&lt;!</span><span style="color:#3f7f7f">DOCTYPE</span><span style="color:#000000"> </span><span style="color:#008080">html&gt;</span></span></span>
-<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#008080">&lt;</span><span style="color:#3f7f7f">html</span><span style="color:#000000"> </span><span style="color:#7f007f">xmlns</span><span style="color:#000000">=</span><span style="font-style:italic;color:#2a00ff">&quot;http://www.w3.org/1999/xhtml&quot;</span><span style="color:#000000"> </span><span style="color:#7f007f">xmlns:sec</span><span style="color:#000000">=</span><span style="font-style:italic;color:#2a00ff">&quot;http://www.thymeleaf.org/thymeleaf-extras-springsecurity3&quot;</span><span style="color:#008080">&gt;</span></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#008080">&lt;</span><span style="color:#3f7f7f">head</span><span style="color:#008080">&gt;</span></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#008080">&lt;</span><span style="color:#3f7f7f">title</span><span style="color:#008080">&gt;</span><span style="color:#000000">Hello World!</span><span style="color:#008080">&lt;/</span><span style="color:#3f7f7f">title</span><span style="color:#008080">&gt;</span></span></span>
@@ -1271,7 +1275,7 @@
 </code></pre></div>
 
 <ul>
-  <li><span style="color: #000000">línea 8: la traducción de </span><i><span style="color: #000000">«¡Hola [[${#httpServletRequest.remoteUser}]]!</span></i><span style="color: #000000">»;</span>
+  <li><span style="color: #000000">línea 8: la traducción de </span><i><span style="color: #000000">Hello [[${#httpServletRequest.remoteUser}]]!</span></i><span style="color: #000000">;</span>
   </li>
   <li><span style="color: #000000">línea 9: la traducción de </span><i><span style="color: #2a00ff">@{/logout}</span></i><span style="color: #000000">;</span>
   </li>
@@ -1279,8 +1283,8 @@
   </li>
 </ul>
 
-<p><span style="color: #000000">La vista final [login.html] es la siguiente:</span></p>
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/1000000000000146000000C2EE6CA80A.png" width="212" height="126" style="display:inline-block; margin:4px;width:5.609cm;height:3.337cm;" class="odt-zoomable" data-zoom-src="images/1000000000000146000000C2EE6CA80A.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;">&nbsp;</td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;">&nbsp;</td></tr></table>
+<p><span style="color: #000000">La última vista [login.html] es la siguiente:</span></p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/1000000000000146000000C2EE6CA80A.png" width="212" height="126" style="display:inline-block; margin:4px;width:5.609cm;height:3.337cm;" class="odt-zoomable" data-zoom-src="images/1000000000000146000000C2EE6CA80A.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;">&nbsp;</td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;">&nbsp;</td></tr></table>
 
 <div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-html">
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#008080">&lt;!</span><span style="color:#3f7f7f">DOCTYPE</span><span style="color:#000000"> </span><span style="color:#008080">html&gt;</span></span></span>
@@ -1311,13 +1315,13 @@
 </code></pre></div>
 
 <ul>
-  <li><span style="color: #000000">línea 9: el atributo [</span><span style="color: #7f007f">th:</span><span style="color: #000000">if=</span><i><span style="color: #2a00ff">&quot;${param.error}&quot;</span></i><span style="color: #000000">] garantiza que la etiqueta &lt;div&gt; solo se generará si la URL que muestra la página de inicio de sesión contiene el parámetro [error] (http://context/login?error);</span>
+  <li><span style="color: #000000">línea 9: el atributo [th:if=&quot;${param.error}&quot;] hace que la etiqueta &lt;div&gt; solo se genere si el URL que muestra la página de inicio de sesión contiene el parámetro [error] (http://context/login?error);</span>
   </li>
-  <li><span style="color: #000000">línea 10: el atributo [</span><span style="color: #7f007f">th:</span><span style="color: #000000">if=</span><i><span style="color: #2a00ff">&quot;${param.logout}&quot;</span></i><span style="color: #000000">] garantiza que la etiqueta &lt;div&gt; solo se generará si la URL que muestra la página de inicio de sesión contiene el parámetro [logout] (http://context/login?logout);</span>
+  <li><span style="color: #000000">línea 10: el atributo [th:if=&quot;${param.logout}&quot;] hace que la etiqueta &lt;div&gt; solo se genere si el URL que muestra la página de inicio de sesión contiene el parámetro [logout] (http://context/login?logout);</span>
   </li>
-  <li><span style="color: #000000">líneas 11–23: un formulario HTML;</span>
+  <li><span style="color: #000000">líneas 11-23: un formulario HTML;</span>
   </li>
-  <li><span style="color: #000000">línea 11: el formulario se enviará a la URL [&lt;context&gt;/login], donde &lt;context&gt; es el contexto de la aplicación web;</span>
+  <li><span style="color: #000000">línea 11: el formulario se enviará a URL [&lt;context&gt;/login], donde &lt;context&gt; es el contexto de la aplicación web;</span>
   </li>
   <li><span style="color: #000000">línea 13: un campo de entrada denominado [username];</span>
   </li>
@@ -1328,13 +1332,13 @@
 <p><span style="color: #000000">El código HTML generado es el siguiente:</span></p>
 <div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-html">
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#008080">&lt;!</span><span style="color:#3f7f7f">DOCTYPE</span><span style="color:#000000"> </span><span style="color:#008080">html&gt;</span></span></span>
-<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#008080">&lt;</span><span style="color:#3f7f7f">html</span><span style="color:#000000"> </span><span style="color:#7f007f">xmlns</span><span style="color:#000000">=</span><span style="font-style:italic;color:#2a00ff">&quot;http://www.w3.org/1999/xhtml&quot;</span><span style="color:#000000"> </span><span style="color:#7f007f">xmlns:sec</span><span style="color:#000000">=</span><span style="font-style:italic;color:#2a00ff">&quot;http://www.thymeleaf.org/thymeleaf-extras-springsecurity3&quot;</span><span style="color:#008080">&gt;</span></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#008080">&lt;</span><span style="color:#3f7f7f">head</span><span style="color:#008080">&gt;</span></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#008080">&lt;</span><span style="color:#3f7f7f">title</span><span style="color:#008080">&gt;</span><span style="color:#000000">Spring Security Example </span><span style="color:#008080">&lt;/</span><span style="color:#3f7f7f">title</span><span style="color:#008080">&gt;</span></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#008080">&lt;/</span><span style="color:#3f7f7f">head</span><span style="color:#008080">&gt;</span></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#008080">&lt;</span><span style="color:#3f7f7f">body</span><span style="color:#008080">&gt;</span></span></span>
-<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#008080">&lt;</span><span style="color:#3f7f7f">div</span><span style="color:#008080">&gt;</span></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content">            You have been logged out.</span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#008080">&lt;/</span><span style="color:#3f7f7f">div</span><span style="color:#008080">&gt;</span></span></span>
@@ -1360,23 +1364,23 @@
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#008080">&lt;/</span><span style="color:#3f7f7f">html</span><span style="color:#008080">&gt;</span></span></span>
 </code></pre></div>
 
-<p><span style="color: #000000">Fíjate en la línea 28 que Thymeleaf ha añadido un campo oculto llamado [</span><strong><span style="color: #000000">_csrf</span></strong><span style="color: #000000">].</span></p>
-<p><a id="refheading9325894989336"></a></p>
+<p><span style="color: #000000">Cabe destacar que, en la línea 28, Thymeleaf ha añadido un campo oculto denominado [_csrf].</span></p>
+<p><span id="refheading9325894989336" name="refheading9325894989336" class="odt-bookmark-anchor"></span></p>
 <h3 id="1923-configuracion-de-spring-mvc">19.2.3. <span style="color: #4f81bd">Configuración de Spring MVC</span></h3>
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000000F1000000A03D183103.png" width="169" height="112" style="display:inline-block; margin:4px;width:4.461cm;height:2.962cm;" class="odt-zoomable" data-zoom-src="images/10000000000000F1000000A03D183103.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;">&nbsp;</td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;">&nbsp;</td></tr></table>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/10000000000000F1000000A03D183103.png" width="169" height="112" style="display:inline-block; margin:4px;width:4.461cm;height:2.962cm;" class="odt-zoomable" data-zoom-src="images/10000000000000F1000000A03D183103.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;">&nbsp;</td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;">&nbsp;</td></tr></table>
 
-<p><a id="refheading1623691200878134"></a></p>
-<p><span style="color: #000000"><a id="refheading570871429907001"></a>La clase [MvcConfig] configura el marco Spring MVC:</span></p>
-<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-python">
+<p><span id="refheading1623691200878134" name="refheading1623691200878134" class="odt-bookmark-anchor"></span></p>
+<p><span style="color: #000000"><span id="refheading570871429907001" name="refheading570871429907001" class="odt-bookmark-anchor"></span>La clase [MvcConfig] configura el marco Spring MVC:</span></p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-java">
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#7f0055">package</span><span style="color:#000000"> hello;</span></span></span>
-<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#7f0055">import</span><span style="color:#000000"> org.springframework.context.annotation.Configuration;</span></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#7f0055">import</span><span style="color:#000000"> org.springframework.web.servlet.config.annotation.ViewControllerRegistry;</span></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#7f0055">import</span><span style="color:#000000"> org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;</span></span></span>
-<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content">@Configuration</span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#7f0055">public</span><span style="color:#000000"> </span><span style="font-weight:bold;color:#7f0055">class</span><span style="color:#000000"> MvcConfig </span><span style="font-weight:bold;color:#7f0055">extends</span><span style="color:#000000"> WebMvcConfigurerAdapter {</span></span></span>
-<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#646464">@Override</span></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="font-weight:bold;color:#7f0055">public</span><span style="color:#000000"> </span><span style="font-weight:bold;color:#7f0055">void</span><span style="color:#000000"> addViewControllers(ViewControllerRegistry registry) {</span></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        registry.addViewController(</span><span style="color:#2a00ff">&quot;/home&quot;</span><span style="color:#000000">).setViewName(</span><span style="color:#2a00ff">&quot;home&quot;</span><span style="color:#000000">);</span></span></span>
@@ -1384,54 +1388,54 @@
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        registry.addViewController(</span><span style="color:#2a00ff">&quot;/hello&quot;</span><span style="color:#000000">).setViewName(</span><span style="color:#2a00ff">&quot;hello&quot;</span><span style="color:#000000">);</span></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        registry.addViewController(</span><span style="color:#2a00ff">&quot;/login&quot;</span><span style="color:#000000">).setViewName(</span><span style="color:#2a00ff">&quot;login&quot;</span><span style="color:#000000">);</span></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content">    }</span></span>
-<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content">}</span></span>
 </code></pre></div>
 
 <ul>
-  <li><span style="color: #000000">línea 7: la anotación [@Configuration] convierte a la clase [MvcConfig] en una clase de configuración;</span>
+  <li><span style="color: #000000">línea 7: la anotación [@Configuration] convierte la clase [MvcConfig] en una clase de configuración;</span>
   </li>
-  <li><span style="color: #000000">línea 8: la clase [MvcConfig] extiende la clase [WebMvcConfigurerAdapter] para sobrescribir ciertos métodos;</span>
+  <li><span style="color: #000000">línea 8: la clase [MvcConfig] extiende la clase [WebMvcConfigurerAdapter] para redefinir algunos de sus métodos;</span>
   </li>
   <li><span style="color: #000000">línea 10: redefinición de un método de la clase padre;</span>
   </li>
-  <li><span style="color: #000000">líneas 11–16: el método [addViewControllers] permite asociar URL con vistas HTML. Allí se realizan las siguientes asociaciones:</span>
+  <li><span style="color: #000000">líneas 11-16: el método [addViewControllers] permite asociar URL a vistas HTML. Se realizan las siguientes asociaciones:</span>
   </li>
 </ul>
 
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>URL
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b>vista</b></div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0"><b>vista</b></div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>/, /home
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">/plantillas/inicio.html</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>/hola
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">/templates/home.html</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>/hello
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">/plantillas/hola.html</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>/inicio de sesión
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">/plantillas/hola.html</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>/login
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">/plantillas/inicio-sesión.html</div></td></tr></table>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">/templates/login.html</div></td></tr></table>
 
-<p><span style="color: #000000">El sufijo [html] y la carpeta [templates] son los valores predeterminados que utiliza Thymeleaf. Se pueden cambiar mediante la configuración. La carpeta [templates] debe estar en la raíz de la ruta de clases del proyecto:</span></p>
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/100000000000040B0000017789947086.png" width="518" height="188" style="display:inline-block; margin:4px;width:13.693cm;height:4.962cm;" class="odt-zoomable" data-zoom-src="images/100000000000040B0000017789947086.png" /></td></tr></table>
+<p><span style="color: #000000">El sufijo [html] y la carpeta [templates] son los valores predeterminados utilizados por Thymeleaf. Se pueden cambiar mediante la configuración. La carpeta [templates] debe estar en la raíz de la ruta de clases del proyecto:</span></p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/100000000000040B0000017789947086.png" width="518" height="188" style="display:inline-block; margin:4px;width:13.693cm;height:4.962cm;" class="odt-zoomable" data-zoom-src="images/100000000000040B0000017789947086.png" /></td></tr></table>
 
-<p><span style="color: #000000">En [1] arriba, las carpetas [java] y [resources] son ambas carpetas de origen. Esto significa que su contenido estará en la raíz de la ruta de clases del proyecto. Por lo tanto, en [2], las carpetas [hello] y [templates] estarán en la raíz de la ruta de clases.</span></p>
-<p><a id="refheading9327894989336"></a></p>
-<h3 id="1924-configuracion-de-spring-security">19.2.4. <span style="color: #4f81bd">Configuración de Spring Security</span></h3>
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000000F70000009ACD60BCC4.png" width="173" height="108" style="display:inline-block; margin:4px;width:4.57cm;height:2.849cm;" class="odt-zoomable" data-zoom-src="images/10000000000000F70000009ACD60BCC4.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;">&nbsp;</td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;">&nbsp;</td></tr></table>
+<p><span style="color: #000000">Por encima de [1], las carpetas [java] y [resources] son ambas carpetas de origen (source folders). Esto implica que su contenido estará en la raíz del Classpath del proyecto. Por lo tanto, en [2], las carpetas [hello] y [templates] estarán  en la raíz de la ruta de clases.</span></p>
+<p><span id="refheading9327894989336" name="refheading9327894989336" class="odt-bookmark-anchor"></span></p>
+<h3 id="1924-configuracion-de-spring-security">19.2.4. <span style="color: #4f81bd"><strong>Configuración de Spring Security</strong></span></h3>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/10000000000000F70000009ACD60BCC4.png" width="173" height="108" style="display:inline-block; margin:4px;width:4.57cm;height:2.849cm;" class="odt-zoomable" data-zoom-src="images/10000000000000F70000009ACD60BCC4.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;">&nbsp;</td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;">&nbsp;</td></tr></table>
 
-<p><a id="refheading1623711200878134"></a></p>
-<p><span style="color: #000000"><a id="refheading570891429907001"></a>La clase [WebSecurityConfig] configura el marco Spring Security:</span></p>
-<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-python">
+<p><span id="refheading1623711200878134" name="refheading1623711200878134" class="odt-bookmark-anchor"></span></p>
+<p><span style="color: #000000"><span id="refheading570891429907001" name="refheading570891429907001" class="odt-bookmark-anchor"></span>La clase [WebSecurityConfig] configura el marco Spring Security:</span></p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-java">
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#7f0055">package</span><span style="color:#000000"> hello;</span></span></span>
-<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#7f0055">import</span><span style="color:#000000"> org.springframework.context.annotation.Configuration;</span></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#7f0055">import</span><span style="color:#000000"> org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;</span></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#7f0055">import</span><span style="color:#000000"> org.springframework.security.config.annotation.web.builders.HttpSecurity;</span></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#7f0055">import</span><span style="color:#000000"> org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;</span></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#7f0055">import</span><span style="color:#000000"> org.springframework.security.config.annotation.web.servlet.configuration.EnableWebMvcSecurity;</span></span></span>
-<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content">@Configuration</span></span>
 <span class="odt-code-line"><span class="odt-code-line-content">@EnableWebMvcSecurity</span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#7f0055">public</span><span style="color:#000000"> </span><span style="font-weight:bold;color:#7f0055">class</span><span style="color:#000000"> WebSecurityConfig </span><span style="font-weight:bold;color:#7f0055">extends</span><span style="color:#000000"> WebSecurityConfigurerAdapter {</span></span></span>
@@ -1440,7 +1444,7 @@
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        http.authorizeRequests().antMatchers(</span><span style="color:#2a00ff">&quot;/&quot;</span><span style="color:#000000">, </span><span style="color:#2a00ff">&quot;/home&quot;</span><span style="color:#000000">).permitAll().anyRequest().authenticated();</span></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        http.formLogin().loginPage(</span><span style="color:#2a00ff">&quot;/login&quot;</span><span style="color:#000000">).permitAll().and().logout().permitAll();</span></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content">    }</span></span>
-<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#646464">@Override</span></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="font-weight:bold;color:#7f0055">protected</span><span style="color:#000000"> </span><span style="font-weight:bold;color:#7f0055">void</span><span style="color:#000000"> configure(AuthenticationManagerBuilder auth) </span><span style="font-weight:bold;color:#7f0055">throws</span><span style="color:#000000"> Exception {</span></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        auth.inMemoryAuthentication().withUser(</span><span style="color:#2a00ff">&quot;user&quot;</span><span style="color:#000000">).password(</span><span style="color:#2a00ff">&quot;password&quot;</span><span style="color:#000000">).roles(</span><span style="color:#2a00ff">&quot;USER&quot;</span><span style="color:#000000">);</span></span></span>
@@ -1449,115 +1453,117 @@
 </code></pre></div>
 
 <ul>
-  <li><span style="color: #000000">línea 9: la anotación [@Configuration] convierte a la clase [</span>WebSecurityConfig<span style="color: #000000">] en una clase de configuración;</span>
+  <li><span style="color: #000000">línea 9: la anotación [@Configuration] convierte la clase [WebSecurityConfig] en una clase de configuración;</span>
   </li>
-  <li><span style="color: #000000">línea 10: la anotación [@EnableWebSecurity] convierte a la clase [</span>WebSecurityConfig<span style="color: #000000">] en una clase de configuración de Spring Security;</span>
+  <li><span style="color: #000000">línea 10: la anotación [@EnableWebSecurity] convierte la clase [WebSecurityConfig] en una clase de configuración de Spring Security;</span>
   </li>
-  <li><span style="color: #000000">Línea 11: La clase [WebSecurity] extiende la clase [WebSecurityConfigurerAdapter] para sobrescribir ciertos métodos;</span>
+  <li><span style="color: #000000">línea 11: la clase [WebSecurity] extiende la clase [WebSecurityConfigurerAdapter] para redefinir algunos de sus métodos;</span>
   </li>
-  <li><span style="color: #000000">Línea 12: Redefinición de un método de la clase padre;</span>
+  <li><span style="color: #000000">línea 12: redefinición de un método de la clase padre;</span>
   </li>
-  <li><span style="color: #000000">líneas 13-16: se sobrescribe el método [</span>configure(HttpSecurity http)<span style="color: #000000">] para definir los derechos de acceso a las distintas URL de la aplicación;</span>
+  <li><span style="color: #000000">líneas 13-16: el método [configure(HttpSecurity http)] se redefine para establecer los derechos de acceso a los distintos URL de la aplicación;</span>
   </li>
-  <li><span style="color: #000000">Línea 14: el método [</span>http.authorizeRequests()<span style="color: #000000">] permite asociar las URL con derechos de acceso. Allí se realizan las siguientes asociaciones:</span>
+  <li><span style="color: #000000">línea 14: el método [http.authorizeRequests()] permite asociar URL a derechos de acceso. Se realizan las siguientes asociaciones:</span>
   </li>
 </ul>
 
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>URL
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b>regla</b></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b>código</b></div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0"><b>regla</b></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0"><b>código</b></div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>/, /home
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">acceso sin autenticación</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div class="odt-code-rich" data-linenums="false" style="counter-reset: odtline 0;"><pre><code class="language-text">
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">acceso sin autenticación</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div class="odt-code-rich" data-linenums="false" style="counter-reset: odtline 0;"><pre><code class="language-text">
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">http.authorizeRequests().antMatchers(</span><span style="color:#2a00ff">&quot;/&quot;</span><span style="color:#000000">, </span><span style="color:#2a00ff">&quot;/home&quot;</span><span style="color:#000000">).permitAll()</span></span></span>
-</code></pre></div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>otras URL
+</code></pre></div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>autres URL
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">solo acceso autenticado</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">Acceso solo con autenticación</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>http.anyRequest().authenticated();
 </code></pre></div>
 </div></td></tr></table>
 
 <ul>
-  <li>línea 15: define el método de autenticación. La autenticación se realiza a través de un formulario URL [/login] accesible para todos [<span style="color: #000000">http.formLogin().loginPage(</span><span style="color: #2a00ff">&quot;/login&quot;</span><span style="color: #000000">).permitAll()</span>]. El cierre de sesión también es accesible para todos;
+  <li>línea 15: define el método de autenticación. La autenticación se realiza a través de un formulario de URL [/login] accesible para todos [http.formLogin().loginPage(&quot;/login&quot;).permitAll()]. El cierre de sesión (logout) también es accesible para todos;
   </li>
-  <li>líneas 19-21: redefinen el método [<span style="color: #000000">configure(AuthenticationManagerBuilder auth)</span>] que gestiona a los usuarios;
+  <li>líneas 19-21: redefinen el método [configure(AuthenticationManagerBuilder auth)] que gestiona a los usuarios;
   </li>
-  <li>línea 20: la autenticación se realiza utilizando usuarios codificados de forma fija [<span style="color: #000000">auth.inMemoryAuthentication()</span>]. Aquí se define un usuario con el nombre de usuario [user], la contraseña [password] y el rol [USER]. A los usuarios con el mismo rol se les pueden conceder los mismos permisos;
+  <li>línea 20: la autenticación se realiza con usuarios definidos de forma «fija» [auth.inMemoryAuthentication()]. Aquí se define un usuario con el nombre de usuario [user], la contraseña [password] y el rol [USER]. Se pueden conceder los mismos derechos a los usuarios que tengan el mismo rol;
   </li>
 </ul>
-<p><a id="refheading9329894989336"></a></p>
-<h3 id="1925-clase-ejecutable">19.2.5. <span style="color: #4f81bd">Clase ejecutable</span></h3>
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000000F70000009A7B7CF92B.png" width="173" height="108" style="display:inline-block; margin:4px;width:4.57cm;height:2.849cm;" class="odt-zoomable" data-zoom-src="images/10000000000000F70000009A7B7CF92B.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;">&nbsp;</td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;">&nbsp;</td></tr></table>
 
-<p><a id="refheading570911429907001"></a></p>
+<p><span id="refheading9329894989336" name="refheading9329894989336" class="odt-bookmark-anchor"></span></p>
+<h3 id="1925-clase-ejecutable">19.2.5. <span style="color: #4f81bd">Clase ejecutable</span></h3>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/10000000000000F70000009A7B7CF92B.png" width="173" height="108" style="display:inline-block; margin:4px;width:4.57cm;height:2.849cm;" class="odt-zoomable" data-zoom-src="images/10000000000000F70000009A7B7CF92B.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;">&nbsp;</td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;">&nbsp;</td></tr></table>
+
+<p><span id="refheading570911429907001" name="refheading570911429907001" class="odt-bookmark-anchor"></span></p>
 <p><span style="color: #000000">La clase [Application] es la siguiente:</span></p>
-<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-python">
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-java">
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#7f0055">package</span><span style="color:#000000"> hello;</span></span></span>
-<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#7f0055">import</span><span style="color:#000000"> org.springframework.boot.autoconfigure.EnableAutoConfiguration;</span></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#7f0055">import</span><span style="color:#000000"> org.springframework.boot.SpringApplication;</span></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#7f0055">import</span><span style="color:#000000"> org.springframework.context.annotation.ComponentScan;</span></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#7f0055">import</span><span style="color:#000000"> org.springframework.context.annotation.Configuration;</span></span></span>
-<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content">@EnableAutoConfiguration</span></span>
 <span class="odt-code-line"><span class="odt-code-line-content">@Configuration</span></span>
 <span class="odt-code-line"><span class="odt-code-line-content">@ComponentScan</span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#7f0055">public</span><span style="color:#000000"> </span><span style="font-weight:bold;color:#7f0055">class</span><span style="color:#000000"> Application {</span></span></span>
-<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="font-weight:bold;color:#7f0055">public</span><span style="color:#000000"> </span><span style="font-weight:bold;color:#7f0055">static</span><span style="color:#000000"> </span><span style="font-weight:bold;color:#7f0055">void</span><span style="color:#000000"> main(String[] args) </span><span style="font-weight:bold;color:#7f0055">throws</span><span style="color:#000000"> Throwable {</span></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        SpringApplication.</span><span style="font-style:italic;color:#000000">run</span><span style="color:#000000">(Application.</span><span style="font-weight:bold;color:#7f0055">class</span><span style="color:#000000">, args);</span></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content">    }</span></span>
-<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content">}</span></span>
 </code></pre></div>
 
 <ul>
-  <li><span style="color: #000000">línea 8: la anotación [@EnableAutoConfiguration] indica a Spring Boot (línea 3) que realice la configuración que el desarrollador no ha establecido explícitamente;</span>
+  <li><span style="color: #000000">línea 8: la anotación [@EnableAutoConfiguration] solicita a Spring Boot (línea 3) que realice la configuración que el desarrollador no habrá hecho explícitamente;</span>
   </li>
   <li><span style="color: #000000">línea 9: convierte la clase [Application] en una clase de configuración de Spring;</span>
   </li>
-  <li><span style="color: #000000">línea 10: indica al sistema que explore el directorio que contiene la clase [Application] para buscar componentes de Spring. De este modo, se detectarán las dos clases [MvcConfig] y [WebSecurityConfig], ya que cuentan con la anotación [@Configuration];</span>
+  <li><span style="color: #000000">línea 10: solicita el escaneo de la carpeta de la clase [Application] para buscar componentes de Spring. Las dos clases [MvcConfig] y [WebSecurityConfig] serán detectadas de este modo, ya que tienen la anotación [@Configuration];</span>
   </li>
   <li><span style="color: #000000">línea 13: el método [main] de la clase ejecutable;</span>
   </li>
-  <li><span style="color: #000000">línea 14: se ejecuta el método estático [SpringApplication.run] con la clase de configuración [Application] como parámetro. Ya nos hemos encontrado con este proceso y sabemos que se iniciará el servidor Tomcat integrado en las dependencias Maven del proyecto y que el proyecto se desplegará en él. Vimos que se gestionaban cuatro URL [/, /home, /login, /hello] y que algunas estaban protegidas por derechos de acceso.</span>
+  <li><span style="color: #000000">línea 14: se ejecuta el método estático [SpringApplication.run] con la clase de configuración [Application] como parámetro. Ya nos hemos encontrado con este proceso y sabemos que se iniciará el servidor Tomcat integrado en las dependencias Maven del proyecto y que el proyecto se desplegará en él. Hemos visto que cuatro URL eran gestionadas por [/, /home, /login, /hello] y que algunas estaban protegidas por derechos de acceso.</span>
   </li>
 </ul>
-<p><a id="refheading9331894989336"></a></p>
-<h3 id="1926-prueba-de-la-aplicacion">19.2.6. <span style="color: #4f81bd">Prueba de la aplicación</span></h3>
-<p><span style="color: #000000"><a id="refheading1623751200878134"></a>Comencemos solicitando la URL [/], que es una de las cuatro URL aceptadas. Está asociada a la vista [/templates/home.html]:</span></p>
-<p><a id="refheading570931429907001"></a></p>
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/1000000000000143000000DCD3E5FF81.png" width="226" height="154" style="display:inline-block; margin:4px;width:5.98cm;height:4.073cm;" class="odt-zoomable" data-zoom-src="images/1000000000000143000000DCD3E5FF81.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;">&nbsp;</td></tr></table>
 
-<p><span style="color: #000000">La URL solicitada [/] es accesible para todo el mundo. Por eso hemos podido recuperarla. El enlace [aquí] es el siguiente:</span></p>
+<p><span id="refheading9331894989336" name="refheading9331894989336" class="odt-bookmark-anchor"></span></p>
+<h3 id="1926-pruebas-de-la-aplicacion">19.2.6. <span style="color: #4f81bd">Pruebas de la aplicación</span></h3>
+<p><span style="color: #000000"><span id="refheading1623751200878134" name="refheading1623751200878134" class="odt-bookmark-anchor"></span>Comencemos solicitando el URL [/], que es uno de los cuatro URL aceptados. Está asociado a la vista [/templates/home.html]:</span></p>
+<p><span id="refheading570931429907001" name="refheading570931429907001" class="odt-bookmark-anchor"></span></p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/1000000000000143000000DCD3E5FF81.png" width="226" height="154" style="display:inline-block; margin:4px;width:5.98cm;height:4.073cm;" class="odt-zoomable" data-zoom-src="images/1000000000000143000000DCD3E5FF81.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;">&nbsp;</td></tr></table>
+
+<p><span style="color: #000000">La URL solicitada [/] es accesible para todos. Por eso la hemos obtenido. El enlace [here] es el siguiente:</span></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>Click <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;/hello&quot;</span><span class="p">&gt;</span>here<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span> to see a greeting.
 </code></pre></div>
-<p><span style="color: #000000">La URL [/hello] se solicitará cuando hagamos clic en el enlace. Esta está protegida:</span></p>
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<p><span style="color: #000000">El URL [/hello] se solicitará al hacer clic en el enlace. Este está protegido:</span></p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>URL
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b>regla</b></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b>código</b></div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0"><b>regla</b></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0"><b>código</b></div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>/, /home
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">acceso sin autenticación</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div class="odt-code-rich" data-linenums="false" style="counter-reset: odtline 0;"><pre><code class="language-text">
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">acceso sin autenticación</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div class="odt-code-rich" data-linenums="false" style="counter-reset: odtline 0;"><pre><code class="language-text">
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">http.authorizeRequests().antMatchers(</span><span style="color:#2a00ff">&quot;/&quot;</span><span style="color:#000000">, </span><span style="color:#2a00ff">&quot;/home&quot;</span><span style="color:#000000">).permitAll()</span></span></span>
-</code></pre></div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>otras URL
+</code></pre></div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>autres URL
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">solo acceso autenticado</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">Acceso solo con autenticación</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>http.anyRequest().authenticated();
 </code></pre></div>
 </div></td></tr></table>
 
-<p><span style="color: #000000">Debes estar autenticado para acceder a ella. Spring Security redirigirá entonces el navegador del cliente a la página de autenticación. Según la configuración mostrada, esta es la página con la URL [/login]. Esta página es accesible para todo el mundo:</span></p>
+<p><span style="color: #000000">Es necesario estar autenticado para obtenerlo. Spring Security redirigirá entonces el navegador del cliente a la página de autenticación. Según la configuración vista, se trata de la página de URL [/login]. Esta es accesible para todos:</span></p>
 <div class="odt-code-rich" data-linenums="false" style="counter-reset: odtline 0;"><pre><code class="language-text">
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">http.formLogin().loginPage(</span><span style="color:#2a00ff">&quot;/login&quot;</span><span style="color:#000000">).permitAll().and().logout().permitAll();</span></span></span>
 </code></pre></div>
 
-<p><span style="color: #000000">Así que lo conseguimos [1]:</span></p>
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000004A80000015E5A983F3A.png" width="596" height="175" style="display:inline-block; margin:4px;width:15.769cm;height:4.63cm;" class="odt-zoomable" data-zoom-src="images/10000000000004A80000015E5A983F3A.png" /></td></tr></table>
+<p><span style="color: #000000">Así que obtenemos [1]:</span></p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/10000000000004A80000015E5A983F3A.png" width="596" height="175" style="display:inline-block; margin:4px;width:15.769cm;height:4.63cm;" class="odt-zoomable" data-zoom-src="images/10000000000004A80000015E5A983F3A.png" /></td></tr></table>
 
 <p><span style="color: #000000">El código fuente de la página obtenida es el siguiente:</span></p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-13-1"> 1</a></span>
@@ -1581,22 +1587,22 @@
 <a id="__codelineno-13-10" name="__codelineno-13-10"></a><span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
 </code></pre></div></td></tr></table></div>
 <ul>
-  <li><span style="color: #000000">En la línea 7 aparece un campo oculto que no está presente en la página original [login.html]. Thymeleaf lo ha añadido. Este código, conocido como CSRF (Cross-Site Request Forgery), está diseñado para solucionar una vulnerabilidad de seguridad. Este token debe enviarse de vuelta a Spring Security junto con las credenciales de autenticación para que esta sea aceptada;</span>
+  <li><span style="color: #000000">En la línea 7 aparece un campo oculto que no está en la página original [login.html]. Lo ha añadido Thymeleaf. Este código, denominado CSRF (Cross Site Request Forgery), tiene como objetivo eliminar una vulnerabilidad de seguridad. Este token debe reenviarse a Spring Security junto con la autenticación para que esta última sea aceptada;</span>
   </li>
 </ul>
 
-<p><span style="color: #000000">Recordemos que Spring Security solo reconoce el par usuario/contraseña. Si introducimos cualquier otra cosa en [2], obtenemos la misma página con un mensaje de error en [3]. Spring Security ha redirigido el navegador a la URL [http://localhost:8080/login?error]. La presencia del parámetro [error] ha activado la visualización de la etiqueta:</span></p>
+<p><span style="color: #000000">Recordamos que Spring Security solo reconoce al usuario user/password. Si introducimos cualquier otra cosa en [2], obtenemos la misma página con un mensaje de error en [3]. Spring Security ha redirigido el navegador a URL [http://localhost:8080/login?error]. La presencia del parámetro [error] ha activado la visualización de la etiqueta:</span></p>
 <div class="odt-code-rich" data-linenums="false" style="counter-reset: odtline 0;"><pre><code class="language-html">
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#008080">&lt;</span><span style="color:#3f7f7f">div</span><span style="color:#000000"> </span><span style="color:#7f007f">th:if</span><span style="color:#000000">=</span><span style="font-style:italic;color:#2a00ff">&quot;${param.error}&quot;</span><span style="color:#008080">&gt;</span><span style="color:#000000">Invalid username and password.</span><span style="color:#008080">&lt;/</span><span style="color:#3f7f7f">div</span><span style="color:#008080">&gt;</span></span></span>
 </code></pre></div>
 
-<p><span style="color: #000000">Ahora, introduzcamos los valores esperados de usuario y contraseña [4]:</span></p>
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/100000000000047F0000013769E7C598.png" width="576" height="156" style="display:inline-block; margin:4px;width:15.228cm;height:4.115cm;" class="odt-zoomable" data-zoom-src="images/100000000000047F0000013769E7C598.png" /></td></tr></table>
+<p><span style="color: #000000">Ahora, introduzcamos los valores esperados de usuario/contraseña [4]:</span></p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/100000000000047F0000013769E7C598.png" width="576" height="156" style="display:inline-block; margin:4px;width:15.228cm;height:4.115cm;" class="odt-zoomable" data-zoom-src="images/100000000000047F0000013769E7C598.png" /></td></tr></table>
 
 <ul>
-  <li><span style="color: #000000">en [4], iniciamos sesión;</span>
+  <li><span style="color: #000000">en [4], nos identificamos;</span>
   </li>
-  <li><span style="color: #000000">en [5], Spring Security nos redirige a la URL [/hello] porque esa es la URL que solicitamos cuando fuimos redirigidos a la página de inicio de sesión. La identidad del usuario se mostró en la siguiente línea de [hello.html]:</span>
+  <li><span style="color: #000000">en [5], Spring Security nos redirige a URL [/hello], ya que es URL lo que solicitábamos cuando fuimos redirigidos a la página de inicio de sesión. La identidad del usuario se ha mostrado en la siguiente línea de [hello.html]:</span>
   </li>
 </ul>
 
@@ -1611,18 +1617,18 @@
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#008080">&lt;/</span><span style="color:#3f7f7f">form</span><span style="color:#008080">&gt;</span></span></span>
 </code></pre></div>
 
-<p><span style="color: #000000">Al hacer clic en el botón [Cerrar sesión], se envía una solicitud POST a la URL [/logout]. Al igual que la URL [/login], esta URL es accesible para todo el mundo:</span></p>
+<p><span style="color: #000000">Al hacer clic en el botón [Sign Out], se generará un POST en el URL [/logout]. Este, al igual que el URL y el [/login], es accesible para todos:</span></p>
 <div class="odt-code-rich" data-linenums="false" style="counter-reset: odtline 0;"><pre><code class="language-text">
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">http.formLogin().loginPage(</span><span style="color:#2a00ff">&quot;/login&quot;</span><span style="color:#000000">).permitAll().and().</span><span style="color:#ff3333">logout().permitAll()</span><span style="color:#000000">;</span></span></span>
 </code></pre></div>
 
-<p><span style="color: #000000">En nuestra asignación de URL/vistas, no hemos definido nada para la URL [/logout]. ¿Qué pasará? Probémoslo:</span></p>
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000004B60000015DBFDB9263.png" width="603" height="175" style="display:inline-block; margin:4px;width:15.954cm;height:4.618cm;" class="odt-zoomable" data-zoom-src="images/10000000000004B60000015DBFDB9263.png" /></td></tr></table>
+<p><span style="color: #000000">En nuestra asociación URL / vistas, no hemos definido nada para URL y [/logout]. ¿Qué va a pasar? Probemos:</span></p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/10000000000004B60000015DBFDB9263.png" width="603" height="175" style="display:inline-block; margin:4px;width:15.954cm;height:4.618cm;" class="odt-zoomable" data-zoom-src="images/10000000000004B60000015DBFDB9263.png" /></td></tr></table>
 
 <ul>
-  <li><span style="color: #000000">En [6], hacemos clic en el botón [Sign Out];</span>
+  <li><span style="color: #000000">en [6], hacemos clic en el botón [Sign Out];</span>
   </li>
-  <li><span style="color: #000000">en [7], vemos que hemos sido redirigidos a la URL [http://localhost:8080/login?logout]. Spring Security solicitó esta redirección. La presencia del parámetro [logout] en la URL provocó que se mostrara la siguiente línea en la vista:</span>
+  <li><span style="color: #000000">en [7], vemos que hemos sido redirigidos a URL [http://localhost:8080/login?logout]. Ha sido Spring Security quien ha solicitado esta redirección. La presencia del parámetro [logout] en URL ha hecho que se muestre la siguiente línea de la vista:</span>
   </li>
 </ul>
 
@@ -1630,33 +1636,33 @@
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#008080">&lt;</span><span style="color:#3f7f7f">div</span><span style="color:#000000"> </span><span style="color:#7f007f">th:if</span><span style="color:#000000">=</span><span style="font-style:italic;color:#2a00ff">&quot;${param.logout}&quot;</span><span style="color:#008080">&gt;</span><span style="color:#000000">You have been logged out.</span><span style="color:#008080">&lt;/</span><span style="color:#3f7f7f">div</span><span style="color:#008080">&gt;</span></span></span>
 </code></pre></div>
 
-<p><a id="refheading9333894989336"></a></p>
+<p><span id="refheading9333894989336" name="refheading9333894989336" class="odt-bookmark-anchor"></span></p>
 <h3 id="1927-conclusion">19.2.7. <span style="color: #4f81bd">Conclusión</span></h3>
-<p><span style="color: #000000"><a id="refheading1623771200878134"></a>En el ejemplo anterior, podríamos haber escrito primero la aplicación web y luego haberla protegido. Spring Security no es intrusivo. Se puede implementar la seguridad en una aplicación web que ya haya sido escrita. Además, hemos descubierto los siguientes puntos:</span></p>
-<p><a id="refheading570951429907001"></a></p>
+<p><span style="color: #000000"><span id="refheading1623771200878134" name="refheading1623771200878134" class="odt-bookmark-anchor"></span>En el ejemplo anterior, podríamos haber escrito primero la aplicación web y luego haberla protegido. Spring Security no es intrusivo. Se puede implementar la seguridad de una aplicación web ya escrita. Además, hemos descubierto lo siguiente:</span></p>
+<p><span id="refheading570951429907001" name="refheading570951429907001" class="odt-bookmark-anchor"></span></p>
 <ul>
   <li><span style="color: #000000">es posible definir una página de autenticación;</span>
   </li>
   <li><span style="color: #000000">la autenticación debe ir acompañada del token CSRF emitido por Spring Security;</span>
   </li>
-  <li><span style="color: #000000">si la autenticación falla, se le redirige a la página de autenticación con un parámetro </span><b>de error</b><span style="color: #000000"> adicional </span>en la URL<span style="color: #000000">;</span>
+  <li><span style="color: #000000">si la autenticación falla, se redirige a la página de autenticación con un parámetro adicional </span><b>error </b>en el URL<span style="color: #000000">;</span>
   </li>
-  <li><span style="color: #000000">si la autenticación tiene éxito, se redirige a la página solicitada en el momento de la autenticación. Si se solicita la página de autenticación directamente sin pasar por una página intermedia, Spring Security redirige a la URL [/] (este caso no se ha demostrado);</span>
+  <li><span style="color: #000000">si la autenticación se realiza correctamente, se redirige a la página solicitada en el momento de la autenticación. Si se solicita directamente la página de autenticación sin pasar por una página intermedia, Spring Security nos redirige a la URL [/] (este caso no se ha presentado);</span>
   </li>
-  <li><span style="color: #000000">Se cierra la sesión solicitando la URL [/logout] con una solicitud POST. A continuación, Spring Security redirige a la página de autenticación con el parámetro</span><b> «logout» </b><span style="color: #000000">en la URL;</span>
+  <li><span style="color: #000000">nos desconectamos solicitando la URL [/logout] con una POST. Spring Security nos redirige entonces a la página de autenticación con el parámetro </span><b>logout </b><span style="color: #000000">en el URL;</span>
   </li>
 </ul>
 
-<p><span style="color: #000000">Todas estas conclusiones se basan en el comportamiento predeterminado de Spring Security. Este comportamiento se puede modificar mediante la configuración, sobrescribiendo determinados métodos de la clase [</span>WebSecurityConfigurerAdapter<span style="color: #000000">].</span></p>
-<p><span style="color: #000000">El tutorial anterior nos será de poca ayuda de aquí en adelante. De hecho, utilizaremos:</span></p>
+<p><span style="color: #000000">Todas estas conclusiones se basan en los comportamientos predeterminados de Spring Security. Estos comportamientos se pueden modificar mediante la configuración, redefiniendo ciertos métodos de la clase [WebSecurityConfigurerAdapter].</span></p>
+<p><span style="color: #000000">El tutorial anterior nos será de poca ayuda en lo que viene a continuación. De hecho, vamos a utilizar:</span></p>
 <ul>
   <li><span style="color: #000000">una base de datos para almacenar los usuarios, sus contraseñas y sus roles;</span>
   </li>
-  <li><span style="color: #000000">autenticación basada en encabezados HTTP;</span>
+  <li><span style="color: #000000">una autenticación por encabezado HTTP;</span>
   </li>
 </ul>
 
-<p><span style="color: #000000">Hay muy pocos tutoriales disponibles sobre lo que queremos hacer aquí. La solución que propondremos es una combinación de fragmentos de código encontrados aquí y allá.</span></p>
+<p><span style="color: #000000">Hay muy pocos tutoriales sobre lo que queremos hacer aquí. La solución que se va a proponer es una recopilación de códigos encontrados aquí y allá.</span></p>
 
 
 
@@ -1696,9 +1702,10 @@
           https://stahe.github.io
         </a>
         <br>
-        Este tutorial, escrito por <strong>Serge Tahé</strong>, se pone a disposición del público bajo los términos de la
-<em>Licencia Creative Commons Reconocimiento – No comercial –
-ShareAlike 3.0 Unported</em>.
+        Este curso-tutorial escrito por <strong>Serge Tahé</strong> se pone a disposición del público según los términos de la
+        <em>Licencia Creative Commons Reconocimiento – Sin uso comercial –
+        Compartir en las mismas condiciones 3.0 no adaptada</em>.
+
       </div>
 
     </div>
